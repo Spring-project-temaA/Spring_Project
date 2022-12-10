@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title>Designer 회원가입</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+<!-- 회원가입 영역부터는 템플릿 사용 x bootstrap 사용 디자인은 기능 중간 집계 이후 고칠 예정-->
+
+<header class="container mt-3 py-5">
+    <div class="container-fluid p-4 bg-light bg-gradient">
+        <div class="container p-5 rounded">
+            <h1 class="display-5 text-center fw-semibold text-muted">Sign Up</h1>
+        </div>
+    </div>
+</header>
+
+
+<main>
+    <div class="container">
+        <div class="container-fluid">
+            <form class="border border-secondary rounded-3 p-5">
+                <!-- ID -->
+                <div class="p-2">
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Designer Name
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="designerName" name="userId" placeholder=" ">
+                        <label for="designerName" class="text-secondary opacity-50">디자이너의 이름을 입력해주세요.</label>
+                    </div>
+                </div>
+
+                <!-- PW -->
+                <div class="p-2">
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Select Branch Office
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select id="designerShop" name="" class="form-select form-select-sm pt-2 fw-semibold">
+                            <option value="selectd">지점을 선택해 주세요</option>
+                            <option value="1">ㄱㄱ점</option>
+                            <option value="2">ㄴㄴ점</option>
+                            <option value="3">ㄷㄷ점</option>
+                            <option value="4">ㄹㄹ점</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 버튼구역 아직 이름설정 해두지 않았습니다. 기능 설계시 이름 설정 필요 -->
+                <div class="container">
+                    <div class="container-fluid">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-dark" type="submit">Sign Up</button>
+                            <button class="btn btn-outline-secondary" type="reset">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</main>
+
+
+<!--footer-->
+<footer th:replace="layout/Footer :: mainFooter"></footer>
+
+</body>
+</html>
