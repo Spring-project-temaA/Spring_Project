@@ -10,9 +10,33 @@ public class promiseHairServiceImpl implements promiseHairService {
     @Autowired
     private promiseHairMapper phMapper;
 
+
     @Override
-    public userDto loginChk() throws Exception {
-        userDto userId = phMapper.loginChk();
-        return userId;
+    public void signUser(userDto userDto) throws Exception {
+        phMapper.signUser(userDto);
+    }
+
+    //    아이디 중복체크
+    @Override
+    public int checkId(String userId) {
+        int cnt = phMapper.checkId(userId);
+//        System.out.println(cnt);
+        return cnt;
+    }
+
+    //    전화번호 중복체크
+    @Override
+    public int checkPh(String userPh) {
+        int cnt = phMapper.checkId(userPh);
+//        System.out.println(cnt);
+        return cnt;
+    }
+
+    //    이메일 중복체크
+    @Override
+    public int checkMail(String userMail) {
+        int cnt = phMapper.checkId(userMail);
+//        System.out.println(cnt);
+        return cnt;
     }
 }
