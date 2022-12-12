@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--mybatis SQL 매핑-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smp.springproject.mapper.promiseHairMapper">
+    <select id="loginChk" resultType="com.example.smp_1.dto.userDto">
+        SELECT user_id
+        from user
+        WHERE user_id = #{userId}
+          AND user_pw = #{userPw}
+    </select>
+</mapper>
