@@ -30,44 +30,46 @@ public class webController {
 
 //    중복체크를 위한 ajax 컨트롤러
 
-    //    아이디 중복체크
-    @PostMapping("/idCheck")
+    //    유저 아이디 중복체크
+    @PostMapping("/userIdCheck")
     @ResponseBody
-    public int idCheck(@RequestParam("userId") String id) {
-        int cnt = phservice.checkId(id);
+    public int userIdCheck(@RequestParam("userId") String id) {
+        int cnt = phservice.checkUserId(id);
         return cnt;
     }
 
-    //    전화번호 중복체크
-    @PostMapping("/phCheck")
+    //    유저 전화번호 중복체크
+    @PostMapping("/userPhCheck")
     @ResponseBody
-    public int phCheck(@RequestParam("userPh") String ph) {
-        int cnt = phservice.checkId(ph);
+    public int userPhCheck(@RequestParam("userPh") String ph) {
+        int cnt = phservice.checkUserPh(ph);
         return cnt;
     }
 
-    //    이메일 중복체크
-    @PostMapping("/mailCheck")
+    //    유저 이메일 중복체크
+    @PostMapping("/userMailCheck")
     @ResponseBody
-    public int mailCheck(@RequestParam("userMail") String mail) {
-        int cnt = phservice.checkId(mail);
+    public int userMailCheck(@RequestParam("userMail") String mail) {
+        int cnt = phservice.checkUserMail(mail);
         return cnt;
     }
 
-    @RequestMapping("/signUp")
-    public String signUp() {
+    //    유저 회원가입 창으로 가기
+    @RequestMapping("/signUpUser")
+    public String signUpUser() {
         return "signUpUser";
     }
 
+    //    유저 회원가입
     @RequestMapping("/signUser")
-    public String signUpUser(userDto userDto) throws Exception {
+    public String insertUser(userDto userDto) throws Exception {
         phservice.signUser(userDto);
         return "main";
     }
 
-    @RequestMapping("/signUpOwner")
-    public String signUpOwner() {
-        return "signUpOwner";
+    @RequestMapping("/signUpDesigner")
+    public String signUpDesigner() {
+        return "signUpDesigner";
     }
 
     @RequestMapping("/signUpSelect")

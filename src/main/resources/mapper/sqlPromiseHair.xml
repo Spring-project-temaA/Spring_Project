@@ -2,13 +2,6 @@
 <!--mybatis SQL 매핑-->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.smp_1.mapper.promiseHairMapper">
-    <select id="loginChk" resultType="com.example.smp_1.dto.userDto">
-        SELECT user_id
-        from user
-        WHERE user_id = #{userId}
-          AND user_pw = #{userPw}
-    </select>
-
     <!--    회원가입-->
     <insert id="signUser" parameterType="com.example.smp_1.dto.userDto">
         INSERT INTO user (user_id, user_pw, user_name, user_ph, user_mail, user_gen)
@@ -16,21 +9,21 @@
     </insert>
 
     <!--    아이디 중복확인-->
-    <select id="checkId" parameterType="String" resultType="int">
+    <select id="checkUserId" parameterType="String" resultType="int">
         SELECT COUNT(user_id)
         FROM user
         WHERE user_id = #{userId}
     </select>
 
     <!--    전화번호 중복확인-->
-    <select id="checkPh" parameterType="String" resultType="int">
+    <select id="checkUserPh" parameterType="String" resultType="int">
         SELECT COUNT(user_ph)
         FROM user
         WHERE user_id = #{userPh}
     </select>
 
     <!--    이메일 중복확인-->
-    <select id="checkMail" parameterType="String" resultType="int">
+    <select id="checkUserMail" parameterType="String" resultType="int">
         SELECT COUNT(user_id)
         FROM user
         WHERE user_id = #{userMail}

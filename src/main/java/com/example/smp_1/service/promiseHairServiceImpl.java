@@ -16,26 +16,26 @@ public class promiseHairServiceImpl implements promiseHairService {
         phMapper.signUser(userDto);
     }
 
-    //    아이디 중복체크
+    //    유저 아이디 중복체크
     @Override
-    public int checkId(String userId) {
-        int cnt = phMapper.checkId(userId);
+    public int checkUserId(String userId) {
+        int cnt = phMapper.checkUserId(userId);
 //        System.out.println(cnt);
         return cnt;
     }
 
-    //    전화번호 중복체크
+    //    유저 전화번호 중복체크
     @Override
-    public int checkPh(String userPh) {
-        int cnt = phMapper.checkId(userPh);
+    public int checkUserPh(String userPh) {
+        int cnt = phMapper.checkUserPh(userPh);
 //        System.out.println(cnt);
         return cnt;
     }
 
-    //    이메일 중복체크
+    //    유저 이메일 중복체크
     @Override
-    public int checkMail(String userMail) {
-        int cnt = phMapper.checkId(userMail);
+    public int checkUserMail(String userMail) {
+        int cnt = phMapper.checkUserMail(userMail);
 //        System.out.println(cnt);
         return cnt;
     }

@@ -8,12 +8,12 @@ import org.apache.ibatis.annotations.Mapper;
 public interface promiseHairMapper {
     public void signUser(userDto userDto) throws Exception;
 
-    //    아이디 중복체크
-    public int checkId(String userId);
+    //    유저 아이디 중복체크
+    public int checkUserId(String userId);
 
-    //    전화번호 중복체크
-    public int checkPh(String userPh);
+    //    유저 전화번호 중복체크
+    public int checkUserPh(String userPh);
 
-    //    이메일 중복체크
-    public int checkMail(String userMail);
+    //    유저 이메일 중복체크
+    public int checkUserMail(String userMail);
 }
