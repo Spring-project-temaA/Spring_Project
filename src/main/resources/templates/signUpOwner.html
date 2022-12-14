@@ -13,6 +13,8 @@
             src="https://code.jquery.com/jquery-3.6.1.js"
             integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
             crossorigin="anonymous"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
     <style>
         span {
             display: none;
@@ -26,6 +28,9 @@
             color: red;
         }
     </style>
+    <!--    주소 입력을 하기 위해 가져옴-->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
     <!--    유효성 검사 및 중복체크를 위한 자바스크립트-->
     <script type="text/javascript" src="useJs/shopCheck.js"></script>
 </head>
@@ -113,6 +118,56 @@
                         <span class="checkShopName no">필수 항목입니다.</span>
                     </div>
                 </div>
+
+                <!-- 주소 -->
+                <div class="row mb-3 mx-auto">
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Shop Address
+                    </div>
+                    <div class="row align-items-center p-2">
+                        <div class="col-2 text-center">
+                            <label for="shopAddrNum" onkeyup="checkAddress()" onchange="checkAddress()"
+                                   class="col-form-label"> Addr </label>
+                        </div>
+                        <div class="col-7">
+                            <input id="shopAddrNum" name="shopAddrNum" type="text" class="form-control"
+                                   placeholder="우편번호" readonly>
+                            <span class="checkAddr no">필수 항목입니다.</span>
+                        </div>
+                        <div class="col-1">
+                            <input id="addrBtn" type="button" class="btn btn-outline-danger"
+                                   onclick="addressGet(); checkAddress()" value="Find Addr">
+                        </div>
+                    </div>
+                    <div class="row align-items-center p-2">
+                        <div class="col-2 text-center">
+                            <label for="shopAddrJibun" class="col-form-label">지번 주소 </label>
+                        </div>
+                        <div class="col-10">
+                            <input id="shopAddrJibun" name="shopAddrJibun" type="text" class="form-control"
+                                   placeholder="지번 주소" readonly>
+                        </div>
+                    </div>
+                    <div class="row align-items-center p-2">
+                        <div class="col-2 text-center">
+                            <label for="shopAddrRoad" class="col-form-label"> 도로명 주소 </label>
+                        </div>
+                        <div class="col-10">
+                            <input id="shopAddrRoad" name="shopAddrRoad" type="text" class="form-control"
+                                   placeholder="도로명 주소" readonly>
+                        </div>
+                    </div>
+                    <div class="row align-items-center p-2">
+                        <div class="col-2 text-center">
+                            <label for="shopAddrDetail" class="col-form-label"> 상세주소</label>
+                        </div>
+                        <div class="col-10">
+                            <input id="shopAddrDetail" name="shopAddrDetail" type="text" class="form-control"
+                                   placeholder="상세 주소">
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Shop Tel -->
                 <div class="p-2">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
@@ -151,7 +206,7 @@
                         Phone
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="ownerPh" name="useownerPhrPh" placeholder=" "
+                        <input type="text" class="form-control" id="ownerPh" name="ownerPh" placeholder=" "
                                onclick="checkPh()"
                                onchange="checkPh()">
                         <label for="ownerPh" class="text-secondary opacity-50">전화번호를 입력해 주세요</label>

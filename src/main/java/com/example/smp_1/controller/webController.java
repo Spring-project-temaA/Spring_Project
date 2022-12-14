@@ -121,7 +121,6 @@ public class webController {
         return "main";
     }
 
-
     @RequestMapping("/signUpSelect")
     public String signUpSelect() {
         return "signUpSelect";
@@ -132,4 +131,5 @@ public class webController {
     public String apoint() {
         return "appointment";
     }
+
 }

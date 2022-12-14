@@ -8,7 +8,10 @@ public class shopDto {
     private String shopPw;
     private String shopName;
     private String shopTel;
-    private String shopAddr;
+    private String shopAddrNum;
+    private String shopAddrJibun;
+    private String shopAddrRoad;
+    private String shopAddrDetail;
     private String ownerName;
     private String ownerMail;
     private String ownerPh;

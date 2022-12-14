@@ -31,8 +31,11 @@
 
     <!--    사업자 회원가입-->
     <insert id="signOwner" parameterType="com.example.smp_1.dto.shopDto">
-        INSERT INTO shop (shop_id, shop_pw, shop_name, shop_tel, shop_addr, owner_name, owner_mail, owner_ph, owner_gen)
-        VALUES (#{shopId}, #{shopPw}, #{shopName}, #{shopTel}, #{shopAddr}, ${ownerName}, #{ownerMail},
+        INSERT INTO shop (shop_id, shop_pw, shop_name, shop_tel, shop_addr_num, shop_addr_jibun, shop_addr_road,
+                          shop_addr_detail, owner_name, owner_mail, owner_ph,
+                          owner_gen)
+        VALUES (#{shopId}, #{shopPw}, #{shopName}, #{shopTel}, #{shopAddrNum}, #{shopAddrJibun}, #{shopAddrRoad},
+                #{shopAddrDetail}, #{ownerName}, #{ownerMail},
                 #{ownerPh}, #{ownerGen})
     </insert>
 

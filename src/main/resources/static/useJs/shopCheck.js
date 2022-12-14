@@ -1,5 +1,6 @@
 // 유효성 검사 true false 리스트
-var checkList = [false, false, false, false, false, false, false, false, false];
+var checkList = [false, false, false, false, false, false, false, false, false, false];
+var adrrCnt = 0;
 
 // 입력 방지 펑션
 // 아이디
@@ -149,6 +150,81 @@ function checkShopName() { // 간단한 체크
     } else {
         checkList[3] = true;
         $('.checkShopName').css("display", "none");
+    }
+}
+
+// 주소
+function addressGet() {
+    new daum.Postcode({
+        oncomplete: function (data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+            automapauautoMappingJibun: false;
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addrRoad = ''; // 도로명 변수
+            var addrJibun = ''; // 지번 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R' || data.userSelectedType == 'J') { // 사용자가 도로명 주소나 지번주소 선택시
+                addrRoad = data.roadAddress;
+                addrJibun = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+            if (data.userSelectedType === 'R' || data.userSelectedType === 'J') {
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if (data.buildingName !== '' && data.apartment === 'Y') {
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if (extraAddr !== '') {
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+
+                // 값이 여러개일때
+                if (data.autoRoadAddress) {
+                    var addrRoad = data.autoRoadAddress + extraRoadAddr;
+                } else if (data.autoJibunAddress) {
+                    var addrJibun = data.autoJibunAddress;
+                }
+
+
+                addrJibun += extraAddr;
+                addrRoad += extraAddr;
+                // 주소 변수 문자열 + 참고항목 문자열을 합친다.
+
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('shopAddrNum').value = data.zonecode;
+                document.getElementById("shopAddrJibun").value = addrJibun;
+                document.getElementById("shopAddrRoad").value = addrRoad;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("shopAddrDetail").focus();
+                // 값 있나 없나 체크
+                checkAddress();
+
+            }
+        }
+    }).open();
+}
+
+// 주소 체크
+function checkAddress() { // 간단한 체크
+    var addr = $('#shopAddrNum').val();
+
+    if (addr == '') {
+        checkList[9] = false;
+        $('.checkAddr').css("display", "inline-block");
+    } else {
+        checkList[9] = true;
+        $('.checkAddr').css("display", "none");
     }
 }
 
@@ -315,9 +391,10 @@ function checkAll() {
     // 회원가입 버튼
     let signUp = $('#btn-signUp');
     // 값이 비었는지 확인하기 위한 리스트
-    let checkVal = [$('#shopId').val(), $("#shopPw").val(), $("#shopPw2").val(),$('#shopName').val(),$('#shopTel').val(), $("#ownerName").val(), $("#ownerPh").val(), $("#ownerMail").val(), $(".ownerGen").val()]
+    let checkVal = [$('#shopId').val(), $("#shopPw").val(), $("#shopPw2").val(), $('#shopName').val(), $('#shopTel').val(), $("#ownerName").val(), $("#ownerPh").val(), $("#ownerMail").val(), $(".ownerGen").val(), $('#shopAddrNum').val()]
+
     // 값이 없을때를 알리기 위한 리스트
-    let checkSpan = [$('.checkId'), $('.checkPw'), $('.checkPw2'), $('.checkShopName'),$('.checkTel'),$('.checkName'), $('.checkPh'), $('.checkMail'), $('.checkGen')];
+    let checkSpan = [$('.checkId'), $('.checkPw'), $('.checkPw2'), $('.checkShopName'), $('.checkTel'), $('.checkName'), $('.checkPh'), $('.checkMail'), $('.checkGen'), $('.checkAddr')];
 
     let true_cnt = 0;
 
@@ -333,7 +410,7 @@ function checkAll() {
         checkSpan[8].css('display', 'inline-block');
     }
 
-    if (true_cnt == 9) {
+    if (true_cnt == 10) {
         signUp.attr("type", "submit");
         alert("가입을 환영합니다.");
         signUp.click(true);
