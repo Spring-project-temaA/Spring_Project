@@ -9,4 +9,8 @@ public class shopDto {
     private String shopName;
     private String shopTel;
     private String shopAddr;
+    private String ownerName;
+    private String ownerMail;
+    private String ownerPh;
+    private String ownerGen;
 }

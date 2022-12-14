@@ -2,30 +2,67 @@
 <!--mybatis SQL 매핑-->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.smp_1.mapper.promiseHairMapper">
-    <!--    회원가입-->
+    <!--    유저 회원가입-->
     <insert id="signUser" parameterType="com.example.smp_1.dto.userDto">
         INSERT INTO user (user_id, user_pw, user_name, user_ph, user_mail, user_gen)
         VALUES (#{userId}, #{userPw}, #{userName}, #{userPh}, #{userMail}, #{userGen})
     </insert>
 
-    <!--    아이디 중복확인-->
+    <!--    유저 아이디 중복확인-->
     <select id="checkUserId" parameterType="String" resultType="int">
         SELECT COUNT(user_id)
         FROM user
         WHERE user_id = #{userId}
     </select>
 
-    <!--    전화번호 중복확인-->
+    <!--    유저 전화번호 중복확인-->
     <select id="checkUserPh" parameterType="String" resultType="int">
         SELECT COUNT(user_ph)
         FROM user
         WHERE user_id = #{userPh}
     </select>
 
-    <!--    이메일 중복확인-->
+    <!--    유저 이메일 중복확인-->
     <select id="checkUserMail" parameterType="String" resultType="int">
         SELECT COUNT(user_id)
         FROM user
         WHERE user_id = #{userMail}
     </select>
+
+    <!--    사업자 회원가입-->
+    <insert id="signOwner" parameterType="com.example.smp_1.dto.shopDto">
+        INSERT INTO shop (shop_id, shop_pw, shop_name, shop_tel, shop_addr, owner_name, owner_mail, owner_ph, owner_gen)
+        VALUES (#{shopId}, #{shopPw}, #{shopName}, #{shopTel}, #{shopAddr}, ${ownerName}, #{ownerMail},
+                #{ownerPh}, #{ownerGen})
+    </insert>
+
+    <!--    사업자 아이디 중복확인-->
+    <select id="checkShopId" parameterType="String" resultType="int">
+        SELECT COUNT(shop_id)
+        FROM user
+        WHERE shop_id = #{shopId}
+    </select>
+
+    <!--    가게 전화번호 중복확인-->
+    <select id="checkShopTel" parameterType="String" resultType="int">
+        SELECT COUNT(shop_tel)
+        FROM user
+        WHERE shop_tel = #{shopTel}
+    </select>
+
+    <!--    사업자 전화번호 중복확인-->
+    <select id="checkOwnerPh" parameterType="String" resultType="int">
+        SELECT COUNT(owner_ph)
+        FROM user
+        WHERE owner_id = #{ownerPh}
+    </select>
+
+    <!--    사업자 이메일 중복확인-->
+    <select id="checkOwnerMail" parameterType="String" resultType="int">
+        SELECT COUNT(owner_mail)
+        FROM user
+        WHERE owner_mail = #{ownerMail}
+    </select>
+
+
 </mapper>
