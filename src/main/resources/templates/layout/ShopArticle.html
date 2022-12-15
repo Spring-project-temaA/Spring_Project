@@ -14,26 +14,114 @@
 <body>
 <article th:fragment="ShopArticle" id="Shop">
     <!--  버튼네비게이션, 자바스크립트 추가 예정-->
-    <nav class="navbar bg-light">
-        <button type="button" class="btn btn-sm">뫄뫄 살롱</button>
-        <button type="button" class="btn btn-sm">mummum shop</button>
-        <button type="button" class="btn btn-sm">솨솨 헤어</button>
-        <button type="button" class="btn btn-sm">뫄뫄 샵</button>
+    <nav id="shopBtn" class="navbar bg-light">
+        <input type="button" class="btn" id="chapter01" value="본점">
+        <input type="button" class="btn" id="chapter02" value="서면점">
+        <input type="button" class="btn" id="chapter03" value="해운대점">
+        <input type="button" class="btn" id="chapter04" value="연산점">
     </nav>
     <!-- shop 이미지-->
-    <span class="image main"><img src="images/pic02.jpg" alt=""/></span>
+    <!--    <span class="image main"><img src="images/pic02.jpg" alt=""/></span>-->
 
-    <p>공지 사항</p>
-    <p> - </p>
-    <p> - </p>
+    <div id="divArea" class="container">
+        <div id="flagShip">
+            <div class="container">
+                <p></p>
+                <span class="image main"><img src="images/pic01.jpg" alt=""/></span>
+                <p></p>
 
-<!-- img 4th -->
-    <span class="image main"><img src="images/pic02.jpg" alt=""/></span>
+                <h2 class="major">본점</h2>
+                <p></p>
+                <p>공지사항 ddddddd고</p>
 
-<!-- 예약 페이지 -->
+                <h4 class="major">기본 가격</h4>
+                <p> 이미지 </p>
 
-    <button type="button" class="btn btn-sm"> 예약하러 하기 </button>
+                <h4 class="major">디자이너</h4>
+                <p> 이미지 </p>
 
+
+                <h4 class="major">리뷰</h4>
+                <p> ========== </p>
+                <p></p>
+
+            </div>
+        </div>
+
+        <div id="spot1">
+            <div class="container">
+                <p></p>
+                <span class="image main"><img src="images/pic01.jpg" alt=""/></span>
+                <p></p>
+
+                <h2 class="major">본점</h2>
+                <p></p>
+                <p>공지사항 어쩌고저쩌고</p>
+
+                <h4 class="major">기본 가격</h4>
+                <p> 이미지 </p>
+
+                <h4 class="major">디자이너</h4>
+                <p> 이미지 </p>
+
+
+                <h4 class="major">리뷰</h4>
+                <p> ========== </p>
+                <p></p>
+
+            </div>
+        </div>
+
+        <div id="spot2">
+            <div class="container">
+                <p></p>
+                <span class="image main"><img src="images/pic01.jpg" alt=""/></span>
+                <p></p>
+
+                <h2 class="major">본점</h2>
+                <p></p>
+                <p>공지사항 ddddddd고</p>
+
+                <h4 class="major">기본 가격</h4>
+                <p> 이미지 </p>
+
+                <h4 class="major">디자이너</h4>
+                <p> 이미지 </p>
+
+
+                <h4 class="major">리뷰</h4>
+                <p> ========== </p>
+                <p></p>
+
+            </div>
+        </div>
+
+        <div id="spot3">
+            <div class="container">
+                <p></p>
+                <span class="image main"><img src="images/pic01.jpg" alt=""/></span>
+                <p></p>
+
+                <h2 class="major">본점</h2>
+                <p></p>
+                <p>공지사항 ddddddd고</p>
+
+                <h4 class="major">기본 가격</h4>
+                <p> 이미지 </p>
+
+                <h4 class="major">디자이너</h4>
+                <p> 이미지 </p>
+
+
+                <h4 class="major">리뷰</h4>
+                <p> ========== </p>
+                <p></p>
+
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-sm" onclick="location.href='/signUpOwner'"> 예약하러 하기</button>
+    </div>
 </article>
 </body>
 </html>

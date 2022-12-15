@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<!--
+Dimension by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Promise</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css"/>
+    </noscript>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#chapter01').click(function (event) {
+                $('#flagShip').show()
+                $('#spot1').hide()
+                $('#spot2').hide()
+                $('#spot3').hide()
+            })
+            $('#chapter02').click(function (event) {
+                $('#spot1').show()
+                $('#flagShip').hide()
+                $('#spot2').hide()
+                $('#spot3').hide()
+            })
+            $('#chapter03').click(function (event) {
+                $('#spot2').show()
+                $('#flagShip').hide()
+                $('#spot1').hide()
+                $('#spot3').hide()
+            })
+            $('#chapter04').click(function (event) {
+                $('#spot3').show()
+                $('#flagShip').hide()
+                $('#spot1').hide()
+                $('#spot2').hide()
+            })
+
+        });
+    </script>
+
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<!--주의, 래퍼 제거시 모든 틀 제거가 되고 css, sass, js 가 적용이 되지 않아 애니메이션 적용이 안됨.
+    wrapper =  전체적 컨테이너 역할-->
+<div id="wrapper">
+
+
+    <!-- Header -->
+    <!-- layout의 header 파일 -->
+    <header th:replace="layout/Header :: mainHeader"></header>
+
+
+    <!-- Main -->
+    <!-- 밑의 div - id 태그 : css, sass, js 파일이 적용되어있습니다. wrapper와 마찬가지. -->
+    <div id="main">
+
+        <!-- Login section / 로그인 -->
+        <article th:replace="layout/LoginArticle :: #Login"></article>
+
+        <!-- Shop section / 헤어샵-->
+        <article th:replace="layout/ShopArticle :: #Shop"></article>
+
+        <!-- About -->
+        <article th:replace="layout/AgentArticle :: #Agent"></article>
+
+        <!-- About -->
+        <article th:replace="layout/AboutArticle :: #About"></article>
+
+        <!--        Mypage-->
+        <article th:replace="layout/Mypage :: #Mypage"></article>
+
+    </div>
+
+    <!--Footer-->
+    <footer th:replace="layout/Footer :: mainFooter"></footer>
+</div>
+
+<!-- BG -->
+<div id="bg"></div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
