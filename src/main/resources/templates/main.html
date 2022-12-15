@@ -13,7 +13,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css"/>
     </noscript>
+    <!--    로그인을 하기 위한 js-->
+    <script type="text/javascript" src="useJs/login.js"></script>
+<!--    alert 대체-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+
+
 <body class="is-preload">
 
 <!-- Wrapper -->
@@ -42,9 +48,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
         <!-- About -->
         <article th:replace="layout/AboutArticle :: #About"></article>
-        <article th:replace="layout/Mypage :: #Mypage"></article>
 
-<!--        <article th:replace="layout/AboutArticle :: #About"></article>-->
+        <article th:replace="layout/Mypage :: #Mypage"></article>
 
     </div>
 

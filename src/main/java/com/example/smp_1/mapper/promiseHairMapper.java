@@ -33,4 +33,10 @@ public interface promiseHairMapper {
 
     //    Owner 이메일 중복체크
     public int checkOwnerMail(String ownerMail);
+
+    //    유저 로그인
+    public userDto checkUserLogin(String userId, String userPw);
+
+    //    샵 로그인
+    public shopDto checkShopLogin(String shopId, String shopPw);
 }

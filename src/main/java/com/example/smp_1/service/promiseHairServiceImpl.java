@@ -42,6 +42,13 @@ public class promiseHairServiceImpl implements promiseHairService {
         return cnt;
     }
 
+    //    유저 로그인
+    @Override
+    public userDto checkUserLogin(String id, String pw) {
+        userDto userdto = phMapper.checkUserLogin(id, pw);
+        return userdto;
+    }
+
     //    Owner 회원가입
     @Override
     public void signOwner(shopDto shopDto) throws Exception {
@@ -70,5 +77,12 @@ public class promiseHairServiceImpl implements promiseHairService {
     @Override
     public int checkOwnerMail(String ownerMail) {
         return 0;
+    }
+
+    //    Shop 로그인
+    @Override
+    public shopDto checkShopLogin(String userId, String userPw) {
+        shopDto shopdto = phMapper.checkShopLogin(userId, userPw);
+        return shopdto;
     }
 }

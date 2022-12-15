@@ -67,5 +67,19 @@
         WHERE owner_mail = #{ownerMail}
     </select>
 
+    <!--    유저 로그인-->
+    <select id="checkUserLogin" parameterType="String" resultType="com.example.smp_1.dto.userDto">
+        SELECT *
+        FROM user
+        WHERE user_id = #{userId}
+          AND user_pw = #{userPw}
+    </select>
 
+    <!--    Shop 로그인-->
+    <select id="checkShopLogin" parameterType="String" resultType="com.example.smp_1.dto.shopDto">
+        SELECT *
+        FROM shop
+        WHERE shop_id = #{shopId}
+          AND shop_pw = #{shopPw}
+    </select>
 </mapper>
