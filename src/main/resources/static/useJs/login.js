@@ -72,12 +72,12 @@ function shopLogin() {
         url: "./shopLogin",
         type: "post",
         data: {shopId: id, shopPw: pwd},
-        success: function (cnt) {
+        success: function (data) {
             if (data == 0) {
                 swal("로그인 실패", "다시 입력해주세요", 'warning');
                 pwd1.val('');
             } else {
-                swal('로그인 성공!', data.userName + "님 로그인되었습니다.", 'success').then(function () {
+                swal('로그인 성공!', data.shopName + "님 로그인되었습니다.", 'success').then(function () {
                     location.href = "/main";
                 });
             }

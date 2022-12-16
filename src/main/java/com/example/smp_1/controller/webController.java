@@ -101,6 +101,19 @@ public class webController {
         }
     }
 
+    //    유저 마이페이지
+    @RequestMapping("/userMypage")
+    public String userMypage(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+
+//        바로 이 주소로 접근했을때의 처리
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("message", "접근 권한이 없습니다.");
+            return "myPageUser";
+        }
+        return "myPageUser";
+    }
+
 
 //    ---------------- 사업자 관련 ---------------------
 
@@ -179,6 +192,18 @@ public class webController {
             return shop;
         }
     }
+//    Shop 마이페이지
+    @RequestMapping("/shopMypage")
+    public String shopMypage(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+
+//        바로 이 주소로 접근했을때의 처리
+        if (session.getAttribute("shop") == null) {
+            model.addAttribute("message", "접근 권한이 없습니다.");
+            return "myPageShop";
+        }
+        return "myPageShop";
+    }
 
     @RequestMapping("/signUpSelect")
     public String signUpSelect() {
@@ -191,7 +216,7 @@ public class webController {
         return "appointment";
     }
 
-//    로그아웃
+    //    로그아웃
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -202,7 +227,9 @@ public class webController {
         if (session.getAttribute("user") != null) {
             session.removeAttribute("user");
         }
-        return "main";
+        return "/main";
     }
+
+
 
 }
