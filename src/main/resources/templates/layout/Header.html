@@ -35,6 +35,7 @@
             <li style="display: none"><a style="display: none" href=""></a></li>
             <li th:style="${session.user} != null ? 'display:blcok' : 'display:none'"><a th:if="${session.user} != null" href="/userMypage">Mypage</a></li>
             <li th:style="${session.shop} != null ? 'display:blcok' : 'display:none'"><a href="/shopMypage">Mypage</a></li>
+            <li style="padding: 0px" th:if="${session.user} != null"><a href="#apointCheck">예약 확인</a></li>
 
             <li style="display: none"><a></a></li>
         </ul>

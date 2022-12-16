@@ -82,4 +82,22 @@
         WHERE shop_id = #{shopId}
           AND shop_pw = #{shopPw}
     </select>
+    <!--    예약-->
+    <insert id="insertAppointment" parameterType="com.example.smp_1.dto.apointDto">
+        INSERT INTO apoint (apoint_time, apoint_cut, apoint_perm, apoint_color, apoint_clinic, apoint_shop, apoint_date,
+                            apoint_user)
+        VALUES (#{apointTime}, #{apointCut}, #{apointPerm}, #{apointColor}, #{apointClinic}, #{apointShop},
+                #{apointDate}, #{apointUser})
+    </insert>
+    <!--    Shop Name 뿌리기-->
+    <select id="selectShopName" resultType="String">
+        SELECT shop_name
+        FROM shop
+    </select>
+    <!--    예약 확인-->
+    <select id="apointCheck" parameterType="String" resultType="com.example.smp_1.dto.apointDto">
+        SELECT *
+        FROM apoint
+        WHERE apointUser
+    </select>
 </mapper>

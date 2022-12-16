@@ -1,5 +1,6 @@
 package com.example.smp_1.service;
 
+import com.example.smp_1.dto.apointDto;
 import com.example.smp_1.dto.shopDto;
 import com.example.smp_1.dto.userDto;
 import com.example.smp_1.mapper.promiseHairMapper;
@@ -84,5 +85,17 @@ public class promiseHairServiceImpl implements promiseHairService {
     public shopDto checkShopLogin(String userId, String userPw) {
         shopDto shopdto = phMapper.checkShopLogin(userId, userPw);
         return shopdto;
+    }
+
+    @Override
+    public void insertAppointment(apointDto apointdto) {
+        phMapper.insertAppointment(apointdto);
+    }
+
+//    shopName 뿌리기
+    @Override
+    public String[] selectShopName() {
+        String[] shopName = phMapper.selectShopName();
+        return shopName;
     }
 }

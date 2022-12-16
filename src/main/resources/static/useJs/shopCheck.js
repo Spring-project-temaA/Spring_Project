@@ -196,7 +196,7 @@ function addressGet() {
                 }
 
 
-                addrJibun += extraAddr;
+                addrJibun;
                 addrRoad += extraAddr;
                 // 주소 변수 문자열 + 참고항목 문자열을 합친다.
 

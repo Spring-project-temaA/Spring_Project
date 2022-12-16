@@ -1,6 +1,7 @@
 package com.example.smp_1.mapper;
 
 
+import com.example.smp_1.dto.apointDto;
 import com.example.smp_1.dto.shopDto;
 import com.example.smp_1.dto.userDto;
 import org.apache.ibatis.annotations.Mapper;
@@ -39,4 +40,10 @@ public interface promiseHairMapper {
 
     //    샵 로그인
     public shopDto checkShopLogin(String shopId, String shopPw);
+
+    //    예약
+    void insertAppointment(apointDto apointdto);
+    
+//    Shop Name을 뿌리기 위함
+    String[] selectShopName();
 }

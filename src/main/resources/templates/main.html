@@ -4,7 +4,7 @@ Dimension by HTML5 UP
 html5up.net | @ajlkn
 Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Promise</title>
     <meta charset="utf-8"/>
@@ -32,7 +32,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!-- layout의 header 파일 -->
     <header th:replace="layout/Header :: mainHeader"></header>
 
-
     <!-- Main -->
     <!-- 밑의 div - id 태그 : css, sass, js 파일이 적용되어있습니다. wrapper와 마찬가지. -->
     <div id="main">
@@ -50,6 +49,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <article th:replace="layout/AboutArticle :: #About"></article>
 
         <article th:replace="layout/Mypage :: #Mypage"></article>
+
+        <article th:replace="layout/apointCheck :: #apointCheck"></article>
+
+
 
     </div>
 

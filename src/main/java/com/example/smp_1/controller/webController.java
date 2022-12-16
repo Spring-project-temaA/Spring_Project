@@ -1,16 +1,14 @@
 package com.example.smp_1.controller;
 
 
+import com.example.smp_1.dto.apointDto;
 import com.example.smp_1.dto.shopDto;
 import com.example.smp_1.dto.userDto;
 import com.example.smp_1.service.promiseHairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,18 +19,20 @@ public class webController {
     @Autowired
     private promiseHairService phService;
 
+
+//    @RequestMapping(value = "/main", method = RequestMethod.GET)
+//    public String main2() {
+//        return "main";
+//    }
+
     //    메인화면
     @RequestMapping("/main")
-    public String main() {
+    public String main(Model model) {
+        String[] shopName = phService.selectShopName();
+        model.addAttribute("shopName", shopName);
+        System.out.println(shopName);
         return "main";
     }
-
-    //    캘린더 api 테스트
-    @RequestMapping("/test")
-    public String test() {
-        return "fullcalTest";
-    }
-
 
 //    ---------------- 유저 관련 ---------------------
 
@@ -72,7 +72,7 @@ public class webController {
     @RequestMapping("/signUser")
     public String insertUser(userDto userDto) throws Exception {
         phService.signUser(userDto);
-        return "main";
+        return "redirect:main";
     }
 
     //    유저 로그인
@@ -161,7 +161,7 @@ public class webController {
     @RequestMapping("/signOwner")
     public String insertOwner(shopDto shopDto) throws Exception {
         phService.signOwner(shopDto);
-        return "main";
+        return "redirect:/main";
     }
 
     //    Shop 로그인
@@ -192,7 +192,8 @@ public class webController {
             return shop;
         }
     }
-//    Shop 마이페이지
+
+    //    Shop 마이페이지
     @RequestMapping("/shopMypage")
     public String shopMypage(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -216,6 +217,19 @@ public class webController {
         return "appointment";
     }
 
+    //    ---------------- 예약 관련 ---------------------
+    @RequestMapping("/appointment")
+    public String appointment() {
+        return "appointment";
+    }
+
+    @RequestMapping("/insertAppointment")
+    public String insertAppointment(apointDto apointdto) throws Exception {
+
+        phService.insertAppointment(apointdto);
+        return "redirect:main";
+    }
+
     //    로그아웃
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request) {
@@ -227,9 +241,8 @@ public class webController {
         if (session.getAttribute("user") != null) {
             session.removeAttribute("user");
         }
-        return "/main";
+        return "redirect:main";
     }
-
 
 
 }

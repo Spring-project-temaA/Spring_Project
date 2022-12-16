@@ -4,10 +4,28 @@ import lombok.Data;
 
 @Data
 public class apointDto {
-    private String apointDesigner;
-    private String apointShop;
+
+    private String apointDate;
+
     private String apointTime;
-    private String apointType;
-    private String apointUser;
+
+    private String apointUserName;
+
+    private String apointUserId;
+
+    private String apointUserPh;
+
+    private String apointCut;
+
+    private String apointPerm;
+
+    private String apointColor;
+
+    private String apointClinic;
+
+    private String apointShop;
+
+    private String apointDesigner;
+
     private String apointYn;
 }
