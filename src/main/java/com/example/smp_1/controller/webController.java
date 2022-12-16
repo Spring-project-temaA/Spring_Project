@@ -213,7 +213,15 @@ public class webController {
 
     //    예약 화면
     @RequestMapping("/apoint")
-    public String apoint() {
+    public String apoint(HttpServletRequest request, Model model) {
+
+        HttpSession session = request.getSession();
+
+//        바로 이 주소로 접근했을때의 처리
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("message", "로그인 후 이용해주세요.");
+            return "main";
+        }
         return "appointment";
     }
 

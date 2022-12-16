@@ -15,8 +15,20 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     </noscript>
     <!--    로그인을 하기 위한 js-->
     <script type="text/javascript" src="useJs/login.js"></script>
-    <!--    alert 대체-->
+    <!--    swal(alert 대체)-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!--    유저 세션 값이 존재하지 않을때-->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        if ([[${message}]] != null) {
+            var message = [[${message}]];
+
+            alert(message);
+            location.href = '/main';
+        }
+        /*]]>*/
+    </script>
 </head>
 
 
@@ -26,7 +38,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 <!--주의, 래퍼 제거시 모든 틀 제거가 되고 css, sass, js 가 적용이 되지 않아 애니메이션 적용이 안됨.
     wrapper =  전체적 컨테이너 역할-->
 <div id="wrapper">
-
 
     <!-- Header -->
     <!-- layout의 header 파일 -->
@@ -51,7 +62,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <article th:replace="layout/Mypage :: #Mypage"></article>
 
         <article th:replace="layout/apointCheck :: #apointCheck"></article>
-
 
 
     </div>

@@ -1,6 +1,6 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>예약 완료</title>
+    <title>MyPage</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -8,18 +8,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
             crossorigin="anonymous"></script>
-
-    <!--    마이페이지로 세션 값 없이 바로 접근시 처리하기 위한 스크립트-->
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        if ([[${message}]] != null) {
-            // console.log("테스트");
-            var message = [[${message}]];
-            alert(message);
-            location.href = "/main";
-        }
-        /*]]>*/
-    </script>
+<!--    <script>-->
+<!--        $(document).r-->
+<!--    </script>-->
 </head>
 
 <body>
@@ -38,87 +29,110 @@
     <div class="container">
         <div class="container-fluid">
             <form class="border border-secondary rounded-3 p-5">
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
 
-                    <!-- 정보 탭 -->
+                <!-- 네비  -->
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">내 정보
+                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">My Page
                     </button>
 
 
                     <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
-                            type="button" role="tab" aria-controls="nav-profile" aria-selected="false">예약 목록
+                            type="button" role="tab" aria-controls="nav-profile" aria-selected="false"> Appointment List
                     </button>
+
+
                     <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
-                            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">기타
+                            type="button" role="tab" aria-controls="nav-contact" aria-selected="false"> ext
                     </button>
+
                 </div>
 
-
+                <!--------------------------------------------------------------------------------------------------------------->
                 <!-- 내용 넣는 곳 -->
-
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
-                         tabindex="0">
-                        <!--  내용 영역 -->
-                        <div class="p-4">
-                            <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                                <h3>회원정보</h3>
+                <div class="p-5">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                            <!--  회원정보 타이틀 -->
+                            <div class="h4 pb-2 mb-4 text-black border-bottom border-secondary">
+                                회원정보
                             </div>
-                            <div class="mb-3 row">
-                                <label for="name" class="col-sm-3 col-form-label">닉네임</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="닉네임 입력"
-                                               aria-label="Recipient's username" aria-describedby="button-addon2">
-                                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">확인
-                                        </button>
+
+
+                            <!--  회원 이름 / 텍스트 라벨-->
+                            <div class="text-center">
+                                <div class="row g-3 p-3">
+                                    <div class="col-2">
+                                        <label for="userName" class="col-sm-3 col-form-label">이름</label>
+                                    </div>
+                                    <!--  회원 이름 / 텍스트 뷰 라벨 -->
+                                    <div class="col-10">
+                                        <input id="userName" class="form-control" type="text" value="이름 보여질 곳" th:value="${session.user.userName}" readonly>
                                     </div>
                                 </div>
-                                <label for="name" class="col-sm-3 col-form-label">이름</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="name" value="김뚜따">
+                            </div>
+
+                            <!-- 회원정보 아이디  -->
+                            <div class="text-center">
+                                <div class="row g-3 p-3">
+                                    <div class="col-2">
+                                        <label for="userId" class="col-sm-3 col-form-label">ID</label>
+                                    </div>
+                                    <!--  회원 이름 / 텍스트 뷰 라벨 -->
+                                    <div class="col-10">
+                                        <input id="userId" class="form-control" type="text" value="ID 보여질 곳" th:value="${session.user.userId}" readonly>
+                                    </div>
                                 </div>
-                                <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                                           value="ahadk@naver.com">
+                            </div>
+
+                            <!-- 회원정보 Pw  -->
+                            <div class="text-center">
+                                <div class="row g-3 p-3">
+                                    <div class="col-2">
+                                        <label for="userPw" class="col-sm-3 col-form-label">PW</label>
+                                    </div>
+                                    <!--  회원 Pw / 텍스트 뷰 라벨 -->
+                                    <div class="col-10">
+                                        <input id="userPw" class="form-control" type="text" th:value="${session.user.userPw}" value="PW 보여질 곳" readonly>
+                                    </div>
                                 </div>
-                                <label for="Password" class="col-sm-3 col-form-label">비밀번호</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="Password"
-                                           value="hihi3535">
+                            </div>
+
+                            <!-- 회원정보 phone  -->
+                            <div class="text-center">
+                                <div class="row g-3 p-3">
+                                    <div class="col-2">
+                                        <label for="userPh" class="col-sm-3 col-form-label">Phone</label>
+                                    </div>
+                                    <!--  회원 phone / 텍스트 뷰 라벨 -->
+                                    <div class="col-10">
+                                        <input id="userPh" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" th:value="${session.user.userPh}" readonly>
+                                    </div>
                                 </div>
-                                <label for="Phone" class="col-sm-3 col-form-label">전화번호</label>
-                                <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="Phone"
-                                           value="010-1111-1111">
+                            </div>
+
+                            <!-- 회원정보 Email  -->
+                            <div class="text-center">
+                                <div class="row g-3 p-3">
+                                    <div class="col-2">
+                                        <label for="userMail" class="col-sm-3 col-form-label">Phone</label>
+                                    </div>
+                                    <!--  회원 Email / 텍스트 뷰 라벨 -->
+                                    <div class="col-10">
+                                        <input id="userMail" class="form-control" type="email" th:value="${session.user.userMail}" value="email 보여질 곳" readonly>
+                                    </div>
                                 </div>
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end p-3">
+                                <button class="btn btn-outline-dark me-md-2" type="button">수정</button>
+                                <button class="btn btn-outline-secondary" type="button">취소</button>
                             </div>
                         </div>
                     </div>
-
                 </div>
+            </form>
         </div>
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
-             tabindex="0">
-            <!--  내용 영역 -->
-            <div class="p-4">
-
-            </div>
-        </div>
-        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"
-             tabindex="0">
-            <!--  내용 영역 -->
-            <div class="p-4">
-                <h4>
-                    기타 영역
-                </h4>
-            </div>
-        </div>
-    </div>
-    </form>
-    </div>
     </div>
 
 </main>
