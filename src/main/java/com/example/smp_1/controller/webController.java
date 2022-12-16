@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class webController {
     @Autowired
@@ -18,7 +21,6 @@ public class webController {
 
     //    메인화면
     @RequestMapping("/main")
-
     public String main() {
         return "main";
     }
@@ -71,6 +73,32 @@ public class webController {
         return "main";
     }
 
+    //    유저 로그인
+    @PostMapping("/userLogin")
+    @ResponseBody
+    public Object userLogin(@RequestParam("userId") String id, @RequestParam("userPw") String pw, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        userDto user = phService.checkUserLogin(id, pw);
+
+        if (session.getAttribute("user") != null) {
+            session.removeAttribute("user");
+        }
+        if (session.getAttribute("shop") != null) {
+            session.removeAttribute("shop");
+        }
+        session.setAttribute("user", user);
+
+        System.out.println(user);
+        System.out.println(session.getAttribute("user"));
+
+        if (user == null) {
+            return 0;
+        } else {
+            return user;
+        }
+    }
+
 
 //    ---------------- 사업자 관련 ---------------------
 
@@ -121,6 +149,34 @@ public class webController {
         return "main";
     }
 
+    //    Shop 로그인
+    @PostMapping("/shopLogin")
+    @ResponseBody
+    public Object shopLogin(@RequestParam("shopId") String id, @RequestParam("shopPw") String pw, HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+
+        shopDto shop = phService.checkShopLogin(id, pw);
+
+//        shop 세션이 이미 존재 할 경우 삭제하기 위함
+        if (session.getAttribute("shop") != null) {
+            session.removeAttribute("shop");
+        }
+        if (session.getAttribute("user") != null) {
+            session.removeAttribute("user");
+        }
+        session.setAttribute("shop", shop);
+
+//        System.out.println(shop);
+//        System.out.println(session.getAttribute("user"));
+//        System.out.println(session.getAttribute("shop"));
+
+        if (shop == null) {
+            return 0;
+        } else {
+            return shop;
+        }
+    }
 
     @RequestMapping("/signUpSelect")
     public String signUpSelect() {
@@ -133,5 +189,25 @@ public class webController {
         return "appointment";
     }
 
-//    ---------------- 디자이너 관련 ---------------------
+    //    로그아웃
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("shop") != null) {
+            session.removeAttribute("shop");
+        }
+        if (session.getAttribute("user") != null) {
+            session.removeAttribute("user");
+        }
+        return "main";
+    }
+
+//  고객지원
+
+    @RequestMapping("/agent")
+    public String agent() {
+        return "agentQNA";
+    }
+
 }

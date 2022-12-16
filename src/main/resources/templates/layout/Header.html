@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Promise</title>
     <meta charset="utf-8"/>
@@ -24,12 +24,13 @@
     <!-- main navigation / 메인 네비게이션 카테고리-->
     <nav>
         <ul>
-            <li><a href="#Login">Login</a></li>
+            <li><a th:if="${session.user == null} and ${session.shop == null}" id="link-login" href="#Login">Login</a></li>
+            <li><a th:if="${session.user != null} or ${session.shop != null}" href="/logout">Logout</a></li>
             <li><a href="#Shop">Shop</a></li>
-            <li><a href="#Agent">Agent</a></li>
             <li><a href="#About">About</a></li>
-            <li><a href="#Mypage">Agent</a></li>
-            <!--<li><a href="#elements">Elements</a></li>-->
+            <li><a href="#Agent">Agent</a></li>
+            <li><a th:if="${session.user != null} or ${session.shop != null}"  href="#Mypage">Mypage</a></li>
+            <li><a th:if="${false}" href="">Logout</a></li>
         </ul>
     </nav>
 </header>

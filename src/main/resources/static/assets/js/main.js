@@ -309,8 +309,13 @@
 			$body.on('click', function(event) {
 
 				// Article visible? Hide.
-					if ($body.hasClass('is-article-visible'))
-						$main._hide(true);
+					if ($body.hasClass('is-article-visible')) {
+						// $main._hide(true);
+
+						// 로그인 페이지 모달창 닫기 부분
+						$main._show(true);
+					}
+
 
 			});
 

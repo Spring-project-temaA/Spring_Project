@@ -7,7 +7,7 @@ import com.example.smp_1.dto.userDto;
 public interface promiseHairService {
 
 //    ---------------- 유저 관련 ---------------------
-    
+
     //    유저 회원가입
     public void signUser(userDto userDto) throws Exception;
 
@@ -20,6 +20,8 @@ public interface promiseHairService {
     //    유저 이메일 중복체크
     public int checkUserMail(String userMail);
 
+    //    유저 로그인
+    public userDto checkUserLogin(String userId, String userPw);
 
 //    ---------------- 사업자 관련 ---------------------
 
@@ -38,8 +40,6 @@ public interface promiseHairService {
     //    Owner 이메일 중복체크
     public int checkOwnerMail(String ownerMail);
 
-    //    ---------------- 디자이너 관련 ---------------------
-    
-    
-    
+    //    샵 로그인
+    public shopDto checkShopLogin(String shopId, String shopPw);
 }

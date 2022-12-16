@@ -10,42 +10,46 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="assets/css/main.css"/>
-
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css"/>
     </noscript>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!--    로그인을 하기 위한 js-->
+    <script type="text/javascript" src="useJs/login.js"></script>
+<!--    alert 대체-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-        $(function () {
-            $('#chapter01').click(function (event) {
-                $('#flagShip').show()
-                $('#spot1').hide()
-                $('#spot2').hide()
-                $('#spot3').hide()
-            })
-            $('#chapter02').click(function (event) {
-                $('#spot1').show()
-                $('#flagShip').hide()
-                $('#spot2').hide()
-                $('#spot3').hide()
-            })
-            $('#chapter03').click(function (event) {
-                $('#spot2').show()
-                $('#flagShip').hide()
-                $('#spot1').hide()
-                $('#spot3').hide()
-            })
-            $('#chapter04').click(function (event) {
-                $('#spot3').show()
-                $('#flagShip').hide()
-                $('#spot1').hide()
-                $('#spot2').hide()
-            })
-
-        });
+        function spot1() {
+            $('#all').show();
+            $('#flagship').show();
+            $('#spot1').hide();
+            $('#spot2').hide();
+            $('#spot3').hide();
+        }
+        function spot2() {
+            $('#all').show();
+            $('#spot1').show();
+            $('#flagShip').hide();
+            $('#spot2').hide();
+            $('#spot3').hide();
+        }
+        function spot3() {
+            $('#all').show();
+            $('#spot2').show();
+            $('#flagShip').hide();
+            $('#spot1').hide();
+            $('#spot3').hide();
+        }
+        function spot4() {
+            $('#all').show();
+            $('#spot3').show();
+            $('#flagShip').hide();
+            $('#spot1').hide();
+            $('#spot2').hide();
+        }
     </script>
-
 </head>
+
+
 <body class="is-preload">
 
 <!-- Wrapper -->
@@ -75,7 +79,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <!-- About -->
         <article th:replace="layout/AboutArticle :: #About"></article>
 
-        <!--        Mypage-->
+
         <article th:replace="layout/Mypage :: #Mypage"></article>
 
     </div>
