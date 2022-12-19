@@ -4,6 +4,7 @@ package com.example.smp_1.controller;
 import com.example.smp_1.dto.apointDto;
 import com.example.smp_1.dto.shopDto;
 import com.example.smp_1.dto.userDto;
+import com.example.smp_1.service.emailService;
 import com.example.smp_1.service.promiseHairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,18 +20,46 @@ public class webController {
     @Autowired
     private promiseHairService phService;
 
+    @Autowired
+    private emailService emailService;
 
-//    @RequestMapping(value = "/main", method = RequestMethod.GET)
-//    public String main2() {
-//        return "main";
-//    }
+
+    //    유저 이메일 인증
+    @PostMapping("/userEmailSend")
+    @ResponseBody
+//    ajax를 통해서 값을 받고 거기로 이메일을 보냄
+    public String userEmailSend(@RequestParam("userMail") String email) throws Exception {
+
+        String data = emailService.sendSimpleMessage(email);
+
+//        ajax로 값을 보내줘서 비교하게 함
+        return data;
+    }
+
+    //    Shop 이메일 인증
+    @PostMapping("/ownerEmailSend")
+    @ResponseBody
+//    ajax를 통해서 값을 받고 거기로 이메일을 보냄
+    public String ownerEmailSend(@RequestParam("ownerMail") String email) throws Exception {
+
+        String data = emailService.sendSimpleMessage(email);
+
+//        ajax로 값을 보내줘서 비교하게 함
+        return data;
+    }
+
+    @RequestMapping("/test")
+    public String test() {
+        return "test";
+    }
 
     //    메인화면
     @RequestMapping("/main")
     public String main(Model model) {
         String[] shopName = phService.selectShopName();
+//        Shop 버튼 눌렀을때 화면에 ShopName 뿌리기 위함
         model.addAttribute("shopName", shopName);
-        System.out.println(shopName);
+//        System.out.println(shopName);
         return "main";
     }
 
@@ -91,8 +120,8 @@ public class webController {
         }
         session.setAttribute("user", user);
 
-        System.out.println(user);
-        System.out.println(session.getAttribute("user"));
+//        System.out.println(user);
+//        System.out.println(session.getAttribute("user"));
 
         if (user == null) {
             return 0;

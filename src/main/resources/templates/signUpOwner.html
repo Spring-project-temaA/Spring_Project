@@ -223,14 +223,30 @@
                         Email
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="ownerMail" name="ownerMail" placeholder=" "
-                               onclick="checkMail()" onchange="checkMail()">
-                        <label for="ownerMail" class="text-secondary opacity-50">Email을 입력해 주세요</label>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <input onclick="checkMail()" onchange="checkMail()" name="ownerMail" type="email" class="form-control form-control-lg" id="ownerMail"
+                                       placeholder="Email">
+                                <span class="mail_ok ok">사용 가능한 이메일입니다.</span>
+                                <span class="mail_already no">이미 사용중인 이메일입니다.</span>
+                                <span class="mail_not no">잘못된 이메일입니다.</span>
+                                <span class="checkMail no">필수 항목입니다.</span>
+                            </div>
+                            <div class="col-2">
+                                <label class="text-secondary opacity-50"> </label>
+                                <button type="button" id="btn-sendMail" disabled onclick="sendMail()" class="btn btn-outline-dark">인증번호 발송</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input disabled type="text" class="form-control" id="ownerWord" placeholder=" "
+                               onclick="checkWord()"
+                               onchange="checkWord()">
+                        <label for="ownerWord" class="text-secondary opacity-50">인증번호를 입력해 주세요</label>
                         <!--                        처리결과 뜨는 span-->
-                        <span class="mail_ok ok">사용 가능한 이메일입니다.</span>
-                        <span class="mail_already no">이미 사용중인 이메일입니다.</span>
-                        <span class="mail_not no">잘못된 이메일입니다.</span>
-                        <span class="checkMail no">필수 항목입니다.</span>
+                        <span class="word_ok ok">인증되었습니다.</span>
+                        <span class="word_not no">틀린 인증번호입니다.</span>
+                        <span class="checkWord no">필수 항목입니다.</span>
                     </div>
                 </div>
 

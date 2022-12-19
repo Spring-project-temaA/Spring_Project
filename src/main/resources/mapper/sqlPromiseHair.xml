@@ -19,14 +19,14 @@
     <select id="checkUserPh" parameterType="String" resultType="int">
         SELECT COUNT(user_ph)
         FROM user
-        WHERE user_id = #{userPh}
+        WHERE user_ph = #{userPh}
     </select>
 
     <!--    유저 이메일 중복확인-->
     <select id="checkUserMail" parameterType="String" resultType="int">
         SELECT COUNT(user_id)
         FROM user
-        WHERE user_id = #{userMail}
+        WHERE user_mail = #{userMail}
     </select>
 
     <!--    사업자 회원가입-->
@@ -42,28 +42,28 @@
     <!--    사업자 아이디 중복확인-->
     <select id="checkShopId" parameterType="String" resultType="int">
         SELECT COUNT(shop_id)
-        FROM user
+        FROM shop
         WHERE shop_id = #{shopId}
     </select>
 
     <!--    가게 전화번호 중복확인-->
     <select id="checkShopTel" parameterType="String" resultType="int">
         SELECT COUNT(shop_tel)
-        FROM user
+        FROM shop
         WHERE shop_tel = #{shopTel}
     </select>
 
     <!--    사업자 전화번호 중복확인-->
     <select id="checkOwnerPh" parameterType="String" resultType="int">
         SELECT COUNT(owner_ph)
-        FROM user
-        WHERE owner_id = #{ownerPh}
+        FROM shop
+        WHERE owner_ph = #{ownerPh}
     </select>
 
     <!--    사업자 이메일 중복확인-->
     <select id="checkOwnerMail" parameterType="String" resultType="int">
         SELECT COUNT(owner_mail)
-        FROM user
+        FROM shop
         WHERE owner_mail = #{ownerMail}
     </select>
 

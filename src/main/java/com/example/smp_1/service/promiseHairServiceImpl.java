@@ -59,25 +59,29 @@ public class promiseHairServiceImpl implements promiseHairService {
     //    Shop 아이디 중복체크
     @Override
     public int checkShopId(String shopId) {
-        return 0;
+        int cnt = phMapper.checkShopId(shopId);
+        return cnt;
     }
 
     //    가게번호 중복체크
     @Override
     public int checkShopTel(String shopTel) {
-        return 0;
+        int cnt = phMapper.checkShopTel(shopTel);
+        return cnt;
     }
 
     //    OwnerPh 중복체크
     @Override
     public int checkOwnerPh(String ownerPh) {
-        return 0;
+        int cnt = phMapper.checkOwnerPh(ownerPh);
+        return cnt;
     }
 
     //    Owner 이메일 중복체크
     @Override
     public int checkOwnerMail(String ownerMail) {
-        return 0;
+        int cnt = phMapper.checkOwnerMail(ownerMail);
+        return cnt;
     }
 
     //    Shop 로그인
