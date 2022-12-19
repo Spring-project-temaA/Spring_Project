@@ -4,7 +4,7 @@ Dimension by HTML5 UP
 html5up.net | @ajlkn
 Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Promise</title>
     <meta charset="utf-8"/>
@@ -15,36 +15,17 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     </noscript>
     <!--    로그인을 하기 위한 js-->
     <script type="text/javascript" src="useJs/login.js"></script>
-<!--    alert 대체-->
+    <!--    swal(alert 대체)-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-        function spot1() {
-            $('#all').show();
-            $('#flagship').show();
-            $('#spot1').hide();
-            $('#spot2').hide();
-            $('#spot3').hide();
-        }
-        function spot2() {
-            $('#all').show();
-            $('#spot1').show();
-            $('#flagShip').hide();
-            $('#spot2').hide();
-            $('#spot3').hide();
-        }
-        function spot3() {
-            $('#all').show();
-            $('#spot2').show();
-            $('#flagShip').hide();
-            $('#spot1').hide();
-            $('#spot3').hide();
-        }
-        function spot4() {
-            $('#all').show();
-            $('#spot3').show();
-            $('#flagShip').hide();
-            $('#spot1').hide();
-            $('#spot2').hide();
+
+    <!--    유저 세션 값이 존재하지 않을때-->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        if ([[${message}]] != null) {
+            var message = [[${message}]];
+
+            alert(message);
+            location.href = '/main';
         }
     </script>
 </head>
@@ -62,7 +43,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <!-- layout의 header 파일 -->
     <header th:replace="layout/Header :: mainHeader"></header>
 
-
     <!-- Main -->
     <!-- 밑의 div - id 태그 : css, sass, js 파일이 적용되어있습니다. wrapper와 마찬가지. -->
     <div id="main">
@@ -79,8 +59,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <!-- About -->
         <article th:replace="layout/AboutArticle :: #About"></article>
 
-
         <article th:replace="layout/Mypage :: #Mypage"></article>
+
+        <article th:replace="layout/apointCheck :: #apointCheck"></article>
+
 
     </div>
 

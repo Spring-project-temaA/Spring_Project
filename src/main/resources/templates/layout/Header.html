@@ -24,13 +24,20 @@
     <!-- main navigation / 메인 네비게이션 카테고리-->
     <nav>
         <ul>
-            <li><a th:if="${session.user == null} and ${session.shop == null}" id="link-login" href="#Login">Login</a></li>
-            <li><a th:if="${session.user != null} or ${session.shop != null}" href="/logout">Logout</a></li>
-            <li><a href="#Shop">Shop</a></li>
-            <li><a href="#About">About</a></li>
-            <li><a href="#Agent">Agent</a></li>
-            <li><a th:if="${session.user != null} or ${session.shop != null}"  href="#Mypage">Mypage</a></li>
-            <li><a th:if="${false}" href="">Logout</a></li>
+<!--            로그인-->
+            <li th:if="${session.user == null} and ${session.shop == null}" ><a id="link-login" href="#Login">Login</a>
+            </li>
+<!--            로그아웃-->
+            <li style="border-right: 1px white" th:style="${session.user} != null or ${session.shop} != null ? 'display:blcok' : 'display:none'"><a th:if="${session.user} != null or ${session.shop} != null" href="/logout">Logout</a></li>
+            <li th:if="${session.shop} == null or ${session.user} != null"><a href="#Shop">Shop</a></li>
+            <li style="padding-left: 1px"><a href="#Agent">Agent</a></li>
+            <li style="display:none"><a style="display: none" href=""></a></li>
+            <li style="display: none"><a style="display: none" href=""></a></li>
+            <li th:style="${session.user} != null ? 'display:blcok' : 'display:none'"><a th:if="${session.user} != null" href="/userMypage">Mypage</a></li>
+            <li th:style="${session.shop} != null ? 'display:blcok' : 'display:none'"><a href="/shopMypage">Mypage</a></li>
+            <li style="padding: 0px" th:if="${session.user} != null"><a href="#apointCheck">예약 확인</a></li>
+
+            <li style="display: none"><a></a></li>
         </ul>
     </nav>
 </header>

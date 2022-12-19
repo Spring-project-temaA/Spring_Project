@@ -1,6 +1,7 @@
 package com.example.smp_1.service;
 
 
+import com.example.smp_1.dto.apointDto;
 import com.example.smp_1.dto.shopDto;
 import com.example.smp_1.dto.userDto;
 
@@ -23,6 +24,12 @@ public interface promiseHairService {
     //    유저 로그인
     public userDto checkUserLogin(String userId, String userPw);
 
+//    -------------------------------------------------
+    //    유저 정보 수정
+    public void updateUserInfo(userDto userDto);
+
+    userDto changeSession(userDto userDto);
+
 //    ---------------- 사업자 관련 ---------------------
 
     //    Owner 회원가입
@@ -42,4 +49,12 @@ public interface promiseHairService {
 
     //    샵 로그인
     public shopDto checkShopLogin(String shopId, String shopPw);
+
+    void insertAppointment(apointDto apointdto);
+    
+//    Shop Name 뿌리기
+    String[] selectShopName();
+
+
+
 }

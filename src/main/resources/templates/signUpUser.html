@@ -130,14 +130,20 @@
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
                         Email
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="userMail" name="userMail" placeholder=" " onclick="checkMail()" onchange="checkMail()">
-                        <label for="userMail" class="text-secondary opacity-50">Email을 입력해 주세요</label>
-                        <!--                        처리결과 뜨는 span-->
-                        <span class="mail_ok ok">사용 가능한 이메일입니다.</span>
-                        <span class="mail_already no">이미 사용중인 이메일입니다.</span>
-                        <span class="mail_not no">잘못된 이메일입니다.</span>
-                        <span class="checkMail no">필수 항목입니다.</span>
+                    <div class="form-floating mb-3 row">
+                        <div class="col-10">
+                            <label for="userMail" class="text-secondary opacity-50">Email을 입력해 주세요</label>
+                            <input type="text" class="form-control" id="userMail" name="userMail" placeholder=" " onclick="checkMail()" onchange="checkMail()">
+                            <!--                        처리결과 뜨는 span-->
+                            <span class="mail_ok ok">사용 가능한 이메일입니다.</span>
+                            <span class="mail_already no">이미 사용중인 이메일입니다.</span>
+                            <span class="mail_not no">잘못된 이메일입니다.</span>
+                            <span class="checkMail no">필수 항목입니다.</span>
+                        </div>
+                        <div class="col-2">
+                            <label class="text-secondary opacity-50"> </label>
+                            <button class="btn btn-outline-dark">인증번호 발송</button>
+                        </div>
                     </div>
                 </div>
 

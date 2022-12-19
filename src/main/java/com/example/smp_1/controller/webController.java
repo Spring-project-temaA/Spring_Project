@@ -1,36 +1,43 @@
 package com.example.smp_1.controller;
 
 
+import com.example.smp_1.dto.apointDto;
 import com.example.smp_1.dto.shopDto;
 import com.example.smp_1.dto.userDto;
 import com.example.smp_1.service.promiseHairService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+
+@Slf4j
+//로깅 위한 어노테이션, 프로젝트 완성 시 제거할 예정
+//로깅 : 어플, 시스템이 동작하는 동안 시스템 동작정보를 시간순으로 기록하는 것을 의미 = 비 기능 요구사항.
+//로그 보고 싶을 경우에는 log.info() 해서 로그 찍어서 보기. 디버깅 쉽다.
 @Controller
 public class webController {
     @Autowired
     private promiseHairService phService;
 
+
+//    @RequestMapping(value = "/main", method = RequestMethod.GET)
+//    public String main2() {
+//        return "main";
+//    }
+
     //    메인화면
     @RequestMapping("/main")
-    public String main() {
+    public String main(Model model) {
+        String[] shopName = phService.selectShopName();
+        model.addAttribute("shopName", shopName);
+        System.out.println(shopName);
         return "main";
     }
-
-    //    캘린더 api 테스트
-    @RequestMapping("/test")
-    public String test() {
-        return "fullcalTest";
-    }
-
 
 //    ---------------- 유저 관련 ---------------------
 
@@ -70,7 +77,7 @@ public class webController {
     @RequestMapping("/signUser")
     public String insertUser(userDto userDto) throws Exception {
         phService.signUser(userDto);
-        return "main";
+        return "redirect:main";
     }
 
     //    유저 로그인
@@ -97,6 +104,40 @@ public class webController {
         } else {
             return user;
         }
+    }
+
+    //    유저 마이페이지
+    @RequestMapping("/userMypage")
+    public String userMypage(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+
+//        바로 이 주소로 접근했을때의 처리
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("message", "접근 권한이 없습니다.");
+            return "myPageUser";
+        }
+        return "myPageUser";
+    }
+
+
+//    유저 수정페이지로 이동
+    @RequestMapping(value = "/myPageUserUpdate")
+    public String updateUserPage() throws Exception{
+
+        return "myPageUserUpdate";
+    }
+
+    //    유저 정보 수정
+    @RequestMapping(value = "/userUpdate")
+    public String userUpdate(userDto userDto, HttpServletRequest request) throws Exception{
+
+        HttpSession session = request.getSession();
+        phService.updateUserInfo(userDto);
+        if(session.getAttribute("user")!= null){
+            userDto user = phService.changeSession(userDto);
+            session.setAttribute("user", user);
+        }
+        return "redirect:userMypage";
     }
 
 
@@ -146,7 +187,7 @@ public class webController {
     @RequestMapping("/signOwner")
     public String insertOwner(shopDto shopDto) throws Exception {
         phService.signOwner(shopDto);
-        return "main";
+        return "redirect:/main";
     }
 
     //    Shop 로그인
@@ -178,6 +219,19 @@ public class webController {
         }
     }
 
+    //    Shop 마이페이지
+    @RequestMapping("/shopMypage")
+    public String shopMypage(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+
+//        바로 이 주소로 접근했을때의 처리
+        if (session.getAttribute("shop") == null) {
+            model.addAttribute("message", "접근 권한이 없습니다.");
+            return "myPageShop";
+        }
+        return "myPageShop";
+    }
+
     @RequestMapping("/signUpSelect")
     public String signUpSelect() {
         return "signUpSelect";
@@ -185,8 +239,29 @@ public class webController {
 
     //    예약 화면
     @RequestMapping("/apoint")
-    public String apoint() {
+    public String apoint(HttpServletRequest request, Model model) {
+
+        HttpSession session = request.getSession();
+
+//        바로 이 주소로 접근했을때의 처리
+        if (session.getAttribute("user") == null) {
+            model.addAttribute("message", "로그인 후 이용해주세요.");
+            return "main";
+        }
         return "appointment";
+    }
+
+    //    ---------------- 예약 관련 ---------------------
+    @RequestMapping("/appointment")
+    public String appointment() {
+        return "appointment";
+    }
+
+    @RequestMapping("/insertAppointment")
+    public String insertAppointment(apointDto apointdto) throws Exception {
+
+        phService.insertAppointment(apointdto);
+        return "redirect:main";
     }
 
     //    로그아웃
@@ -200,14 +275,12 @@ public class webController {
         if (session.getAttribute("user") != null) {
             session.removeAttribute("user");
         }
-        return "main";
+        return "redirect:main";
     }
 
-//  고객지원
-
-    @RequestMapping("/agent")
-    public String agent() {
-        return "agentQNA";
+    @RequestMapping("/apDesigner")
+    public String apDesigned() {
+        return "appointDesigner";
     }
 
 }

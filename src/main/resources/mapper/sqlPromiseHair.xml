@@ -82,4 +82,36 @@
         WHERE shop_id = #{shopId}
           AND shop_pw = #{shopPw}
     </select>
+    <!--    예약-->
+    <insert id="insertAppointment" parameterType="com.example.smp_1.dto.apointDto">
+        INSERT INTO apoint (apoint_time, apoint_cut, apoint_perm, apoint_color, apoint_clinic, apoint_shop, apoint_date,
+                            apoint_user_name, apoint_user_id, apoint_user_ph)
+        VALUES (#{apointTime}, #{apointCut}, #{apointPerm}, #{apointColor}, #{apointClinic}, #{apointShop},
+                #{apointDate}, #{apointUserName}, #{apointUserId}, #{apointUserPh})
+    </insert>
+    <!--    Shop Name 뿌리기-->
+    <select id="selectShopName" resultType="String">
+        SELECT shop_name
+        FROM shop
+    </select>
+    <!--    예약 확인-->
+    <select id="apointCheck" parameterType="String" resultType="com.example.smp_1.dto.apointDto">
+        SELECT *
+        FROM apoint
+        WHERE apointUser
+    </select>
+
+    <!--    유저 정보 수정 / 유저 정보 업데이트 -->
+    <update id="updateUserInfo" parameterType="com.example.smp_1.dto.userDto">
+        update user
+        set user_pw = #{userPw}, user_ph = #{userPh}, user_mail = #{userMail}
+        where user_id = #{userId}
+    </update>
+
+    <!--    유저 로그인-->
+    <select id="changeSession" parameterType="String" resultType="com.example.smp_1.dto.userDto">
+        SELECT *
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
 </mapper>
