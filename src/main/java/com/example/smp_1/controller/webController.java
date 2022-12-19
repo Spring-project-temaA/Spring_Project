@@ -143,6 +143,26 @@ public class webController {
         return "myPageUser";
     }
 
+    //    유저 수정페이지로 이동
+    @RequestMapping(value = "/myPageUserUpdate")
+    public String updateUserPage() throws Exception {
+
+        return "myPageUserUpdate";
+    }
+
+    //    유저 정보 수정
+    @RequestMapping(value = "/userUpdate")
+    public String userUpdate(userDto userDto, HttpServletRequest request) throws Exception {
+
+        HttpSession session = request.getSession();
+        phService.updateUserInfo(userDto);
+        if (session.getAttribute("user") != null) {
+            userDto user = phService.changeSession(userDto);
+            session.setAttribute("user", user);
+        }
+        return "redirect:userMypage";
+    }
+
 
 //    ---------------- 사업자 관련 ---------------------
 

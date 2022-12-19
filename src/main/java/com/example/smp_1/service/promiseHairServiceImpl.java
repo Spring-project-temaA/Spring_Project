@@ -50,6 +50,17 @@ public class promiseHairServiceImpl implements promiseHairService {
         return userdto;
     }
 
+    // 유저 마이페이지 수정
+    public void updateUserInfo(userDto userDto) {
+        phMapper.updateUserInfo(userDto);
+    }
+
+    //    세션 최신화
+    @Override
+    public userDto changeSession(userDto userDto) {
+        return phMapper.changeSession(userDto);
+    }
+
     //    Owner 회원가입
     @Override
     public void signOwner(shopDto shopDto) throws Exception {
@@ -96,7 +107,7 @@ public class promiseHairServiceImpl implements promiseHairService {
         phMapper.insertAppointment(apointdto);
     }
 
-//    shopName 뿌리기
+    //    shopName 뿌리기
     @Override
     public String[] selectShopName() {
         String[] shopName = phMapper.selectShopName();

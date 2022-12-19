@@ -38,6 +38,9 @@ public interface promiseHairMapper {
     //    유저 로그인
     public userDto checkUserLogin(String userId, String userPw);
 
+    // 유저 정보 업데이트
+    public void updateUserInfo(userDto userDto);
+
     //    샵 로그인
     public shopDto checkShopLogin(String shopId, String shopPw);
 
@@ -46,4 +49,9 @@ public interface promiseHairMapper {
     
 //    Shop Name을 뿌리기 위함
     String[] selectShopName();
+
+//    세션 최신화
+    userDto changeSession(userDto userDto);
+
+    
 }
