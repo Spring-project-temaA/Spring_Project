@@ -52,12 +52,18 @@ public interface promiseHairMapper {
     //    Shop Name을 뿌리기 위함
     String[] selectShopName();
 
-    //    세션 최신화
-    userDto changeSession(userDto userDto);
+    //    유저 세션 최신화
+    userDto changeUserSession(userDto userDto);
 
     //    예약 확인
     apointDto apointCheck(String id);
 
     //    모든 예약 가져오기
     List<apointDto> getApoints(String apointUserId);
+    
+//    Shop 정보 업데이트
+    public void updateShopInfo(shopDto shopDto);
+    
+//    Shop 세션 최신화
+    shopDto changeShopSession(shopDto shopDto);
 }

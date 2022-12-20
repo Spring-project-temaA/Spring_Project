@@ -111,8 +111,8 @@
         where user_id = #{userId}
     </update>
 
-    <!--    세션 최신화-->
-    <select id="changeSession" parameterType="String" resultType="com.example.smp_1.dto.userDto">
+    <!--  유저 세션 최신화-->
+    <select id="changeUserSession" parameterType="String" resultType="com.example.smp_1.dto.userDto">
         SELECT *
         FROM user
         WHERE user_id = #{userId}
@@ -122,6 +122,29 @@
     <select id="getApoints" parameterType="String" resultType="com.example.smp_1.dto.apointDto">
         SELECT *
         FROM apoint
-        WHERE apoint_user_id = #{apointUserId} Order by apoint_num
+        WHERE apoint_user_id = #{apointUserId}
+        Order by apoint_num
+    </select>
+
+    <!--    Shop 정보 수정-->
+    <update id="updateShopInfo" parameterType="com.example.smp_1.dto.shopDto">
+        UPDATE shop
+        SET shop_pw          = #{shopPw},
+            shop_name        = #{shopName},
+            shop_tel         = #{shopTel},
+            shop_addr_num    = #{shopAddrNum},
+            shop_addr_jibun  = #{shopAddrJibun},
+            shop_addr_road   = #{shopAddrRoad},
+            shop_addr_detail = #{shopAddrDetail},
+            owner_mail       = #{ownerMail},
+            owner_ph         = #{ownerPh}
+        WHERE shop_id = #{shopId}
+    </update>
+
+<!--    Shop 세션 최신화-->
+    <select id="changeShopSession" parameterType="String" resultType="com.example.smp_1.dto.shopDto">
+        SELECT *
+        FROM shop
+        WHERE shop_id = #{shopId}
     </select>
 </mapper>

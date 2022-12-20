@@ -59,8 +59,19 @@ public class promiseHairServiceImpl implements promiseHairService {
 
     //    세션 최신화
     @Override
-    public userDto changeSession(userDto userDto) {
-        return phMapper.changeSession(userDto);
+    public userDto changeUserSession(userDto userDto) {
+        return phMapper.changeUserSession(userDto);
+    }
+    
+//    Shop 마이페이지 수정
+    @Override
+    public void updateShopInfo(shopDto shopDto) {
+        phMapper.updateShopInfo(shopDto);
+    }
+
+    @Override
+    public shopDto changeShopSession(shopDto shopDto) {
+        return phMapper.changeShopSession(shopDto);
     }
 
     //    Owner 회원가입

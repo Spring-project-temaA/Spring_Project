@@ -30,8 +30,14 @@ public interface promiseHairService {
     //    유저 정보 수정
     public void updateUserInfo(userDto userDto);
 
-    //    세션 최신화
-    userDto changeSession(userDto userDto);
+    //    유저 세션 최신화
+    public userDto changeUserSession(userDto userDto);
+
+    //    Shop 정보 수정
+    public void updateShopInfo(shopDto shopDto);
+
+    //    Shop 세션 최신화
+    shopDto changeShopSession(shopDto shopDto);
 
 //    ---------------- 사업자 관련 ---------------------
 
@@ -62,4 +68,6 @@ public interface promiseHairService {
     apointDto apointCheck(String apointUserId);
 
     List<apointDto> getApoints(String apointUserId);
+
+
 }

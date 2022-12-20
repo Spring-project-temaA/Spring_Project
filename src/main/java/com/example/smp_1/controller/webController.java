@@ -157,7 +157,7 @@ public class webController {
         HttpSession session = request.getSession();
         phService.updateUserInfo(userDto);
         if (session.getAttribute("user") != null) {
-            userDto user = phService.changeSession(userDto);
+            userDto user = phService.changeUserSession(userDto);
             session.setAttribute("user", user);
         }
         return "redirect:userMypage";
@@ -249,6 +249,26 @@ public class webController {
             return "myPageShop";
         }
         return "myPageShop";
+    }
+
+    //    Shop 수정페이지로 이동
+    @RequestMapping(value = "/myPageShopUpdate")
+    public String updateShopPage() throws Exception {
+
+        return "myPageShopUpdate";
+    }
+
+    //    유저 정보 수정
+    @RequestMapping(value = "/shopUpdate")
+    public String shopUpdate(shopDto shopDto, HttpServletRequest request) throws Exception {
+
+        HttpSession session = request.getSession();
+        phService.updateShopInfo(shopDto);
+        if (session.getAttribute("shop") != null) {
+            shopDto shop = phService.changeShopSession(shopDto);
+            session.setAttribute("shop", shop);
+        }
+        return "redirect:shopMypage";
     }
 
     @RequestMapping("/signUpSelect")
