@@ -7,6 +7,8 @@ import com.example.smp_1.mapper.promiseHairMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class promiseHairServiceImpl implements promiseHairService {
     @Autowired
@@ -113,4 +115,19 @@ public class promiseHairServiceImpl implements promiseHairService {
         String[] shopName = phMapper.selectShopName();
         return shopName;
     }
+
+    //    예약 확인
+    @Override
+    public apointDto apointCheck(String apointUserId) {
+        return phMapper.apointCheck(apointUserId);
+    }
+
+
+    //    모든 예약 가져오기
+    @Override
+    public List<apointDto> getApoints(String apointUserId) {
+        return phMapper.getApoints(apointUserId);
+    }
+
+
 }

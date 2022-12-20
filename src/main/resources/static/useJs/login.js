@@ -37,7 +37,7 @@ function userLogin() {
     $.ajax({
         url: "./userLogin",
         type: "post",
-        data: {userId: id, userPw: pwd},
+        data: {userId: id, userPw: pwd, apointUserId: id},
         success: function (data) {
             if (data == 0) {
                 // 기존 화면을 hide()

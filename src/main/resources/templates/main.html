@@ -13,7 +13,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css"/>
     </noscript>
-    <!--    로그인을 하기 위한 js-->
+    <!--    로그인/예약확인을 하기 위한 js-->
     <script type="text/javascript" src="useJs/login.js"></script>
     <!--    swal(alert 대체)-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -28,6 +28,16 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
             location.href = '/main';
         }
         /*]]>*/
+    </script>
+    <script>
+        function getId() {
+            var id = $("#apointUserId").val();
+            $.ajax({
+                url: "getApoints",
+                type: "post",
+                data: {apointUserId: id},
+            })
+        }
     </script>
 </head>
 

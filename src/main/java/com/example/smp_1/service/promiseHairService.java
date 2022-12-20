@@ -5,6 +5,8 @@ import com.example.smp_1.dto.apointDto;
 import com.example.smp_1.dto.shopDto;
 import com.example.smp_1.dto.userDto;
 
+import java.util.List;
+
 public interface promiseHairService {
 
 //    ---------------- 유저 관련 ---------------------
@@ -55,4 +57,9 @@ public interface promiseHairService {
 
     //    Shop Name 뿌리기
     String[] selectShopName();
+
+    //    예약 확인
+    apointDto apointCheck(String apointUserId);
+
+    List<apointDto> getApoints(String apointUserId);
 }

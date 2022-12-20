@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class webController {
@@ -107,9 +108,8 @@ public class webController {
     //    유저 로그인
     @PostMapping("/userLogin")
     @ResponseBody
-    public Object userLogin(@RequestParam("userId") String id, @RequestParam("userPw") String pw, HttpServletRequest request) {
+    public Object userLogin(@RequestParam("userId") String id, @RequestParam("userPw") String pw,@RequestParam("apointUserId")String apointId, HttpServletRequest request) {
         HttpSession session = request.getSession();
-
         userDto user = phService.checkUserLogin(id, pw);
 
         if (session.getAttribute("user") != null) {
@@ -120,12 +120,12 @@ public class webController {
         }
         session.setAttribute("user", user);
 
-//        System.out.println(user);
-//        System.out.println(session.getAttribute("user"));
-
         if (user == null) {
             return 0;
         } else {
+            apointDto apointDto = phService.apointCheck(apointId);
+            session.setAttribute("apoint", apointDto);
+            System.out.println(session.getAttribute("apoint"));
             return user;
         }
     }
@@ -231,10 +231,6 @@ public class webController {
         }
         session.setAttribute("shop", shop);
 
-//        System.out.println(shop);
-//        System.out.println(session.getAttribute("user"));
-//        System.out.println(session.getAttribute("shop"));
-
         if (shop == null) {
             return 0;
         } else {
@@ -301,5 +297,16 @@ public class webController {
         return "redirect:main";
     }
 
+    //    예약목록 가져오기
+    @PostMapping ("/getApoints")
+    @ResponseBody
+    public Object getApoints(@RequestParam("apointUserId") String id, HttpServletRequest request) {
+        HttpSession session = request.getSession();
 
+        List<apointDto> apointDto = phService.getApoints(id);
+        session.setAttribute("apoints", apointDto);
+        System.out.println(session.getAttribute("apoints"));
+
+        return apointDto;
+    }
 }

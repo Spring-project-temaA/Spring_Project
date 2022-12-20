@@ -98,13 +98,16 @@
     <select id="apointCheck" parameterType="String" resultType="com.example.smp_1.dto.apointDto">
         SELECT *
         FROM apoint
-        WHERE apointUser
+        WHERE apoint_user_id = #{apointUserId}
+          AND apoint_yn = 'N'
     </select>
 
     <!--    유저 정보 수정 / 유저 정보 업데이트 -->
     <update id="updateUserInfo" parameterType="com.example.smp_1.dto.userDto">
         update user
-        set user_pw = #{userPw}, user_ph = #{userPh}, user_mail = #{userMail}
+        set user_pw   = #{userPw},
+            user_ph   = #{userPh},
+            user_mail = #{userMail}
         where user_id = #{userId}
     </update>
 
@@ -113,5 +116,12 @@
         SELECT *
         FROM user
         WHERE user_id = #{userId}
+    </select>
+
+    <!--    모든 예약 정보 가져오기-->
+    <select id="getApoints" parameterType="String" resultType="com.example.smp_1.dto.apointDto">
+        SELECT *
+        FROM apoint
+        WHERE apoint_user_id = #{apointUserId} Order by apoint_num
     </select>
 </mapper>
