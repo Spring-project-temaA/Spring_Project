@@ -42,28 +42,28 @@
     <!--    사업자 아이디 중복확인-->
     <select id="checkShopId" parameterType="String" resultType="int">
         SELECT COUNT(shop_id)
-        FROM user
+        FROM shop
         WHERE shop_id = #{shopId}
     </select>
 
     <!--    가게 전화번호 중복확인-->
     <select id="checkShopTel" parameterType="String" resultType="int">
         SELECT COUNT(shop_tel)
-        FROM user
+        FROM shop
         WHERE shop_tel = #{shopTel}
     </select>
 
     <!--    사업자 전화번호 중복확인-->
     <select id="checkOwnerPh" parameterType="String" resultType="int">
         SELECT COUNT(owner_ph)
-        FROM user
+        FROM shop
         WHERE owner_id = #{ownerPh}
     </select>
 
     <!--    사업자 이메일 중복확인-->
     <select id="checkOwnerMail" parameterType="String" resultType="int">
         SELECT COUNT(owner_mail)
-        FROM user
+        FROM shop
         WHERE owner_mail = #{ownerMail}
     </select>
 
@@ -104,14 +104,30 @@
     <!--    유저 정보 수정 / 유저 정보 업데이트 -->
     <update id="updateUserInfo" parameterType="com.example.smp_1.dto.userDto">
         update user
-        set user_pw = #{userPw}, user_ph = #{userPh}, user_mail = #{userMail}
+        set user_pw   = #{userPw},
+            user_ph   = #{userPh},
+            user_mail = #{userMail}
         where user_id = #{userId}
     </update>
 
-    <!--    유저 로그인-->
+    <!--   세션 최신화 -->
     <select id="changeSession" parameterType="String" resultType="com.example.smp_1.dto.userDto">
         SELECT *
         FROM user
         WHERE user_id = #{userId}
     </select>
+
+    <!-- 리뷰 -->
+    <select id="selectReviewDto" resultType="com.example.smp_1.dto.reviewDto">
+        select *
+        from review
+        where re_yn = 'N'
+        order by re_idx desc
+    </select>
+
+    <insert id="insertReview" parameterType="com.example.smp_1.dto.reviewDto">
+        insert into review (re_title, re_writer, re_content, re_create, re_shop)
+        values (#{reTitle}, #{reWriter}, #{reContent}, #{reCreate}, #{reShop})
+    </insert>
+
 </mapper>

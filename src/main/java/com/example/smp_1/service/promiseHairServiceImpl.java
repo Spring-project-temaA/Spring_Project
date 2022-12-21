@@ -1,11 +1,14 @@
 package com.example.smp_1.service;
 
 import com.example.smp_1.dto.apointDto;
+import com.example.smp_1.dto.reviewDto;
 import com.example.smp_1.dto.shopDto;
 import com.example.smp_1.dto.userDto;
 import com.example.smp_1.mapper.promiseHairMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class promiseHairServiceImpl implements promiseHairService {
@@ -51,10 +54,11 @@ public class promiseHairServiceImpl implements promiseHairService {
     }
 
     // 유저 마이페이지 수정
-    public void updateUserInfo(userDto userDto){
+    public void updateUserInfo(userDto userDto) {
         phMapper.updateUserInfo(userDto);
     }
 
+    //    유저 세션 갱신
     @Override
     public userDto changeSession(userDto userDto) {
         return phMapper.changeSession(userDto);
@@ -103,10 +107,22 @@ public class promiseHairServiceImpl implements promiseHairService {
         phMapper.insertAppointment(apointdto);
     }
 
-//    shopName 뿌리기
+    //    shopName 뿌리기
     @Override
     public String[] selectShopName() {
         String[] shopName = phMapper.selectShopName();
         return shopName;
     }
+
+    // 리뷰 진입 페이지
+    @Override
+    public List<reviewDto> selectReviewDto() throws Exception {
+        return phMapper.selectReviewDto();
+    }
+
+    @Override
+    public void insertReview(reviewDto reviewDto) throws Exception{
+        phMapper.insertReview(reviewDto);
+    }
+
 }

@@ -2,8 +2,11 @@ package com.example.smp_1.service;
 
 
 import com.example.smp_1.dto.apointDto;
+import com.example.smp_1.dto.reviewDto;
 import com.example.smp_1.dto.shopDto;
 import com.example.smp_1.dto.userDto;
+
+import java.util.List;
 
 public interface promiseHairService {
 
@@ -28,6 +31,7 @@ public interface promiseHairService {
     //    유저 정보 수정
     public void updateUserInfo(userDto userDto);
 
+//    유저 세션 갱신
     userDto changeSession(userDto userDto);
 
 //    ---------------- 사업자 관련 ---------------------
@@ -52,9 +56,15 @@ public interface promiseHairService {
 
     void insertAppointment(apointDto apointdto);
     
-//    Shop Name 뿌리기
+    //    Shop Name 뿌리기
     String[] selectShopName();
 
+    //    ---------------- 리뷰 페이지 ---------------------
 
+    //  shop  -> review 첫 페이지, 테이블 페이지
+    public List<reviewDto> selectReviewDto() throws Exception;
+
+    // reveiew 글쓰기 페이지
+    public void insertReview(reviewDto reviewDto) throws Exception;
 
 }

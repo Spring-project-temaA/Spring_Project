@@ -2,6 +2,7 @@ package com.example.smp_1.controller;
 
 
 import com.example.smp_1.dto.apointDto;
+import com.example.smp_1.dto.reviewDto;
 import com.example.smp_1.dto.shopDto;
 import com.example.smp_1.dto.userDto;
 import com.example.smp_1.service.promiseHairService;
@@ -10,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @Slf4j
@@ -120,20 +123,20 @@ public class webController {
     }
 
 
-//    유저 수정페이지로 이동
+    //    유저 수정페이지로 이동
     @RequestMapping(value = "/myPageUserUpdate")
-    public String updateUserPage() throws Exception{
+    public String updateUserPage() throws Exception {
 
         return "myPageUserUpdate";
     }
 
     //    유저 정보 수정
     @RequestMapping(value = "/userUpdate")
-    public String userUpdate(userDto userDto, HttpServletRequest request) throws Exception{
+    public String userUpdate(userDto userDto, HttpServletRequest request) throws Exception {
 
         HttpSession session = request.getSession();
         phService.updateUserInfo(userDto);
-        if(session.getAttribute("user")!= null){
+        if (session.getAttribute("user") != null) {
             userDto user = phService.changeSession(userDto);
             session.setAttribute("user", user);
         }
@@ -283,4 +286,25 @@ public class webController {
         return "appointDesigner";
     }
 
+
+    // 리뷰 페이지, 테이블
+    @RequestMapping(value = "/shopReview", method = RequestMethod.GET)
+    public ModelAndView openShopReview() throws Exception {
+        List<reviewDto> reviewList = phService.selectReviewDto();
+        ModelAndView mv = new ModelAndView("review/shopReviewTable");
+        mv.addObject("reviewList", reviewList);
+        return mv;
+    }
+    // 리뷰 글 작성 페이지
+    @RequestMapping("/shopReviewWriter")
+    public String insertReview() throws Exception {
+        return"/review/shopReviewWriter";
+    }
+
+    @RequestMapping("/shopReviewIn")
+    public String insertReviewWrite (reviewDto reviewDto) throws Exception {
+        phService.insertReview(reviewDto);
+        return "redirect:shopReview";
+    }
 }
+

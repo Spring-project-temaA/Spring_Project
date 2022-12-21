@@ -2,9 +2,12 @@ package com.example.smp_1.mapper;
 
 
 import com.example.smp_1.dto.apointDto;
+import com.example.smp_1.dto.reviewDto;
 import com.example.smp_1.dto.shopDto;
 import com.example.smp_1.dto.userDto;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface promiseHairMapper {
@@ -40,6 +43,9 @@ public interface promiseHairMapper {
 
     // 유저 마이페이지 업데이트
     public void updateUserInfo(userDto userDto);
+    // 유저 마이 페이지 수정 후 세션 갱신
+    userDto changeSession(userDto userDto);
+
 
     //    샵 로그인
     public shopDto checkShopLogin(String shopId, String shopPw);
@@ -47,9 +53,11 @@ public interface promiseHairMapper {
     //    예약
     void insertAppointment(apointDto apointdto);
 
-    //    Shop Name을 뿌리기 위함
+    //    Shop Name 을 뿌리기 위함
     String[] selectShopName();
 
-    userDto changeSession(userDto userDto);
+    // review 페이지, 테이블 리스트
+    public List<reviewDto> selectReviewDto() throws Exception;
 
+    void insertReview(reviewDto reviewDto)throws Exception;
 }
