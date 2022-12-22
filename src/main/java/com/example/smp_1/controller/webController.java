@@ -5,8 +5,8 @@ import com.example.smp_1.dto.apointDto;
 import com.example.smp_1.dto.reviewDto;
 import com.example.smp_1.dto.shopDto;
 import com.example.smp_1.dto.userDto;
+import com.example.smp_1.service.emailService;
 import com.example.smp_1.service.promiseHairService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,28 +17,51 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-
-@Slf4j
-//로깅 위한 어노테이션, 프로젝트 완성 시 제거할 예정
-//로깅 : 어플, 시스템이 동작하는 동안 시스템 동작정보를 시간순으로 기록하는 것을 의미 = 비 기능 요구사항.
-//로그 보고 싶을 경우에는 log.info() 해서 로그 찍어서 보기. 디버깅 쉽다.
 @Controller
 public class webController {
     @Autowired
     private promiseHairService phService;
 
+    @Autowired
+    private emailService emailService;
 
-//    @RequestMapping(value = "/main", method = RequestMethod.GET)
-//    public String main2() {
-//        return "main";
-//    }
+
+    //    유저 이메일 인증
+    @PostMapping("/userEmailSend")
+    @ResponseBody
+//    ajax를 통해서 값을 받고 거기로 이메일을 보냄
+    public String userEmailSend(@RequestParam("userMail") String email) throws Exception {
+
+        String data = emailService.sendSimpleMessage(email);
+
+//        ajax로 값을 보내줘서 비교하게 함
+        return data;
+    }
+
+    //    Shop 이메일 인증
+    @PostMapping("/ownerEmailSend")
+    @ResponseBody
+//    ajax를 통해서 값을 받고 거기로 이메일을 보냄
+    public String ownerEmailSend(@RequestParam("ownerMail") String email) throws Exception {
+
+        String data = emailService.sendSimpleMessage(email);
+
+//        ajax로 값을 보내줘서 비교하게 함
+        return data;
+    }
+
+    @RequestMapping("/test")
+    public String test() {
+        return "test";
+    }
 
     //    메인화면
     @RequestMapping("/main")
     public String main(Model model) {
         String[] shopName = phService.selectShopName();
+//        Shop 버튼 눌렀을때 화면에 ShopName 뿌리기 위함
         model.addAttribute("shopName", shopName);
-        System.out.println(shopName);
+//        System.out.println(shopName);
         return "main";
     }
 
@@ -86,9 +109,8 @@ public class webController {
     //    유저 로그인
     @PostMapping("/userLogin")
     @ResponseBody
-    public Object userLogin(@RequestParam("userId") String id, @RequestParam("userPw") String pw, HttpServletRequest request) {
+    public Object userLogin(@RequestParam("userId") String id, @RequestParam("userPw") String pw,@RequestParam("apointUserId")String apointId, HttpServletRequest request) {
         HttpSession session = request.getSession();
-
         userDto user = phService.checkUserLogin(id, pw);
 
         if (session.getAttribute("user") != null) {
@@ -99,12 +121,12 @@ public class webController {
         }
         session.setAttribute("user", user);
 
-        System.out.println(user);
-        System.out.println(session.getAttribute("user"));
-
         if (user == null) {
             return 0;
         } else {
+            apointDto apointDto = phService.apointCheck(apointId);
+            session.setAttribute("apoint", apointDto);
+            System.out.println(session.getAttribute("apoint"));
             return user;
         }
     }
@@ -122,7 +144,6 @@ public class webController {
         return "myPageUser";
     }
 
-
     //    유저 수정페이지로 이동
     @RequestMapping(value = "/myPageUserUpdate")
     public String updateUserPage() throws Exception {
@@ -137,7 +158,7 @@ public class webController {
         HttpSession session = request.getSession();
         phService.updateUserInfo(userDto);
         if (session.getAttribute("user") != null) {
-            userDto user = phService.changeSession(userDto);
+            userDto user = phService.changeUserSession(userDto);
             session.setAttribute("user", user);
         }
         return "redirect:userMypage";
@@ -211,10 +232,6 @@ public class webController {
         }
         session.setAttribute("shop", shop);
 
-//        System.out.println(shop);
-//        System.out.println(session.getAttribute("user"));
-//        System.out.println(session.getAttribute("shop"));
-
         if (shop == null) {
             return 0;
         } else {
@@ -233,6 +250,26 @@ public class webController {
             return "myPageShop";
         }
         return "myPageShop";
+    }
+
+    //    Shop 수정페이지로 이동
+    @RequestMapping(value = "/myPageShopUpdate")
+    public String updateShopPage() throws Exception {
+
+        return "myPageShopUpdate";
+    }
+
+    //    유저 정보 수정
+    @RequestMapping(value = "/shopUpdate")
+    public String shopUpdate(shopDto shopDto, HttpServletRequest request) throws Exception {
+
+        HttpSession session = request.getSession();
+        phService.updateShopInfo(shopDto);
+        if (session.getAttribute("shop") != null) {
+            shopDto shop = phService.changeShopSession(shopDto);
+            session.setAttribute("shop", shop);
+        }
+        return "redirect:shopMypage";
     }
 
     @RequestMapping("/signUpSelect")
@@ -281,17 +318,26 @@ public class webController {
         return "redirect:main";
     }
 
-    @RequestMapping("/apDesigner")
-    public String apDesigned() {
-        return "appointDesigner";
+    //    예약목록 가져오기
+    @PostMapping ("/getApoints")
+    @ResponseBody
+    public Object getApoints(@RequestParam("apointUserId") String id, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        List<apointDto> apointDto = phService.getApoints(id);
+        session.setAttribute("apoints", apointDto);
+        System.out.println(session.getAttribute("apoints"));
+
+        return apointDto;
     }
 
+    //    ---------------- 리뷰 관련  ---------------------
 
     // 리뷰 페이지, 테이블
-    @RequestMapping(value = "/shopReview", method = RequestMethod.GET)
+    @RequestMapping(value = "/userMypage", method = RequestMethod.GET)
     public ModelAndView openShopReview() throws Exception {
         List<reviewDto> reviewList = phService.selectReviewDto();
-        ModelAndView mv = new ModelAndView("review/shopReviewTable");
+        ModelAndView mv = new ModelAndView("/myPageUser");
         mv.addObject("reviewList", reviewList);
         return mv;
     }
@@ -306,5 +352,9 @@ public class webController {
         phService.insertReview(reviewDto);
         return "redirect:shopReview";
     }
-}
 
+    //    ---------------- 사업자 - 디자이너  ---------------------
+
+
+
+}

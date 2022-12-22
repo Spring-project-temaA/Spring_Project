@@ -19,25 +19,61 @@
     <nav class="navbar bg-light">
         <ul style="list-style: none;
             padding-left: 0px;">
-            <button th:each="shopName :${shopName}">
-                <li th:text="${shopName}"></li>
-            </button>
+            <button th:each="shopName :${shopName}"><li th:text="${shopName}"></li></button>
         </ul>
     </nav>
-    <!-- shop 이미지-->
-    <span class="image main"><img src="images/pic02.jpg" alt=""/></span>
 
-    <p>공지 사항</p>
-    <p> - </p>
-    <p> - </p>
 
-    <!-- img 4th -->
-    <span class="image main"><img src="images/pic02.jpg" alt=""/></span>
+    <div id="shop name 1">
+        <div class="container">
+            <p></p>
+            <span class="image main"><img src="images/pic01.jpg" alt=""/></span>
+            <p></p>
 
-    <!-- 예약 페이지 -->
+            <h2 class="major">본점</h2>
+            <p></p>
+            <p>공지사항 ddddddd고</p>
+
+            <h4 class="major">기본 가격</h4>
+            <p> 이미지 </p>
+
+            <h4 class="major">디자이너</h4>
+            <p> 이미지 </p>
+
+
+            <h4 class="major">리뷰</h4>
+            <p> ========== </p>
+            <p></p>
+        </div>
+    </div>
+
+    <div id="shop name 2">
+        <div class="container">
+            <p></p>
+            <span class="image main"><img src="images/pic01.jpg" alt=""/></span>
+            <p></p>
+
+            <h2 class="major">본점</h2>
+            <p></p>
+            <p>공지사항 ddddddd고</p>
+
+            <h4 class="major">기본 가격</h4>
+            <p> 이미지 </p>
+
+            <h4 class="major">디자이너</h4>
+            <p> 이미지 </p>
+
+
+            <h4 class="major">리뷰</h4>
+            <p> ========== </p>
+            <p></p>
+        </div>
+    </div>
+
+
 
     <button type="button" class="btn btn-sm" onclick="location.href='/apoint'"> 예약하러 하기</button>
-    <button type="button" class="btn btn-sm" style="float: right" onclick="location.href='/shopReview'">리뷰</button>
+<!--    <button type="button" class="btn btn-sm" style="float: right" onclick="location.href='/shopReview'">리뷰</button>-->
 
 </article>
 </body>

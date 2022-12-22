@@ -27,12 +27,18 @@ public interface promiseHairService {
     //    유저 로그인
     public userDto checkUserLogin(String userId, String userPw);
 
-//    -------------------------------------------------
+    //    -------------------------------------------------
     //    유저 정보 수정
     public void updateUserInfo(userDto userDto);
 
-//    유저 세션 갱신
-    userDto changeSession(userDto userDto);
+    //    유저 세션 최신화
+    public userDto changeUserSession(userDto userDto);
+
+    //    Shop 정보 수정
+    public void updateShopInfo(shopDto shopDto);
+
+    //    Shop 세션 최신화
+    shopDto changeShopSession(shopDto shopDto);
 
 //    ---------------- 사업자 관련 ---------------------
 
@@ -55,16 +61,20 @@ public interface promiseHairService {
     public shopDto checkShopLogin(String shopId, String shopPw);
 
     void insertAppointment(apointDto apointdto);
-    
+
     //    Shop Name 뿌리기
     String[] selectShopName();
 
-    //    ---------------- 리뷰 페이지 ---------------------
+    //    예약 확인
+    apointDto apointCheck(String apointUserId);
+
+    List<apointDto> getApoints(String apointUserId);
 
     //  shop  -> review 첫 페이지, 테이블 페이지
     public List<reviewDto> selectReviewDto() throws Exception;
 
     // reveiew 글쓰기 페이지
     public void insertReview(reviewDto reviewDto) throws Exception;
+
 
 }

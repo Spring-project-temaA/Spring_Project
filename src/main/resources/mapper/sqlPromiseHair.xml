@@ -19,24 +19,24 @@
     <select id="checkUserPh" parameterType="String" resultType="int">
         SELECT COUNT(user_ph)
         FROM user
-        WHERE user_id = #{userPh}
+        WHERE user_ph = #{userPh}
     </select>
 
     <!--    유저 이메일 중복확인-->
     <select id="checkUserMail" parameterType="String" resultType="int">
         SELECT COUNT(user_id)
         FROM user
-        WHERE user_id = #{userMail}
+        WHERE user_mail = #{userMail}
     </select>
 
     <!--    사업자 회원가입-->
     <insert id="signOwner" parameterType="com.example.smp_1.dto.shopDto">
         INSERT INTO shop (shop_id, shop_pw, shop_name, shop_tel, shop_addr_num, shop_addr_jibun, shop_addr_road,
                           shop_addr_detail, owner_name, owner_mail, owner_ph,
-                          owner_gen)
+                          owner_gen, owner_buisness)
         VALUES (#{shopId}, #{shopPw}, #{shopName}, #{shopTel}, #{shopAddrNum}, #{shopAddrJibun}, #{shopAddrRoad},
                 #{shopAddrDetail}, #{ownerName}, #{ownerMail},
-                #{ownerPh}, #{ownerGen})
+                #{ownerPh}, #{ownerGen}, #{ownerBuisness})
     </insert>
 
     <!--    사업자 아이디 중복확인-->
@@ -57,7 +57,7 @@
     <select id="checkOwnerPh" parameterType="String" resultType="int">
         SELECT COUNT(owner_ph)
         FROM shop
-        WHERE owner_id = #{ownerPh}
+        WHERE owner_ph = #{ownerPh}
     </select>
 
     <!--    사업자 이메일 중복확인-->
@@ -98,7 +98,8 @@
     <select id="apointCheck" parameterType="String" resultType="com.example.smp_1.dto.apointDto">
         SELECT *
         FROM apoint
-        WHERE apointUser
+        WHERE apoint_user_id = #{apointUserId}
+          AND apoint_yn = 'N'
     </select>
 
     <!--    유저 정보 수정 / 유저 정보 업데이트 -->
@@ -110,11 +111,41 @@
         where user_id = #{userId}
     </update>
 
-    <!--   세션 최신화 -->
-    <select id="changeSession" parameterType="String" resultType="com.example.smp_1.dto.userDto">
+    <!--  유저 세션 최신화-->
+    <select id="changeUserSession" parameterType="String" resultType="com.example.smp_1.dto.userDto">
         SELECT *
         FROM user
         WHERE user_id = #{userId}
+    </select>
+
+    <!--    모든 예약 정보 가져오기-->
+    <select id="getApoints" parameterType="String" resultType="com.example.smp_1.dto.apointDto">
+        SELECT *
+        FROM apoint
+        WHERE apoint_user_id = #{apointUserId}
+        Order by apoint_num
+    </select>
+
+    <!--    Shop 정보 수정-->
+    <update id="updateShopInfo" parameterType="com.example.smp_1.dto.shopDto">
+        UPDATE shop
+        SET shop_pw          = #{shopPw},
+            shop_name        = #{shopName},
+            shop_tel         = #{shopTel},
+            shop_addr_num    = #{shopAddrNum},
+            shop_addr_jibun  = #{shopAddrJibun},
+            shop_addr_road   = #{shopAddrRoad},
+            shop_addr_detail = #{shopAddrDetail},
+            owner_mail       = #{ownerMail},
+            owner_ph         = #{ownerPh}
+        WHERE shop_id = #{shopId}
+    </update>
+
+<!--    Shop 세션 최신화-->
+    <select id="changeShopSession" parameterType="String" resultType="com.example.smp_1.dto.shopDto">
+        SELECT *
+        FROM shop
+        WHERE shop_id = #{shopId}
     </select>
 
     <!-- 리뷰 -->
@@ -130,4 +161,9 @@
         values (#{reTitle}, #{reWriter}, #{reContent}, #{reCreate}, #{reShop})
     </insert>
 
+    <select id="reviewDetail" parameterType="String" resultType="com.example.smp_1.dto.reviewDto">
+        select re_idx, re_title, re_writer, re_content, re_create, re_update
+        from review
+        where re_idx = #{reIdx}
+    </select>
 </mapper>

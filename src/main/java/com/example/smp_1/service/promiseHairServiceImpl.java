@@ -58,12 +58,22 @@ public class promiseHairServiceImpl implements promiseHairService {
         phMapper.updateUserInfo(userDto);
     }
 
-    //    유저 세션 갱신
+    //    세션 최신화
     @Override
-    public userDto changeSession(userDto userDto) {
-        return phMapper.changeSession(userDto);
+    public userDto changeUserSession(userDto userDto) {
+        return phMapper.changeUserSession(userDto);
     }
 
+    //    Shop 마이페이지 수정
+    @Override
+    public void updateShopInfo(shopDto shopDto) {
+        phMapper.updateShopInfo(shopDto);
+    }
+
+    @Override
+    public shopDto changeShopSession(shopDto shopDto) {
+        return phMapper.changeShopSession(shopDto);
+    }
 
     //    Owner 회원가입
     @Override
@@ -74,25 +84,29 @@ public class promiseHairServiceImpl implements promiseHairService {
     //    Shop 아이디 중복체크
     @Override
     public int checkShopId(String shopId) {
-        return 0;
+        int cnt = phMapper.checkShopId(shopId);
+        return cnt;
     }
 
     //    가게번호 중복체크
     @Override
     public int checkShopTel(String shopTel) {
-        return 0;
+        int cnt = phMapper.checkShopTel(shopTel);
+        return cnt;
     }
 
     //    OwnerPh 중복체크
     @Override
     public int checkOwnerPh(String ownerPh) {
-        return 0;
+        int cnt = phMapper.checkOwnerPh(ownerPh);
+        return cnt;
     }
 
     //    Owner 이메일 중복체크
     @Override
     public int checkOwnerMail(String ownerMail) {
-        return 0;
+        int cnt = phMapper.checkOwnerMail(ownerMail);
+        return cnt;
     }
 
     //    Shop 로그인
@@ -112,6 +126,19 @@ public class promiseHairServiceImpl implements promiseHairService {
     public String[] selectShopName() {
         String[] shopName = phMapper.selectShopName();
         return shopName;
+    }
+
+    //    예약 확인
+    @Override
+    public apointDto apointCheck(String apointUserId) {
+        return phMapper.apointCheck(apointUserId);
+    }
+
+
+    //    모든 예약 가져오기
+    @Override
+    public List<apointDto> getApoints(String apointUserId) {
+        return phMapper.getApoints(apointUserId);
     }
 
     // 리뷰 진입 페이지

@@ -1,6 +1,6 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>-Review page-</title>
+    <title>-Review page -</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -37,11 +37,10 @@
 <!--                        <th>Like</th>-->
                     </tr>
                     </thead>
-
                     <tbody>
                     <tr th:each="list:${reviewList}">
                         <td th:text="${list.reIdx}"></td>
-                        <td colspan="3" th:text="${list.reTitle}"><a></a></td>
+                        <td colspan="3"><a href="/shopReviewDetail?reIdx=" th:attrappend="href=${list.reIdx}" th:text="${list.reTitle}"></a></td>
                         <td th:text="${list.reWriter}"></td>
                         <td th:text="${list.reCreate}"></td>
 <!--                        <td th:text="${list.reLike}"></td>-->

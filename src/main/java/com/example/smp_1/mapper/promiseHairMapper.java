@@ -41,11 +41,8 @@ public interface promiseHairMapper {
     //    유저 로그인
     public userDto checkUserLogin(String userId, String userPw);
 
-    // 유저 마이페이지 업데이트
+    // 유저 정보 업데이트
     public void updateUserInfo(userDto userDto);
-    // 유저 마이 페이지 수정 후 세션 갱신
-    userDto changeSession(userDto userDto);
-
 
     //    샵 로그인
     public shopDto checkShopLogin(String shopId, String shopPw);
@@ -53,11 +50,26 @@ public interface promiseHairMapper {
     //    예약
     void insertAppointment(apointDto apointdto);
 
-    //    Shop Name 을 뿌리기 위함
+    //    Shop Name을 뿌리기 위함
     String[] selectShopName();
 
-    // review 페이지, 테이블 리스트
+    //    유저 세션 최신화
+    userDto changeUserSession(userDto userDto);
+
+    //    예약 확인
+    apointDto apointCheck(String id);
+
+    //    모든 예약 가져오기
+    List<apointDto> getApoints(String apointUserId);
+
+    //    Shop 정보 업데이트
+    public void updateShopInfo(shopDto shopDto);
+
+    //    Shop 세션 최신화
+    shopDto changeShopSession(shopDto shopDto);
+
     public List<reviewDto> selectReviewDto() throws Exception;
 
     void insertReview(reviewDto reviewDto)throws Exception;
+
 }
