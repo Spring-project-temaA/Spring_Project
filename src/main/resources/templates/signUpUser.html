@@ -13,6 +13,7 @@
             src="https://code.jquery.com/jquery-3.6.1.js"
             integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/imagecss.css">
     <style>
         span {
             display: none;
@@ -37,17 +38,15 @@
 <body>
 <!-- 회원가입 영역부터는 템플릿 사용 x bootstrap 사용-->
 
-<header class="container mt-3 py-5">
-    <div class="container-fluid p-4 bg-secondary bg-light">
-        <div class="container p-5 rounded">
-            <h1 class="display-5 text-center fw-semibold text-muted ">Sign Up</h1>
-        </div>
+<header class="container mb-2 p-0">
+    <div class="container m-0">
+        <span class="image main"><img src="images/pic_03.jpg" alt=""/></span>
     </div>
 </header>
 
 
 <main>
-    <div class="container pb-5">
+    <div class="container pb-5 pt-2">
         <div class="container-fluid">
             <form action="/signUser" class="border border-secondary rounded-3 p-5 pb-5" method="post">
                 <!-- ID -->
