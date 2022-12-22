@@ -60,7 +60,7 @@
 		// Add "middle" alignment classes if we're dealing with an even number of items.
 			if ($nav_li.length % 2 == 0) {
 
-				$nav.addClass('use-middle');
+				// $nav.addClass('use-middle');
 				$nav_li.eq( ($nav_li.length / 2) ).addClass('is-middle');
 
 			}
@@ -309,8 +309,13 @@
 			$body.on('click', function(event) {
 
 				// Article visible? Hide.
-					if ($body.hasClass('is-article-visible'))
-						$main._hide(true);
+					if ($body.hasClass('is-article-visible')) {
+						// $main._hide(true);
+
+						// 로그인 페이지 모달창 닫기 부분
+						$main._show(true);
+					}
+
 
 			});
 

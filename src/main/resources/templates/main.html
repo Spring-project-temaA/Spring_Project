@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<!--
+Dimension by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Promise</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css"/>
+    </noscript>
+    <!--    로그인/예약확인을 하기 위한 js-->
+    <script type="text/javascript" src="useJs/login.js"></script>
+    <!--    swal(alert 대체)-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!--    유저 세션 값이 존재하지 않을때-->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        if ([[${message}]] != null) {
+            var message = [[${message}]];
+
+            alert(message);
+            location.href = '/main';
+        }
+        /*]]>*/
+    </script>
+    <script>
+        function getId() {
+            var id = $("#apointUserId").val();
+            $.ajax({
+                url: "getApoints",
+                type: "post",
+                data: {apointUserId: id},
+            })
+        }
+    </script>
+</head>
+
+
+<body class="is-preload">
+
+<!-- Wrapper -->
+<!--주의, 래퍼 제거시 모든 틀 제거가 되고 css, sass, js 가 적용이 되지 않아 애니메이션 적용이 안됨.
+    wrapper =  전체적 컨테이너 역할-->
+<div id="wrapper">
+
+    <!-- Header -->
+    <!-- layout의 header 파일 -->
+    <header th:replace="layout/Header :: mainHeader"></header>
+
+    <!-- Main -->
+    <!-- 밑의 div - id 태그 : css, sass, js 파일이 적용되어있습니다. wrapper와 마찬가지. -->
+    <div id="main">
+
+        <!-- Login section / 로그인 -->
+        <article th:replace="layout/LoginArticle :: #Login"></article>
+
+        <!-- Shop section / 헤어샵-->
+        <article th:replace="layout/ShopArticle :: #Shop"></article>
+
+        <!-- About -->
+        <article th:replace="layout/AgentArticle :: #Agent"></article>
+
+        <!-- About -->
+        <article th:replace="layout/AboutArticle :: #About"></article>
+
+        <article th:replace="layout/Mypage :: #Mypage"></article>
+
+        <article th:replace="layout/apointCheck :: #apointCheck"></article>
+
+
+    </div>
+
+    <!--Footer-->
+    <footer th:replace="layout/Footer :: mainFooter"></footer>
+</div>
+
+<!-- BG -->
+<div id="bg"></div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
