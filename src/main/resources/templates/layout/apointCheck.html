@@ -10,6 +10,9 @@
             integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 </head>
 <body>
 <article th:fragment="apointCheck" id="apointCheck">
@@ -21,7 +24,6 @@
             <h3 style="color: black;margin-left: 100px" th:text="'컷 : ' + ${session.apoint.apointCut}"></h3>
             <h3 style="color: black;margin-left: 100px" th:text="'펌 : ' + ${session.apoint.apointPerm}"></h3>
             <h3 style="color: black;margin-left: 100px" th:text="'염색 : ' + ${session.apoint.apointColor}"></h3>
-            <h3 style="color: black;margin-left: 100px" th:text="'클리닉 : ' + ${session.apoint.apointClinic}"></h3>
             <h3 style="color: black;margin-left: 100px" th:text="'날짜 : ' + ${session.apoint.apointDate}"></h3>
             <h3 style="padding-bottom: 10px; color: black;margin-left: 100px" th:text="'시간 : ' + ${session.apoint.apointTime}"></h3>
         </div>

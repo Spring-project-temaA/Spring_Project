@@ -62,14 +62,14 @@
 
 
 <main>
-    <div class="container">
+    <div class="container pb-5">
         <div class="container-fluid">
             <form class="border border-secondary rounded-3 p-1" action="/insertAppointment" method="post">
                 <div class="p-5">
                     <!-- 예약 날짜 / 시간 (javascript & css 같이 사용) -->
                     <div class="p-3">
                         <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                            Choose your Appointment
+                            원하는 날짜, 시간을 선택해 주세요.
                         </div>
                         <div>
                             <div class="row justify-content-center mx-0 mb-5">
@@ -83,11 +83,11 @@
                                                            placeholder="날짜를 선택해 주세요" name="apointDate" readonly><span
                                                         class="fa fa-calendar"></span>
                                                     <!--값 뜨는곳-->
-                                                    <span class="date">값을 정해주세요.</span>
+                                                    <span class="date">원하는 날짜를 선택해 주세요</span>
                                                     <input type="text" class="datepicker" id="dp2"
                                                            placeholder="시간을 선택해 주세요" name="Time" disabled="true">
                                                     <!--값 뜨는곳-->
-                                                    <span class="time">값을 정해주세요.</span>
+                                                    <span class="time">원하는 시간을 선택해 주세요</span>
                                                     <!--                                                    dp2에 datepicker가 있어서 disavbled로 막아 값이 안가져와서 하이든 인풋 태그를 만듦-->
                                                     <input hidden type="text" id="apointTime" name="apointTime">
                                                 </div>
@@ -184,7 +184,7 @@
                     <!-- cut 번호 101~ -->
                     <div class="p-2">
                         <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                            Hair Cut
+                            헤어 컷
                         </div>
                         <div class="form-floating mb-3">
                             <select onclick="checkCut()" onchange="checkCut()" id="apointCut" name="apointCut"
@@ -204,7 +204,7 @@
                     <!-- Perm 번호 201~-->
                     <div class="p-2">
                         <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                            Perm
+                            펌
                         </div>
                         <div class="form-floating mb-3">
                             <select onclick="checkPerm()" onchange="checkPerm()" id="apointPerm" name="apointPerm"
@@ -224,7 +224,7 @@
                     <!-- Color 301~-->
                     <div class="p-2">
                         <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                            Color
+                            염색
                         </div>
                         <div class="form-floating mb-3">
                             <select onclick="checkColor()" onchange="checkColor()" id="apointColor" name="apointColor"
@@ -240,23 +240,6 @@
                         </div>
                         <span class="color">값을 정해주세요.</span>
                     </div>
-                    <!-- Clinic 401~-->
-                    <div class="p-2">
-                        <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                            Clinic
-                        </div>
-                        <div class="form-floating mb-3">
-                            <select onclick="checkClinic()" onchange="checkClinic()" id="apointClinic"
-                                    name="apointClinic" class="form-select form-select-sm pt-2 fw-semibold">
-                                <option value=" ">원하는 스타일을 선택해 주세요</option>
-                                <option value="해당 없음">해당 없음</option>
-                                <option value="맡기기">맡기기</option>
-                                <option value="모발 클리닉">모발 클리닉</option>
-                                <option value="단백질 앰플 추가">단백질 앰플 추가</option>
-                                <option value="두피 클리닉">두피 클리닉</option>
-                            </select>
-                        </div>
-                        <span class="clinic">값을 정해주세요.</span>
 
                         <input hidden name="apointUserId" th:value="${session.user.userId}">
                         <input hidden name="apointUserPh" th:value="${session.user.userPh}">
@@ -266,7 +249,7 @@
                             <button class="btn btn-outline-dark" type="button" id="btn-apoint" onclick="payment()">
                                 결제하기
                             </button>
-                            <button class="btn btn-outline-secondary" type="button">취소</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="location.href='/main'">취소</button>
                         </div>
                     </div>
 
@@ -280,7 +263,7 @@
 
 
 <!--footer-->
-<footer th:replace="layout/Footer :: mainFooter"></footer>
+<footer th:replace="layout/SubFooter :: #subfooter "></footer>
 
 </body>
 </html>

@@ -12,7 +12,7 @@ function payment(data) {
         pay_method: "card", //지불 방법
         merchant_uid: "iamport_test_id12", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name: "Promist Hair", //결제창에 노출될 상품명
-        amount: 13700, //금액
+        amount: 100, //금액
         buyer_email: "testiamport@naver.com",
         buyer_name: "홍길동",
         buyer_tel: "01012341234",

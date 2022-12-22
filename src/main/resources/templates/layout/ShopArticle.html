@@ -19,7 +19,9 @@
     <nav class="navbar bg-light">
         <ul style="list-style: none;
             padding-left: 0px;">
-            <button th:each="shopName :${shopName}"><li th:text="${shopName}"></li></button>
+            <button style="height: 2.5rem; margin: 5px 5px 5px 5px; " th:each="shopName :${shopName}">
+                <li class="text-center" style="padding: 0px;" th:text="${shopName}"></li>
+            </button>
         </ul>
     </nav>
 
@@ -71,9 +73,8 @@
     </div>
 
 
-
     <button type="button" class="btn btn-sm" onclick="location.href='/apoint'"> 예약하러 하기</button>
-<!--    <button type="button" class="btn btn-sm" style="float: right" onclick="location.href='/shopReview'">리뷰</button>-->
+    <!--    <button type="button" class="btn btn-sm" style="float: right" onclick="location.href='/shopReview'">리뷰</button>-->
 
 </article>
 </body>

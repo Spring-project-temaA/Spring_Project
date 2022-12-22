@@ -84,9 +84,9 @@
     </select>
     <!--    예약-->
     <insert id="insertAppointment" parameterType="com.example.smp_1.dto.apointDto">
-        INSERT INTO apoint (apoint_time, apoint_cut, apoint_perm, apoint_color, apoint_clinic, apoint_shop, apoint_date,
+        INSERT INTO apoint (apoint_time, apoint_cut, apoint_perm, apoint_color, apoint_shop, apoint_date,
                             apoint_user_name, apoint_user_id, apoint_user_ph)
-        VALUES (#{apointTime}, #{apointCut}, #{apointPerm}, #{apointColor}, #{apointClinic}, #{apointShop},
+        VALUES (#{apointTime}, #{apointCut}, #{apointPerm}, #{apointColor}, #{apointShop},
                 #{apointDate}, #{apointUserName}, #{apointUserId}, #{apointUserPh})
     </insert>
     <!--    Shop Name 뿌리기-->

@@ -38,27 +38,25 @@
 <!-- 회원가입 영역부터는 템플릿 사용 x bootstrap 사용-->
 
 <header class="container mt-3 py-5">
-    <div class="container-fluid p-4 bg-light bg-gradient">
+    <div class="container-fluid p-4 bg-secondary bg-light">
         <div class="container p-5 rounded">
-            <h1 class="display-5 text-center fw-semibold text-muted">Sign Up</h1>
+            <h1 class="display-5 text-center fw-semibold text-muted ">Sign Up</h1>
         </div>
     </div>
 </header>
 
 
 <main>
-    <div class="container">
+    <div class="container pb-5">
         <div class="container-fluid">
-            <form action="/signUser" class="border border-secondary rounded-3 p-5" method="post">
+            <form action="/signUser" class="border border-secondary rounded-3 p-5 pb-5" method="post">
                 <!-- ID -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        ID
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
+                        아이디
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="userId" name="userId" placeholder=" "
-                               onclick="checkId()"
-                               onchange="checkId()">
+                        <input type="text" class="form-control" id="userId" name="userId" placeholder=" " onclick="checkId()" onchange="checkId()">
                         <label for="userId" class="text-secondary opacity-50">사용할 ID를 입력해 주세요</label>
                         <!--                        처리결과 뜨는 span-->
                         <span class="id_ok ok">사용 가능한 아이디입니다.</span>
@@ -70,13 +68,11 @@
 
                 <!-- PW -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Password
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
+                        비밀번호
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="userPw" name="userPw" placeholder=" "
-                               onclick="checkPw()"
-                               onchange="checkPw(); checkDoublePw()">
+                        <input type="password" class="form-control" id="userPw" name="userPw" placeholder=" " onclick="checkPw()" onchange="checkPw(); checkDoublePw()">
                         <label for="userPw" class="text-secondary opacity-50">사용할 Password를 입력해 주세요</label>
                         <!--                        처리결과 뜨는 span-->
                         <span class="pwd_ok ok">사용 가능한 비밀번호입니다.</span>
@@ -88,8 +84,8 @@
 
                 <!-- PW2 -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Check Password
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
+                        비밀번호 확인
                     </div>
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control" id="userPw2" name="userPw2" placeholder=" "
@@ -106,8 +102,8 @@
 
                 <!-- 이름 -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Name
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
+                        이름
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="userName" name="userName" placeholder=" "
@@ -119,8 +115,8 @@
                 </div>
                 <!-- Phone -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Phone
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
+                        연락처
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="userPh" name="userPh" placeholder=" "
@@ -136,7 +132,7 @@
                 </div>
                 <!-- mail -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
                         Email
                     </div>
                     <div class="form-floating mb-3">
@@ -175,7 +171,7 @@
                 <!--                %>-->
                 <!-- gender -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
                         Gender
                     </div>
                     <div class="p-3 pb-2 mb-4">
@@ -197,11 +193,8 @@
                 <div class="container">
                     <div class="container-fluid">
                         <div class="d-grid gap-2">
-                            <button class="btn btn-outline-dark" type="button" id="btn-signUp" onclick="checkAll()">Sign
-                                Up
-                            </button>
-                            <button class="btn btn-outline-secondary" type="button" onclick="history.back()">Cancel
-                            </button>
+                            <button class="btn btn-outline-dark" type="button" id="btn-signUp" onclick="checkAll()">가입하기</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="history.back()">돌아가기</button>
                         </div>
                     </div>
                 </div>
@@ -214,7 +207,7 @@
 
 
 <!--footer-->
-<footer th:replace="layout/Footer :: mainFooter"></footer>
+<footer th:replace="layout/SubFooter :: #subfooter "></footer>
 
 </body>
 </html>

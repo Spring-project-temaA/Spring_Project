@@ -21,8 +21,6 @@ public class apointDto {
 
     private String apointColor;
 
-    private String apointClinic;
-
     private String apointShop;
 
     private String apointDesigner;

@@ -48,18 +48,16 @@
 
 
 <main>
-    <div class="container">
+    <div class="container pb-5">
         <div class="container-fluid">
             <form action="/signOwner" class="border border-secondary rounded-3 p-5" method="post">
                 <!-- ID -->
                 <div class="p-2">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        ID
+                        아이디
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="shopId" name="shopId" placeholder=" "
-                               onclick="checkId()"
-                               onchange="checkId()">
+                        <input type="text" class="form-control" id="shopId" name="shopId" placeholder=" " onclick="checkId()" onchange="checkId()">
                         <label for="shopId" class="text-secondary opacity-50">사용할 ID를 입력해 주세요</label>
                         <!--                        처리결과 뜨는 span-->
                         <span class="id_ok ok">사용 가능한 아이디입니다.</span>
@@ -72,12 +70,10 @@
                 <!-- PW -->
                 <div class="p-2">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Password
+                        비밀번호
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="shopPw" name="shopPw" placeholder=" "
-                               onclick="checkPw()"
-                               onchange="checkPw(); checkDoublePw()">
+                        <input type="password" class="form-control" id="shopPw" name="shopPw" placeholder=" " onclick="checkPw()" onchange="checkPw(); checkDoublePw()">
                         <label for="shopPw" class="text-secondary opacity-50">사용할 Password를 입력해 주세요</label>
                         <!--                        처리결과 뜨는 span-->
                         <span class="pwd_ok ok">사용 가능한 비밀번호입니다.</span>
@@ -90,12 +86,10 @@
                 <!-- PW2 -->
                 <div class="p-2">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Check Password
+                        비밀번호 확인
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="shopPw2" name="shopPw2" placeholder=" "
-                               onclick="checkPw2()"
-                               onchange="checkDoublePw()">
+                        <input type="password" class="form-control" id="shopPw2" name="shopPw2" placeholder=" " onclick="checkPw2()" onchange="checkDoublePw()">
                         <label for="shopPw2" class="text-secondary opacity-50">Password를 한번 더 입력해주세요.</label>
                         <!--                        처리결과 뜨는 span-->
                         <span class="pwd2_ok ok">두 비밀번호가 일치합니다.</span>
@@ -108,12 +102,11 @@
                 <!-- 상호명 -->
                 <div class="p-2">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Shop Name
+                        Shop 이름
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="shopName" name="shopName" placeholder=" "
-                               onclick="checkShopName()" onchange="checkShopName()">
-                        <label for="shopName" class="text-secondary opacity-50">Shop Name을 입력해 주세요</label>
+                        <input type="text" class="form-control" id="shopName" name="shopName" placeholder=" " onclick="checkShopName()" onchange="checkShopName()">
+                        <label for="shopName" class="text-secondary opacity-50">Shop 이름을 입력해 주세요</label>
 
                         <span class="checkShopName no">필수 항목입니다.</span>
                     </div>
@@ -122,21 +115,18 @@
                 <!-- 주소 -->
                 <div class="row mb-3 mx-auto">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Shop Address
+                        Shop 주소
                     </div>
                     <div class="row align-items-center p-2">
                         <div class="col-2 text-center">
-                            <label for="shopAddrNum" onkeyup="checkAddress()" onchange="checkAddress()"
-                                   class="col-form-label"> Addr </label>
+                            <label for="shopAddrNum" onkeyup="checkAddress()" onchange="checkAddress()" class="col-form-label"> 주소 </label>
                         </div>
                         <div class="col-7">
-                            <input id="shopAddrNum" name="shopAddrNum" type="text" class="form-control"
-                                   placeholder="우편번호" readonly>
+                            <input id="shopAddrNum" name="shopAddrNum" type="text" class="form-control" placeholder="우편번호" readonly>
                             <span class="checkAddr no">필수 항목입니다.</span>
                         </div>
                         <div class="col-1">
-                            <input id="addrBtn" type="button" class="btn btn-outline-danger"
-                                   onclick="addressGet(); checkAddress()" value="Find Addr">
+                            <input id="addrBtn" type="button" class="btn btn-outline-danger" onclick="addressGet(); checkAddress()" value="Find Addr">
                         </div>
                     </div>
                     <div class="row align-items-center p-2">
@@ -144,8 +134,7 @@
                             <label for="shopAddrJibun" class="col-form-label">지번 주소 </label>
                         </div>
                         <div class="col-10">
-                            <input id="shopAddrJibun" name="shopAddrJibun" type="text" class="form-control"
-                                   placeholder="지번 주소" readonly>
+                            <input id="shopAddrJibun" name="shopAddrJibun" type="text" class="form-control" placeholder="지번 주소" readonly>
                         </div>
                     </div>
                     <div class="row align-items-center p-2">
@@ -171,12 +160,10 @@
                 <!-- Shop Tel -->
                 <div class="p-2">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Shop Tel
+                        Shop 번호
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="shopTel" name="shopTel" placeholder=" "
-                               onclick="checkShopTel()"
-                               onchange="checkShopTel()">
+                        <input type="text" class="form-control" id="shopTel" name="shopTel" placeholder=" " onclick="checkShopTel()" onchange="checkShopTel()">
                         <label for="shopTel" class="text-secondary opacity-50">전화번호를 입력해 주세요</label>
                         <!--                        처리결과 뜨는 span-->
                         <span class="tel_ok ok">사용 가능한 전화번호입니다.</span>
@@ -189,11 +176,10 @@
                 <!-- Owner Name -->
                 <div class="p-2">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Name
+                        사용하실 이름
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="ownerName" name="ownerName" placeholder=" "
-                               onclick="checkName()" onchange="checkName()">
+                        <input type="text" class="form-control" id="ownerName" name="ownerName" placeholder=" " onclick="checkName()" onchange="checkName()">
                         <label for="ownerName" class="text-secondary opacity-50">이름을 입력해 주세요</label>
 
                         <span class="checkName no">필수 항목입니다.</span>
@@ -203,12 +189,10 @@
                 <!-- Phone -->
                 <div class="p-2">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Phone
+                        연락처
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="ownerPh" name="ownerPh" placeholder=" "
-                               onclick="checkPh()"
-                               onchange="checkPh()">
+                        <input type="text" class="form-control" id="ownerPh" name="ownerPh" placeholder=" " onclick="checkPh()" onchange="checkPh()">
                         <label for="ownerPh" class="text-secondary opacity-50">전화번호를 입력해 주세요</label>
                         <!--                        처리결과 뜨는 span-->
                         <span class="ph_ok ok">사용 가능한 전화번호입니다.</span>
@@ -225,8 +209,7 @@
                     <div class="form-floating mb-3">
                         <div class="row">
                             <div class="col-sm-8">
-                                <input onclick="checkMail()" onchange="checkMail()" name="ownerMail" type="email" class="form-control form-control-lg" id="ownerMail"
-                                       placeholder="Email">
+                                <input onclick="checkMail()" onchange="checkMail()" name="ownerMail" type="email" class="form-control form-control-lg" id="ownerMail" placeholder="Email">
                                 <span class="mail_ok ok">사용 가능한 이메일입니다.</span>
                                 <span class="mail_already no">이미 사용중인 이메일입니다.</span>
                                 <span class="mail_not no">잘못된 이메일입니다.</span>
@@ -240,11 +223,9 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input disabled type="text" class="form-control" id="ownerWord" placeholder=" "
-                               onclick="checkWord()"
-                               onchange="checkWord()">
+                        <input disabled type="text" class="form-control" id="ownerWord" placeholder=" " onclick="checkWord()" onchange="checkWord()">
                         <label for="ownerWord" class="text-secondary opacity-50">인증번호를 입력해 주세요</label>
-                        <!--                        처리결과 뜨는 span-->
+                        <!-- 처리결과 뜨는 span -->
                         <span class="word_ok ok">인증되었습니다.</span>
                         <span class="word_not no">틀린 인증번호입니다.</span>
                         <span class="checkWord no">필수 항목입니다.</span>
@@ -260,7 +241,7 @@
                 <!-- gender -->
                 <div class="p-2">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Gender
+                        성별
                     </div>
                     <div class="p-3 pb-2 mb-4">
                         <div class="form-check form-check-inline">
@@ -292,11 +273,8 @@
                 <div class="container">
                     <div class="container-fluid">
                         <div class="d-grid gap-2">
-                            <button class="btn btn-outline-dark" type="button" id="btn-signUp" onclick="checkAll()">Sign
-                                Up
-                            </button>
-                            <button class="btn btn-outline-secondary" type="button" onclick="history.back()">Cancel
-                            </button>
+                            <button class="btn btn-outline-dark" type="button" id="btn-signUp" onclick="checkAll()">가입하기</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="history.back()">돌아가기</button>
                         </div>
                     </div>
                 </div>
@@ -309,7 +287,7 @@
 
 
 <!--footer-->
-<footer th:replace="layout/Footer :: mainFooter"></footer>
+<footer th:replace="layout/SubFooter :: #subfooter "></footer>
 
 </body>
 </html>

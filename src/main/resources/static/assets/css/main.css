@@ -1,6 +1,6 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
-
+/*@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap')*/
 /*
 	Dimension by HTML5 UP
 	html5up.net | @ajlkn
@@ -18,12 +18,14 @@ tfoot, thead, tr, th, td, article, aside,
 canvas, details, embed, figure, figcaption,
 footer, header, hgroup, menu, nav, output, ruby,
 section, summary, time, mark, audio, video {
+	/*font-family: 'Do Hyeon', sans-serif;*/
 	margin: 0;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;}
+	vertical-align: baseline;
+}
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -1029,7 +1031,6 @@ input, select, textarea {
 		text-decoration: none;
 		text-transform: uppercase;
 		white-space: nowrap;
-
 	}
 
 		input[type="submit"]:hover,
@@ -1102,7 +1103,7 @@ input, select, textarea {
 	input[type="reset"],
 	input[type="button"],
 	button {
-		line-height: calc(2rem - 2px);
+		line-height: calc(2.75rem - 2px);
 	}
 
 /* BG */
@@ -1159,7 +1160,7 @@ input, select, textarea {
 			-webkit-transition: -webkit-transform 0.325s ease-in-out, -webkit-filter 0.325s ease-in-out;
 			-ms-transition: -ms-transform 0.325s ease-in-out, -ms-filter 0.325s ease-in-out;
 			transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out;
-			background-image: url("../../images/bg_1.jpg");
+			background-image: url("../../images/bg_5.jpg");
 			background-position: center;
 			background-size: cover;
 			background-repeat: no-repeat;
@@ -1548,6 +1549,7 @@ input, select, textarea {
 			width: 40rem;
 			max-width: 100%;
 			background-color: rgba(27, 31, 34, 0.85);
+
 			border-radius: 4px;
 			opacity: 0;
 		}
@@ -1641,7 +1643,7 @@ input, select, textarea {
 			letter-spacing: 0.2rem;
 			font-size: 0.6rem;
 			opacity: 0.75;
-			margin-bottom: 0;
+			/*margin-bottom: 0;*/
 			text-transform: uppercase;
 		}
 

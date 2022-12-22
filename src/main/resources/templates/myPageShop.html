@@ -9,6 +9,7 @@
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
             crossorigin="anonymous"></script>
 
+
     <!--    마이페이지로 세션 값 없이 바로 접근시 처리하기 위한 스크립트-->
     <script th:inline="javascript">
         /*<![CDATA[*/
@@ -34,14 +35,14 @@
 </header>
 
 <main>
-    <div class="container">
+    <div class="container pb-5">
         <div class="container-fluid">
             <form class="border border-secondary rounded-3 p-5">
 
                 <!-- 네비  -->
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">My Page
+                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">내 정보
                     </button>
 
 
@@ -234,7 +235,7 @@
                                         onclick="location.href='/myPageShopUpdate'">수정
                                 </button>
                                 <button id="btn-back" class="btn btn-outline-dark me-md-2" type="button"
-                                        onclick="location.href='/main'">Home
+                                        onclick="location.href='/main'"> 메인으로
                                 </button>
                             </div>
                         </div>
@@ -253,7 +254,6 @@
                                     <th>컷</th>
                                     <th>펌</th>
                                     <th>염색</th>
-                                    <th>클리닉</th>
                                     <th>날짜</th>
                                     <th>시간</th>
                                 </tr>
@@ -265,7 +265,6 @@
                                     <td th:text="${apointsList.apointCut}"></td>
                                     <td th:text="${apointsList.apointPerm}"></td>
                                     <td th:text="${apointsList.apointColor}"></td>
-                                    <td th:text="${apointsList.apointClinic}"></td>
                                     <td th:text="${apointsList.apointDate}"></td>
                                     <td th:text="${apointsList.apointTime}"></td>
                                 </tr>
@@ -310,8 +309,7 @@
 </main>
 
 <!--footer-->
-<footer th:replace="layout/Footer :: mainFooter"></footer>
+<footer th:replace="layout/SubFooter :: #subfooter "></footer>
 
-</body>
 </body>
 </html>

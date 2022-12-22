@@ -68,6 +68,7 @@ public interface promiseHairMapper {
     //    Shop 세션 최신화
     shopDto changeShopSession(shopDto shopDto);
 
+    //    리뷰
     public List<reviewDto> selectReviewDto() throws Exception;
 
     void insertReview(reviewDto reviewDto)throws Exception;

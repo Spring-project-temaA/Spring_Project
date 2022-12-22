@@ -23,13 +23,13 @@
 
 
 <main>
-    <div class="container">
+    <div class="container pb-5">
         <div class="container-fluid">
             <form class="border border-secondary rounded-3 p-5">
                 <!-- ID -->
                 <div class="p-2">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Designer Name
+                        디자이너 이름
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="designerName" name="userId" placeholder=" ">
@@ -40,7 +40,7 @@
                 <!-- PW -->
                 <div class="p-2">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        Select Branch Office
+                        지점 선택
                     </div>
                     <div class="form-floating mb-3">
                         <select id="designerShop" name="" class="form-select form-select-sm pt-2 fw-semibold">
@@ -71,7 +71,7 @@
 
 
 <!--footer-->
-<footer th:replace="layout/Footer :: mainFooter"></footer>
+<footer th:replace="layout/SubFooter :: #subfooter "></footer>
 
 </body>
 </html>

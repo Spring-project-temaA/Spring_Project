@@ -29,7 +29,7 @@
             <form class="row g-3 border border-secondary rounded-3 p-5" id="frm" name="frm" method="post" action="">
 
                 <div class="col-md-4 form-floating">
-                    <input type="text" class="form-control" id="reCreate" name="reCreate" th:value="${}"  placeholder="작성 날짜" readonly>
+                    <input type="text" class="form-control" id="reCreate" name="reCreate"   placeholder="작성 날짜" readonly>
                     <label for="reCreate" class="form-label">작성 날짜</label>
                 </div>
 
@@ -63,7 +63,7 @@
 </main>
 
 
-<footer th:replace="layout/Footer :: mainFooter"></footer>
+<footer th:replace="layout/SubFooter :: #subfooter "></footer>
 
 </body>
 
