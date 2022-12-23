@@ -8,12 +8,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/imagecss.css">
     <!--    ajax-->
     <script
             src="https://code.jquery.com/jquery-3.6.1.js"
             integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/css/imagecss.css">
     <style>
         span {
             display: none;
@@ -45,14 +45,15 @@
 </header>
 
 
+
 <main>
-    <div class="container pb-5 pt-2">
+    <div class="container">
         <div class="container-fluid">
-            <form action="/signUser" class="border border-secondary rounded-3 p-5 pb-5" method="post">
+            <form action="/signUser" class="border border-secondary rounded-3 p-5" method="post">
                 <!-- ID -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        아이디
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        ID
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="userId" name="userId" placeholder=" " onclick="checkId()" onchange="checkId()">
@@ -67,8 +68,8 @@
 
                 <!-- PW -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        비밀번호
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Password
                     </div>
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control" id="userPw" name="userPw" placeholder=" " onclick="checkPw()" onchange="checkPw(); checkDoublePw()">
@@ -83,13 +84,11 @@
 
                 <!-- PW2 -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        비밀번호 확인
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Check Password
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="userPw2" name="userPw2" placeholder=" "
-                               onclick="checkPw2()"
-                               onchange="checkDoublePw()">
+                        <input type="password" class="form-control" id="userPw2" name="userPw2" placeholder=" " onclick="checkPw2()" onchange="checkDoublePw()">
                         <label for="userPw2" class="text-secondary opacity-50">Password를 한번 더 입력해주세요.</label>
                         <!--                        처리결과 뜨는 span-->
                         <span class="pwd2_ok ok">두 비밀번호가 일치합니다.</span>
@@ -101,12 +100,11 @@
 
                 <!-- 이름 -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        이름
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Name
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="userName" name="userName" placeholder=" "
-                               onclick="checkName()" onchange="checkName()">
+                        <input type="text" class="form-control" id="userName" name="userName" placeholder=" " onclick="checkName()" onchange="checkName()">
                         <label for="userName" class="text-secondary opacity-50">이름을 입력해 주세요</label>
 
                         <span class="checkName no">필수 항목입니다.</span>
@@ -114,13 +112,11 @@
                 </div>
                 <!-- Phone -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        연락처
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Phone
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="userPh" name="userPh" placeholder=" "
-                               onclick="checkPh()"
-                               onchange="checkPh()">
+                        <input type="text" class="form-control" id="userPh" name="userPh" placeholder=" " onclick="checkPh()" onchange="checkPh()">
                         <label for="userPh" class="text-secondary opacity-50">전화번호를 입력해 주세요</label>
                         <!--                        처리결과 뜨는 span-->
                         <span class="ph_ok ok">사용 가능한 전화번호입니다.</span>
@@ -131,14 +127,13 @@
                 </div>
                 <!-- mail -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
                         Email
                     </div>
                     <div class="form-floating mb-3">
                         <div class="row">
                             <div class="col-sm-8">
-                                <input onclick="checkMail()" onchange="checkMail()" name="userMail" type="email" class="form-control form-control-lg" id="userMail"
-                                       placeholder="Email">
+                                <input onclick="checkMail()" onchange="checkMail()" name="userMail" type="email" class="form-control form-control-lg" id="userMail" placeholder="Email">
                                 <span class="mail_ok ok">사용 가능한 이메일입니다.</span>
                                 <span class="mail_already no">이미 사용중인 이메일입니다.</span>
                                 <span class="mail_not no">잘못된 이메일입니다.</span>
@@ -151,9 +146,7 @@
                         </div>
                     </div>
                     <div class="form-floating mb-3">
-                        <input disabled type="text" class="form-control" id="userWord" placeholder=" "
-                               onclick="checkWord()"
-                               onchange="checkWord()">
+                        <input disabled type="text" class="form-control" id="userWord" placeholder=" " onclick="checkWord()" onchange="checkWord()">
                         <label for="userWord" class="text-secondary opacity-50">인증번호를 입력해 주세요</label>
                         <!--                        처리결과 뜨는 span-->
                         <span class="word_ok ok">인증되었습니다.</span>
@@ -170,18 +163,16 @@
                 <!--                %>-->
                 <!-- gender -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
                         Gender
                     </div>
                     <div class="p-3 pb-2 mb-4">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input userGen" type="radio" name="userGen" id="1" value="M"
-                                   onclick="checkGender()">
+                            <input class="form-check-input userGen" type="radio" name="userGen" id="1" value="M" onclick="checkGender()">
                             <label class="form-check-label" for="1">male</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input userGen" type="radio" name="userGen" id="2" value="F"
-                                   onclick="checkGender()">
+                            <input class="form-check-input userGen" type="radio" name="userGen" id="2" value="F" onclick="checkGender()">
                             <label class="form-check-label" for="2">Female</label>
                         </div>
                         <span class="checkGen no">필수 항목입니다.</span>
@@ -192,8 +183,11 @@
                 <div class="container">
                     <div class="container-fluid">
                         <div class="d-grid gap-2">
-                            <button class="btn btn-outline-dark" type="button" id="btn-signUp" onclick="checkAll()">가입하기</button>
-                            <button class="btn btn-outline-secondary" type="button" onclick="history.back()">돌아가기</button>
+                            <button class="btn btn-outline-dark" type="button" id="btn-signUp" onclick="checkAll()">Sign
+                                Up
+                            </button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="history.back()">Cancel
+                            </button>
                         </div>
                     </div>
                 </div>

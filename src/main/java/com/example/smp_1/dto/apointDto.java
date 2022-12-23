@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class apointDto {
 
+    private int apoint_num;
+
     private String apointDate;
 
     private String apointTime;
@@ -24,6 +26,4 @@ public class apointDto {
     private String apointShop;
 
     private String apointDesigner;
-
-    private String apointYn;
 }

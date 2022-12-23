@@ -25,23 +25,28 @@
     <nav>
         <ul>
             <!--유저 아이디 세션을 사용하기 위함-->
-            <div th:if="${session.user} != null">
-                <input hidden id="apointUserId" name="apointUserId" th:value="${session.user.userId}">
+            <div th:if="${session.user} != null" style="display: none; border: 0px">
+                <input style="display: none" hidden id="apointUserId" name="apointUserId" th:value="${session.user.userId}">
+            </div>
+
+            <div th:if="${session.shop} != null" style="display: none; border: 0px">
+                <input style="display: none" hidden id="apointShop" name="apointShop" th:value="${session.shop.shopName}">
             </div>
             <!--            로그인-->
-            <li th:if="${session.user == null} and ${session.shop == null}"><a id="link-login" href="#Login">Login</a>
+            <li th:style="(${session.user == null} and ${session.shop == null}) ? 'display:blcok' : 'display:none'"><a th:style="(${session.user == null} and ${session.shop == null}) ? 'display:blcok' : 'display:none'" id="link-login" href="#Login">Login</a>
             </li>
             <!--            로그아웃-->
             <li style="border-right: 1px white"
                 th:style="${session.user} != null or ${session.shop} != null ? 'display:blcok' : 'display:none'"><a
                     th:if="${session.user} != null or ${session.shop} != null" href="/logout">Logout</a></li>
-            <li th:if="${session.shop} == null or ${session.user} != null"><a href="#Shop">Shop</a></li>
-<!--            <li style="padding-left: 1px"><a href="#Agent">Agent</a></li>-->
+            <li style="padding-left: 1px" th:if="${session.shop} == null or ${session.user} != null"><a href="#Shop">Shop</a></li>
+<!--            디자이너 추가 버튼-->
+            <li th:if="${session.shop} != null" style="padding-left: 1px"><a href="/designerAdd">디자이너 추가</a></li>
             <li style="display:none"><a style="display: none" href=""></a></li>
             <li style="display: none"><a style="display: none" href=""></a></li>
-            <li th:style="${session.user} != null ? 'display:blcok' : 'display:none'"><a onclick="getId()"
+            <li th:style="${session.user} != null ? 'display:blcok' : 'display:none'"><a onclick="getUserId()"
                     th:if="${session.user} != null" href="/userMypage">Mypage</a></li>
-            <li th:style="${session.shop} != null ? 'display:blcok' : 'display:none'"><a href="/shopMypage">Mypage</a>
+            <li th:style="${session.shop} != null ? 'display:blcok' : 'display:none'"><a onclick="getShopName()" href="/shopMypage">Mypage</a>
             </li>
             <li style="padding: 0px" th:if="${session.user} != null"><a href="#apointCheck">예약 확인</a></li>
 

@@ -1,209 +1,196 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <title>My Page - 내 정보 수정</title>
+    <meta charSet="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossOrigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossOrigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/imagecss.css">
-    <script>
-        $(document).ready(function () {
-            $("#btn-back").on("click", function () {
-                history.back();
-            });
-        });
-    </script>
 
+    <!--  <script>-->
+    <!--    $(document).ready(function () {-->
+    <!--      $("#btn-back").on("click", function () {-->
+    <!--        history.back();-->
+    <!--      });-->
+    <!--    });-->
+    <!--  </script>-->
+    <style>
+        span {
+            display: none;
+        }
+
+        .ok {
+            color: green;
+        }
+
+        .no {
+            color: red;
+        }
+    </style>
+    <!--    유효성 검사 및 중복체크를 위한 자바스크립트-->
+    <script type="text/javascript" src="useJs/userUpdate.js"></script>
 
 </head>
+
 <body>
+<!-- 회원가입 영역부터는 템플릿 사용 x bootstrap 사용 디자인은 기능 중간 집계 이후 고칠 예정-->
+
+<header class="container mb-2 p-0">
+    <div class="container m-0">
+        <span class="image main"><img src="images/pic_03.jpg" alt=""/></span>
+    </div>
+</header>
+
 <main>
     <div class="container pb-5">
         <div class="container-fluid">
-            <form action="/shopUpdate" class="border border-secondary rounded-3 p-5">
+            <form class="border border-secondary rounded-3 p-5" id="frm" action="/userUpdate">
+
+                <!-- 내용 넣는 곳 -->
                 <div class="p-5">
                     <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                             aria-labelledby="nav-home-tab" tabindex="0">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabIndex="0">
                             <!--  회원정보 타이틀 -->
                             <div class="h4 pb-2 mb-4 text-black border-bottom border-secondary">
-                                회원 정보
+                                회원정보
                             </div>
 
-                            <!-- Shop 아이디  -->
+                            <!--  회원 이름 / 텍스트 라벨-->
                             <div class="text-center">
                                 <div class="row g-3 p-3">
                                     <div class="col-2">
-                                        <label for="shopId" class="col-form-label">아이디</label>
+                                        <label for="userName" class="col-sm-3 col-form-label">이름</label>
                                     </div>
-                                    <!--  Shop 아이디 / 텍스트 뷰 라벨 -->
+                                    <!--  회원 이름 / 텍스트 뷰 라벨 -->
                                     <div class="col-10">
-                                        <input id="shopId" name="shopId" class="form-control" type="text" value="ID 보여질 곳"
-                                               th:value="${session.shop.shopId}" readonly>
+                                        <input onChange="checkName()" onClick="checkName()" id="userName" name="userName" class="form-control" type="text" th:value="${session.user.userName}">
+
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Shop Pw  -->
+                            <!-- 회원정보 아이디  -->
                             <div class="text-center">
                                 <div class="row g-3 p-3">
                                     <div class="col-2">
-                                        <label for="shopPw" class="col-form-label">비밀번호</label>
+                                        <label for="userId" class="col-sm-3 col-form-label">ID</label>
                                     </div>
-                                    <!--  Shop Pw / 텍스트 뷰 라벨 -->
+                                    <!--  회원 아이디 / 텍스트 뷰 라벨 -->
                                     <div class="col-10">
-                                        <input id="shopPw" name="shopPw" class="form-control" type="text"
-                                               th:value="${session.shop.shopPw}" value="PW 보여질 곳" readonly>
+                                        <input id="userId" name="userId" class="form-control" type="text" th:value="${session.user.userId}" readOnly>
                                     </div>
                                 </div>
                             </div>
 
-                            <!--  가게 이름 / 텍스트 라벨-->
+                            <!-- 회원정보 Pw  -->
                             <div class="text-center">
                                 <div class="row g-3 p-3">
                                     <div class="col-2">
-                                        <label for="shopName" class="col-form-label">가게 이름</label>
+                                        <label for="userPw" class="col-sm-3 col-form-label">PW</label>
                                     </div>
-                                    <!--  가게 이름 / 텍스트 뷰 라벨 -->
+                                    <!--  회원 Pw / 텍스트 뷰 라벨 -->
                                     <div class="col-10">
-                                        <input id="shopName" name="shopName" class="form-control" type="text" value="이름 보여질 곳"
-                                               th:value="${session.shop.shopName}">
+                                        <input id="userPw" name="userPw" class="form-control" type="text" th:value="${session.user.userPw}" onClick="upDatePw()" onChange="upDatePw()">
+                                        <span class="pwd_ok ok">사용 가능한 비밀번호입니다.</span>
+                                        <span class="pwd_not no">8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.</span>
+                                        <span class="pwd_space no">비밀번호는 공백 없이 입력해주세요.</span>
+                                        <span class="checkPw no">필수 항목입니다.</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- 가게 번호  -->
+                            <!-- 회원정보 phone  -->
                             <div class="text-center">
                                 <div class="row g-3 p-3">
                                     <div class="col-2">
-                                        <label for="shopTel" class="col-form-label">가게 번호</label>
+                                        <label for="userPh" class="col-sm-3 col-form-label">Phone</label>
                                     </div>
                                     <!--  회원 phone / 텍스트 뷰 라벨 -->
                                     <div class="col-10">
-                                        <input id="shopTel" name="shopTel" class="form-control" type="tel"
-                                               th:value="${session.shop.shopTel}"
-                                               readonly>
+                                        <input id="userPh" name="userPh" class="form-control" type="tel" th:value="${session.user.userPh}" onClick="upDatePh()" onChange="upDatePh()">
+                                        <span class="ph_ok ok">사용 가능한 전화번호입니다.</span>
+                                        <span class="ph_already no">이미 사용중인 전화번호입니다.</span>
+                                        <span class="ph_not no">잘못된 전화번호입니다.</span>
+                                        <span class="updatePn no">필수 항목입니다.</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <!--                            우편번호-->
+                            <!-- 회원정보 Email  -->
                             <div class="text-center">
                                 <div class="row g-3 p-3">
                                     <div class="col-2">
-                                        <label for="shopAddrNum" class="col-form-label">우편번호</label>
+                                        <label for="userMail" class="col-sm-3 col-form-label">Email</label>
                                     </div>
                                     <!--  회원 Email / 텍스트 뷰 라벨 -->
                                     <div class="col-10">
-                                        <input id="shopAddrNum" name="shopAddrNum" class="form-control" type="text"
-                                               th:value="${session.shop.shopAddrNum}" value="우편번호" readonly>
+                                        <input onClick="checkMail()" onChange="checkMail()" name="userMail" type="email" class="form-control" id="userMail" th:value="${session.user.userMail}">
+                                        <span class="mail_ok ok">사용 가능한 이메일입니다.</span>
+                                        <span class="mail_already no">이미 사용중인 이메일입니다.</span>
+                                        <span class="mail_not no">잘못된 이메일입니다.</span>
+                                        <span class="checkMail no">필수 항목입니다.</span>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- 신주소  -->
-                            <div class="text-center">
-                                <div class="row g-3 p-3">
-                                    <div class="col-2">
-                                        <label for="shopAddrRoad" class="col-form-label">신주소</label>
+
+                                <!--              ===============================================================================================================-->
+                                <div class="p-2">
+
+                                    <div class="form-floating mb-3">
+                                        <div class="row">
+                                            <div class="col-2">
+
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-floating mb-10">
+                                                    <input disabled type="text" class="form-control" id="userWord" placeholder=" " onClick="checkWord()" onChange="checkWord()">
+                                                    <label for="userWord" class="text-secondary opacity-50">인증번호를
+                                                        입력해 주세요</label>
+                                                    <!--                        처리결과 뜨는 span-->
+                                                    <span class="word_ok ok">인증되었습니다.</span>
+                                                    <span class="word_not no">틀린 인증번호입니다.</span>
+                                                    <span class="checkWord no">필수 항목입니다.</span>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-4">
+                                                <label class="text-secondary opacity-50"> </label>
+                                                <button type="button" id="btn-sendMail" disabled onClick="sendMail()"
+                                                        class="btn btn-outline-dark">인증번호 발송
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-10">
-                                        <input id="shopAddrRoad" name="shopAddrRoad" class="form-control" type="text"
-                                               th:value="${session.shop.shopAddrRoad}" value="신주소" readonly>
-                                    </div>
+
                                 </div>
                             </div>
 
-                            <!--                            구주소-->
-                            <div class="text-center">
-                                <div class="row g-3 p-3">
-                                    <div class="col-2">
-                                        <label for="shopAddrJibun" class="col-form-label">구주소</label>
-                                    </div>
-                                    <div class="col-10">
-                                        <input id="shopAddrJibun" name="shopAddrJibun" class="form-control" type="text"
-                                               th:value="${session.shop.shopAddrJibun}" value="구주소" readonly>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--                            상세주소-->
-                            <div class="text-center">
-                                <div class="row g-3 p-3">
-                                    <div class="col-2">
-                                        <label for="shopAddrDetail" class="col-form-label">상세주소</label>
-                                    </div>
-                                    <div class="col-10">
-                                        <input id="shopAddrDetail" name="shopAddrDetail" class="form-control" type="text"
-                                               th:value="${session.shop.shopAddrDetail}" value="상세주소" readonly>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--                            원장명-->
-                            <div class="text-center">
-                                <div class="row g-3 p-3">
-                                    <div class="col-2">
-                                        <label for="ownerName" class="col-form-label">원장 명</label>
-                                    </div>
-                                    <div class="col-10">
-                                        <input id="ownerName" name="ownerName" class="form-control" type="text"
-                                               th:value="${session.shop.ownerName}" value="원장명">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--                            원장폰-->
-                            <div class="text-center">
-                                <div class="row g-3 p-3">
-                                    <div class="col-2">
-                                        <label for="ownerPh" class="col-form-label">휴대폰 번호</label>
-                                    </div>
-                                    <div class="col-10">
-                                        <input id="ownerPh" name="ownerPh" class="form-control" type="text" th:value="${session.shop.ownerPh}" value="휴대폰 번호" readonly>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--                            원장 메일-->
-                            <div class="text-center">
-                                <div class="row g-3 p-3">
-                                    <div class="col-2">
-                                        <label for="ownerMail" class="col-form-label">메일</label>
-                                    </div>
-                                    <div class="col-10">
-                                        <input id="ownerMail" name="ownerMail" class="form-control" type="text" th:value="${session.shop.ownerMail}" value="원장 메일" readonly>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--                            원장 성별-->
-                            <div class="text-center">
-                                <div class="row g-3 p-3">
-                                    <div class="col-2">
-                                        <label for="ownerGen" class="col-form-label">성별</label>
-                                    </div>
-                                    <div class="col-10">
-                                        <!-- M일때는 남자, F일때는 여자-->
-                                        <input id="ownerGen" name="ownerGen" class="form-control" type="text" th:if="${session.shop.ownerGen} =='M' " value="남자" readonly>
-                                        <input id="ownerGen" name="ownerGen" class="form-control" type="text" th:if="${session.shop.ownerGen} =='F' " value="여자" readonly>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <!--              =================================================================================================================-->
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end p-3">
-                                <button id="btn-update" class="btn btn-outline-dark me-md-2" type="submit">수정 완료</button>
-                                <button id="btn-back" class="btn btn-outline-dark me-md-2" type="button">취소</button>
+                                <button id="btn-update" class="btn btn-outline-dark me-md-2" type="button"
+                                        onClick="checkAll()">수정 완료
+                                </button>
+                                <button id="btn-back" class="btn btn-outline-dark me-md-2" type="button"
+                                        onClick="history.back()">취소
+                                </button>
+
                             </div>
                         </div>
                     </div>
                 </div>
+                <!--                <input type="hidden" id="method" name="_method">-->
             </form>
         </div>
     </div>
 
 </main>
+
+
 <footer th:replace="layout/SubFooter :: #subfooter "></footer>
 </body>
 </html>

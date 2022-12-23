@@ -1,6 +1,6 @@
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Designer 회원가입</title>
+    <title>디자이너 추가</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -8,7 +8,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
             crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/css/imagecss.css">
+    <script>
+        function uploadFile() {
+            var file = $("#Img");
+            var fileVal = $("#Img").val();
+            console.log(fileVal);
+            if (fileVal != "") {
+                var ext = fileVal.split('.').pop().toLowerCase(); //확장자분리
+                //아래 확장자가 있는지 체크
+                if ($.inArray(ext, ['jpg', 'jpeg', 'gif', 'png']) == -1) {
+                    alert('이미지 파일만 선택해주세요.');
+                    file.val('');
+                    $("#designerImg").val(file.val());
+                } else {
+                    $("#designerImg").val(file.val());
+                }
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -24,30 +43,66 @@
 <main>
     <div class="container pb-5">
         <div class="container-fluid">
-            <form class="border border-secondary rounded-3 p-5">
-                <!-- ID -->
+            <form action="/insertDesigner" class="border border-secondary rounded-3 p-5" enctype="multipart/form-data">
+                <!-- designerShop값 넘겨주기 위함-->
+                <input hidden name="designerShop" th:value="${session.shop.shopName}">
+                <!-- 디자이너 이름 -->
                 <div class="p-2">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
                         디자이너 이름
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="designerName" name="userId" placeholder=" ">
+                        <input type="text" class="form-control" id="designerName" name="designerName" placeholder=" ">
                         <label for="designerName" class="text-secondary opacity-50">디자이너의 이름을 입력해주세요.</label>
                     </div>
                 </div>
 
-                <!-- PW -->
+                <!-- 디자이너 이미지 추가-->
                 <div class="p-2">
                     <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                        지점 선택
+                        디자이너 이미지 추가
+                    </div>
+                    <div class="mb-3">
+                        <input onclick="uploadFile()" onchange="uploadFile()" type="file" id="Img" accept=".jpg,.png,.gif,.jpeg" placeholder=" ">
+                        <input hidden id="designerImg" name="designerImg">
+                    </div>
+                </div>
+
+                <!-- 디자이너 이름 -->
+                <div class="p-2">
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        예약금
                     </div>
                     <div class="form-floating mb-3">
-                        <select id="designerShop" name="" class="form-select form-select-sm pt-2 fw-semibold">
-                            <option value="selectd">지점을 선택해 주세요</option>
-                            <option value="1">ㄱㄱ점</option>
-                            <option value="2">ㄴㄴ점</option>
-                            <option value="3">ㄷㄷ점</option>
-                            <option value="4">ㄹㄹ점</option>
+                        <input type="text" class="form-control" id="apointPrice" name="apointPrice" placeholder=" ">
+                        <label for="apointPrice" class="text-secondary opacity-50">예약금</label>
+                    </div>
+                </div>
+
+                <!-- 한줄 소개 -->
+                <div class="p-2">
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        한줄 소개
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="designerIntroduce" name="designerIntroduce" placeholder=" ">
+                        <label for="designerIntroduce" class="text-secondary opacity-50">한줄 소개</label>
+                    </div>
+                </div>
+
+                <!-- 직급 -->
+                <div class="p-2">
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        직급 선택
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select id="designerPosition" name="designerPosition"
+                                class="form-select form-select-sm pt-2 fw-semibold">
+                            <option value="selectd">직급을 선택해주세요</option>
+                            <option value="디자이너">디자이너</option>
+                            <option value="팀장">팀장</option>
+                            <option value="부원장">부원장</option>
+                            <option value="원장">원장</option>
                         </select>
                     </div>
                 </div>

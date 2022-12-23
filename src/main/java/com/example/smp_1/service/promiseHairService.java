@@ -1,10 +1,7 @@
 package com.example.smp_1.service;
 
 
-import com.example.smp_1.dto.apointDto;
-import com.example.smp_1.dto.reviewDto;
-import com.example.smp_1.dto.shopDto;
-import com.example.smp_1.dto.userDto;
+import com.example.smp_1.dto.*;
 
 import java.util.List;
 
@@ -68,7 +65,20 @@ public interface promiseHairService {
     //    예약 확인
     apointDto apointCheck(String apointUserId);
 
-    List<apointDto> getApoints(String apointUserId);
+    //    유저 예약 목록 가져오기
+    List<apointDto> getUserApoints(String apointUserId);
+
+    //    샵 예약 목록 가져오기
+    List<apointDto> getShopApoints(String apointShop);
+
+    //    디자이너 추가
+    void insertDesigner(designerDto designerDto) throws Exception;
+
+    //    샵 정보
+    shopDto getShopInfo(String shopName);
+
+    //    디자이너 정보
+    List<designerDto> getDesignerInfo(String designerShop);
 
     //  shop  -> review 첫 페이지, 테이블 페이지
     public List<reviewDto> selectReviewDto() throws Exception;
@@ -76,5 +86,8 @@ public interface promiseHairService {
     // reveiew 글쓰기 페이지
     public void insertReview(reviewDto reviewDto) throws Exception;
 
+    //    디자이너 정보 가져오기
+    designerDto postDesignerInfo(String designerName, String designerShop);
 
+    apointDto changeApointSession(apointDto apointdto);
 }

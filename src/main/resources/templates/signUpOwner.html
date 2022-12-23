@@ -52,8 +52,8 @@
             <form action="/signOwner" class="border border-secondary rounded-3 p-5" method="post">
                 <!-- ID -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        아이디
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        ID
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="shopId" name="shopId" placeholder=" " onclick="checkId()" onchange="checkId()">
@@ -68,8 +68,8 @@
 
                 <!-- PW -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        비밀번호
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Password
                     </div>
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control" id="shopPw" name="shopPw" placeholder=" " onclick="checkPw()" onchange="checkPw(); checkDoublePw()">
@@ -84,8 +84,8 @@
 
                 <!-- PW2 -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        비밀번호 확인
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Check Password
                     </div>
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control" id="shopPw2" name="shopPw2" placeholder=" " onclick="checkPw2()" onchange="checkDoublePw()">
@@ -100,12 +100,12 @@
 
                 <!-- 상호명 -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        Shop 이름
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Shop Name
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="shopName" name="shopName" placeholder=" " onclick="checkShopName()" onchange="checkShopName()">
-                        <label for="shopName" class="text-secondary opacity-50">Shop 이름을 입력해 주세요</label>
+                        <label for="shopName" class="text-secondary opacity-50">Shop Name을 입력해 주세요</label>
 
                         <span class="checkShopName no">필수 항목입니다.</span>
                     </div>
@@ -113,12 +113,12 @@
 
                 <!-- 주소 -->
                 <div class="row mb-3 mx-auto">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        Shop 주소
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Shop Address
                     </div>
                     <div class="row align-items-center p-2">
                         <div class="col-2 text-center">
-                            <label for="shopAddrNum" onkeyup="checkAddress()" onchange="checkAddress()" class="col-form-label"> 주소 </label>
+                            <label for="shopAddrNum" onkeyup="checkAddress()" onchange="checkAddress()" class="col-form-label"> Addr </label>
                         </div>
                         <div class="col-7">
                             <input id="shopAddrNum" name="shopAddrNum" type="text" class="form-control" placeholder="우편번호" readonly>
@@ -141,8 +141,7 @@
                             <label for="shopAddrRoad" class="col-form-label"> 도로명 주소 </label>
                         </div>
                         <div class="col-10">
-                            <input id="shopAddrRoad" name="shopAddrRoad" type="text" class="form-control"
-                                   placeholder="도로명 주소" readonly>
+                            <input id="shopAddrRoad" name="shopAddrRoad" type="text" class="form-control" placeholder="도로명 주소" readonly>
                         </div>
                     </div>
                     <div class="row align-items-center p-2">
@@ -150,16 +149,15 @@
                             <label for="shopAddrDetail" class="col-form-label"> 상세주소</label>
                         </div>
                         <div class="col-10">
-                            <input id="shopAddrDetail" name="shopAddrDetail" type="text" class="form-control"
-                                   placeholder="상세 주소">
+                            <input id="shopAddrDetail" name="shopAddrDetail" type="text" class="form-control" placeholder="상세 주소">
                         </div>
                     </div>
                 </div>
 
                 <!-- Shop Tel -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        Shop 번호
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Shop Tel
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="shopTel" name="shopTel" placeholder=" " onclick="checkShopTel()" onchange="checkShopTel()">
@@ -174,8 +172,8 @@
 
                 <!-- Owner Name -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        사용하실 이름
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Name
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="ownerName" name="ownerName" placeholder=" " onclick="checkName()" onchange="checkName()">
@@ -187,8 +185,8 @@
 
                 <!-- Phone -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        연락처
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Phone
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="ownerPh" name="ownerPh" placeholder=" " onclick="checkPh()" onchange="checkPh()">
@@ -202,7 +200,7 @@
                 </div>
                 <!-- mail -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
                         Email
                     </div>
                     <div class="form-floating mb-3">
@@ -220,11 +218,10 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-floating mb-3">
                         <input disabled type="text" class="form-control" id="ownerWord" placeholder=" " onclick="checkWord()" onchange="checkWord()">
                         <label for="ownerWord" class="text-secondary opacity-50">인증번호를 입력해 주세요</label>
-                        <!-- 처리결과 뜨는 span -->
+                        <!--                        처리결과 뜨는 span-->
                         <span class="word_ok ok">인증되었습니다.</span>
                         <span class="word_not no">틀린 인증번호입니다.</span>
                         <span class="checkWord no">필수 항목입니다.</span>
@@ -239,8 +236,8 @@
                 <!--                %>-->
                 <!-- gender -->
                 <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        성별
+                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
+                        Gender
                     </div>
                     <div class="p-3 pb-2 mb-4">
                         <div class="form-check form-check-inline">
@@ -255,25 +252,15 @@
                     </div>
                 </div>
 
-                <div class="p-2">
-                    <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary fw-bold">
-                        사업자 등록번호
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="ownerBuisness" name="ownerBuisness" placeholder=" " onclick="checkBuisness()" onchange="checkBuisness()">
-                        <label for="ownerBuisness" class="text-secondary opacity-50">사용할 사업자 등록번호를 입력해 주세요</label>
-                        <span class="checkBusiness_ok ok">인증되었습니다.</span>
-                        <span class="checkBusiness_not no">잘못된 사업자 등록번호 입니다.</span>
-                        <span class="checkBusiness no">필수 항목입니다.</span>
-                    </div>
-                </div>
-
 
                 <div class="container">
                     <div class="container-fluid">
                         <div class="d-grid gap-2">
-                            <button class="btn btn-outline-dark" type="button" id="btn-signUp" onclick="checkAll()">가입하기</button>
-                            <button class="btn btn-outline-secondary" type="button" onclick="history.back()">돌아가기</button>
+                            <button class="btn btn-outline-dark" type="button" id="btn-signUp" onclick="checkAll()">Sign
+                                Up
+                            </button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="history.back()">Cancel
+                            </button>
                         </div>
                     </div>
                 </div>

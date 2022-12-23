@@ -19,69 +19,28 @@
     <nav class="navbar bg-light">
         <ul style="list-style: none;
             padding-left: 0px;">
-            <button style="height: 2.5rem; margin: 5px 5px 5px 5px; " th:each="shopName :${shopName}">
-                <li class="text-center" style="padding: 0px;" th:text="${shopName}"></li>
+            <button th:each="shopNames :${shopName}">
+                <li th:attr="onclick='getShopInfo(\'' + ${shopNames}+'\')'" th:text="${shopNames}"></li>
             </button>
         </ul>
     </nav>
+    <!-- shop 이미지-->
+    <span class="image main"><img src="images/pic02.jpg" alt=""/></span>
 
+<!--    가게 정보 보여주기 위함-->
+    <div id="div-shopInfo">
 
-    <div id="shop_name_1">
-        <div class="container">
-            <p></p>
-            <span class="image main"><img src="images/pic_01.jpg" alt=""/></span>
-            <p></p>
-
-            <h2 class="major">살롱 드 하루 2호점</h2>
-            <p></p>
-            <p> 살롱 드 하루 2호점 입니다. </p>
-
-            <h4 class="major">기본 가격</h4>
-            <p> - </p>
-        </div>
     </div>
 
-    <div id="shop_name_2">
-        <div class="container">
-            <p></p>
-            <span class="image main"><img src="images/pic_02.jpg" alt=""/></span>
-            <p></p>
+    <!-- img 4th -->
+    <span class="image main"><img src="images/pic02.jpg" alt=""/></span>
 
-            <h2 class="major">준오 헤어</h2>
-            <p></p>
-            <p> -2022년 네이버 인기스타일 1위 선정<br>
-                -부산 서면 미용실 리뷰 1위<br>
-                -준오헤어 서면역점은 Since 2017.05.17 오픈<br>
-                -미용실 이상의 가치 선택 / 프리미엄 헤어샵<br>
-                -준오헤어 한국브랜드파워 7년 연속 1위!</p>
+    <!--    가게 정보 보여주기 위함-->
+    <div id="div-designerInfo" class="row">
 
-            <h4 class="major">기본 가격</h4>
-            <p> - </p>
-        </div>
-    </div>
-
-    <div id="shop_name_3">
-        <div class="container">
-            <p></p>
-            <span class="image main"><img src="images/pic_03.jpg" alt=""/></span>
-            <p></p>
-
-            <h2 class="major">AJ 헤어포스 롯데점</h2>
-            <p></p>
-            <p> 서면롯데백화점후문 부근에 위치 하고 있는 서면미용실 AJ헤어포스 롯데점입니다.<br>
-                숙련된 기술과 세련된 스타일, 친절한 상담을 도와 드리는<br>
-                경력 있는 디자이너 선생님들로 구성 되어 있는 대형 헤어샵입니다.<br>
-                늘 변함 없이 가격,실력,친절,만족도 고객님들께 다가가겠습니다.<br>
-                찾아주셔서 감사합니다.<br>
-
-            <h4 class="major">기본 가격</h4>
-            <p> - </p>
-        </div>
     </div>
 
 
-    <button type="button" class="btn btn-sm" onclick="location.href='/apoint'"> 예약하러 하기</button>
-    <!--    <button type="button" class="btn btn-sm" style="float: right" onclick="location.href='/shopReview'">리뷰</button>-->
 
 </article>
 </body>

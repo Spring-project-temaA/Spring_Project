@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
             crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/css/imagecss.css">
 
     <!--    마이페이지로 세션 값 없이 바로 접근시 처리하기 위한 스크립트-->
@@ -21,10 +22,13 @@
         }
         /*]]>*/
     </script>
+    <!--    예약목록을 바로 인식하지 못해서 새로고침 해줌-->
+
 </head>
 
 <body>
 <!-- 회원가입 영역부터는 템플릿 사용 x bootstrap 사용 디자인은 기능 중간 집계 이후 고칠 예정-->
+
 <header class="container mb-2 p-0">
     <div class="container m-0">
         <span class="image main"><img src="images/pic_mypage.jpg" alt=""/></span>
@@ -39,16 +43,12 @@
                 <!-- 네비  -->
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">내 정보
+                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">My Page
                     </button>
 
 
                     <button class="nav-link" id="nav-apoint-tab" data-bs-toggle="tab" data-bs-target="#nav-apoint"
                             type="button" role="tab" aria-controls="nav-apoint" aria-selected="false"> 예약 목록
-                    </button>
-
-                    <button class="nav-link" id="nav-nav-designer-tab" data-bs-toggle="tab" data-bs-target="#nav-designer"
-                            type="button" role="tab" aria-controls="nav-designer" aria-selected="false"> 예약 목록
                     </button>
                 </div>
 
@@ -102,19 +102,6 @@
                                 </div>
                             </div>
 
-                            <!--  사업자 등록번호 / 텍스트 라벨-->
-                            <div class="text-center">
-                                <div class="row g-3 p-3">
-                                    <div class="col-2">
-                                        <label for="ownerBuisness" class="col-form-label">사업자 등록번호</label>
-                                    </div>
-                                    <!--  사업자 등록번호 / 텍스트 뷰 라벨 -->
-                                    <div class="col-10">
-                                        <input id="ownerBuisness" class="form-control" type="text" th:value="${session.shop.ownerBuisness}" readonly>
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- 가게 번호  -->
                             <div class="text-center">
                                 <div class="row g-3 p-3">
@@ -124,6 +111,19 @@
                                     <!--  회원 phone / 텍스트 뷰 라벨 -->
                                     <div class="col-10">
                                         <input id="shopTel" class="form-control" type="tel" th:value="${session.shop.shopTel}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 사업자 등록번호  -->
+                            <div class="text-center">
+                                <div class="row g-3 p-3">
+                                    <div class="col-2">
+                                        <label for="shopBusiness" class="col-form-label">사업자 등록 번호</label>
+                                    </div>
+                                    <!--  회원 phone / 텍스트 뷰 라벨 -->
+                                    <div class="col-10">
+                                        <input id="shopBusiness" class="form-control" type="tel" th:value="${session.shop.shopBusiness}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -212,41 +212,26 @@
                                 </div>
                             </div>
 
-                            <!--                            원장 성별-->
-                            <div class="text-center">
-                                <div class="row g-3 p-3">
-                                    <div class="col-2">
-                                        <label for="ownerGen" class="col-form-label">성별</label>
-                                    </div>
-                                    <div class="col-10">
-                                        <!-- M일때는 남자, F일때는 여자-->
-                                        <input id="ownerGen" class="form-control" type="text" th:if="${session.shop.ownerGen} =='M' " value="남자" readonly>
-                                        <input id="ownerGen" class="form-control" type="text" th:if="${session.shop.ownerGen} =='F' " value="여자" readonly>
-                                    </div>
-                                </div>
-                            </div>
-
-
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end p-3">
                                 <button class="btn btn-outline-dark me-md-2" type="button"
                                         onclick="location.href='/myPageShopUpdate'">수정
                                 </button>
                                 <button id="btn-back" class="btn btn-outline-dark me-md-2" type="button"
-                                        onclick="location.href='/main'"> 메인으로
+                                        onclick="location.href='/main'">Home
                                 </button>
                             </div>
                         </div>
                     </div>
-
                     <div class="tab-content" id="nav-apoint-tabContent">
                         <div class="tab-pane fade show" id="nav-apoint" role="tabpanel" aria-labelledby="nav-apoint-tab" tabinde>
                             <div class="h4 pb-2 mb-4 text-black border-bottom border-secondary">
-                                예약 내역
+                                예약 목록
                             </div>
                             <table th:if="${session.apoints} != null" class="table">
                                 <thead class="table-dark">
                                 <tr>
-                                    <th>지점</th>
+                                    <th>이용자</th>
+                                    <th>이용자 번호</th>
                                     <th>디자이너</th>
                                     <th>컷</th>
                                     <th>펌</th>
@@ -257,7 +242,8 @@
                                 </thead>
                                 <tbody class="table-striped">
                                 <tr th:each="apointsList:${session.apoints}">
-                                    <td th:text="${apointsList.apointShop}"></td>
+                                    <td th:text="${apointsList.apointUserName}"></td>
+                                    <td th:text="${apointsList.apointUserPh}"></td>
                                     <td th:text="${apointsList.apointDesigner}"></td>
                                     <td th:text="${apointsList.apointCut}"></td>
                                     <td th:text="${apointsList.apointPerm}"></td>
@@ -267,42 +253,13 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <h2 th:if="${session.apoints} == null">조회된 예약내역이 없습니다.</h2>
+                            <h2 th:if="${session.apoints} == null">조회된 예약목록이 없습니다.</h2>
                         </div>
                     </div>
-
-                    <!--디자이너 추가 -->
-                    <div class="tab-content" id="nav-plus-designer">
-                        <div class="tab-pane fade show" id="nav-designer" role="tabpanel" aria-labelledby="nav-designer-tab" tabinde="0">
-                            <div class="h4 pb-2 mb-4 text-black border-bottom border-secondary">
-                                디자이너
-                            </div>
-
-                            <table class="table text-center">
-                                <thead class="table-dark">
-                                <tr>
-                                    <th th:each="">head Name</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>name</td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-
                 </div>
             </form>
         </div>
     </div>
-
-
-    <!--    마이페이지 예약 목록 영역-->
-
-
 </main>
 
 <!--footer-->

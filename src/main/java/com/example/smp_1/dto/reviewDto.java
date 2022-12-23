@@ -1,6 +1,5 @@
 package com.example.smp_1.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;

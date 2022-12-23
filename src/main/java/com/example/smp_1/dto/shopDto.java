@@ -16,5 +16,5 @@ public class shopDto {
     private String ownerMail;
     private String ownerPh;
     private String ownerGen;
-    private String ownerBuisness;
+    private String shopBusiness;
 }

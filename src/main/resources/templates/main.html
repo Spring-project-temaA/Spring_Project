@@ -10,39 +10,43 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="assets/css/main.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/imagecss.css">
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css"/>
     </noscript>
     <!--    로그인/예약확인을 하기 위한 js-->
     <script type="text/javascript" src="useJs/login.js"></script>
+
+    <!--    Shop 버튼 누를때마다 값 주기 위함-->
+    <script type="text/javascript" src="useJs/shop.js"></script>
     <!--    swal(alert 대체)-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-    <!--    유저 세션 값이 존재하지 않을때-->
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        if ([[${message}]] != null) {
-            var message = [[${message}]];
-
-            alert(message);
-            location.href = '/main';
-        }
-        /*]]>*/
-    </script>
     <script>
-        function getId() {
+        // <!-- 유저 아이디로 예약 가져오기 -->
+        function getUserId() {
             var id = $("#apointUserId").val();
             $.ajax({
-                url: "getApoints",
+                url: "getUserApoints",
                 type: "post",
                 data: {apointUserId: id},
             })
         }
+
+        <!-- Shop 이름으로 예약 가져오기-->
+        function getShopName() {
+            var name = $("#apointShop").val();
+            $.ajax({
+                url: "getShopApoints",
+                type: "post",
+                data: {apointShop: name},
+            })
+        }
     </script>
     <style>
+        ul {
+            list-style: none;
+            padding-left: 0px;
+        }
         .swal-button {
             padding: 0px 15px;
             border-radius: 2px;
@@ -76,13 +80,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <!-- Shop section / 헤어샵-->
         <article th:replace="layout/ShopArticle :: #Shop"></article>
 
-<!--        <article th:replace="layout/AgentArticle :: #Agent"></article>-->
+        <!-- About -->
+        <article th:replace="layout/AgentArticle :: #Agent"></article>
+
         <!-- About -->
         <article th:replace="layout/AboutArticle :: #About"></article>
 
-
         <article th:replace="layout/Mypage :: #Mypage"></article>
-
 
         <article th:replace="layout/apointCheck :: #apointCheck"></article>
 
@@ -102,7 +106,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
-
 
 </body>
 </html>
