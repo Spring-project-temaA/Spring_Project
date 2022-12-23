@@ -29,6 +29,10 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    파일 업로드 그레이들
+    // https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
+//    implementation 'commons-fileupload:commons-fileupload:1.4'
+
 //    이메일 인증을 위한 그레이들
     implementation 'org.springframework.boot:spring-boot-starter-mail'
 }

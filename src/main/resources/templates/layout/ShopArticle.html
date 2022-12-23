@@ -19,24 +19,28 @@
     <nav class="navbar bg-light">
         <ul style="list-style: none;
             padding-left: 0px;">
-            <button th:each="shopName :${shopName}">
-                <li th:text="${shopName}"></li>
+            <button th:each="shopNames :${shopName}">
+                <li th:attr="onclick='getShopInfo(\'' + ${shopNames}+'\')'" th:text="${shopNames}"></li>
             </button>
         </ul>
     </nav>
     <!-- shop 이미지-->
     <span class="image main"><img src="images/pic02.jpg" alt=""/></span>
 
-    <p>공지 사항</p>
-    <p> - </p>
-    <p> - </p>
+<!--    가게 정보 보여주기 위함-->
+    <div id="div-shopInfo">
+
+    </div>
 
     <!-- img 4th -->
     <span class="image main"><img src="images/pic02.jpg" alt=""/></span>
 
-    <!-- 예약 페이지 -->
+    <!--    가게 정보 보여주기 위함-->
+    <div id="div-designerInfo" class="row">
 
-    <button type="button" class="btn btn-sm" onclick="location.href='/apoint'"> 예약하러 하기</button>
+    </div>
+
+
 
 </article>
 </body>

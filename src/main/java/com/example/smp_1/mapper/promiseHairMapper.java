@@ -1,9 +1,7 @@
 package com.example.smp_1.mapper;
 
 
-import com.example.smp_1.dto.apointDto;
-import com.example.smp_1.dto.shopDto;
-import com.example.smp_1.dto.userDto;
+import com.example.smp_1.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -58,12 +56,47 @@ public interface promiseHairMapper {
     //    예약 확인
     apointDto apointCheck(String id);
 
-    //    모든 예약 가져오기
-    List<apointDto> getApoints(String apointUserId);
-    
-//    Shop 정보 업데이트
+    //    유저 모든 예약 가져오기
+    List<apointDto> getUserApoints(String apointUserId);
+
+    //    샵 네임 모든 예약 갸져오기
+    List<apointDto> getShopApoints(String apointShop);
+
+    //    Shop 정보 업데이트
     public void updateShopInfo(shopDto shopDto);
-    
-//    Shop 세션 최신화
+
+    //    Shop 세션 최신화
     shopDto changeShopSession(shopDto shopDto);
+
+    //    디자이너 추가
+    void insertDesigner(designerDto designerDto);
+
+    //    샵 정보
+    shopDto getShopInfo(String shopName);
+
+    //    디자이너 정보
+    List<designerDto> getDesignerInfo(String designerShop);
+
+    //    리뷰
+    public List<reviewDto> selectReviewDto() throws Exception;
+
+    void insertReview(reviewDto reviewDto) throws Exception;
+    //    -----------------------------------------------
+
+    //     유저 정보 바꿀때 다른 값도 바꾸기 위함
+    void chaneUserInfo(userDto userDto);
+
+    //    샵 정보 바꿀떄 다른 값도 바꾸기 위함
+    void changeShopInfo(shopDto shopDto);
+
+    void changeShopInfo2(shopDto shopDto);
+
+    void changeShopInfo3(shopDto shopDto);
+
+    //    -----------------------------------------------
+//    디자이너 정보 가져오기
+    designerDto postDesignerInfo(String designerName, String designerShop);
+
+    // 예약 세션 바꿈
+    apointDto changeApointSession(apointDto apointdto);
 }

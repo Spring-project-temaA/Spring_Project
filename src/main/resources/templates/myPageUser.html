@@ -22,6 +22,12 @@
         }
         /*]]>*/
     </script>
+<!--    예약목록을 바로 인식하지 못해서 새로고침 해줌-->
+    <script>
+        $(document).ready(function () {
+            location.reload();
+        });
+    </script>
     <style>
         .table th, .table td {
             text-align: center;
@@ -171,6 +177,7 @@
                                     <th>클리닉</th>
                                     <th>날짜</th>
                                     <th>시간</th>
+                                    <th>리뷰작성</th>
                                 </tr>
                                 </thead>
                                 <tbody class="table-striped">
@@ -180,9 +187,9 @@
                                     <td th:text="${apointsList.apointCut}"></td>
                                     <td th:text="${apointsList.apointPerm}"></td>
                                     <td th:text="${apointsList.apointColor}"></td>
-                                    <td th:text="${apointsList.apointClinic}"></td>
                                     <td th:text="${apointsList.apointDate}"></td>
                                     <td th:text="${apointsList.apointTime}"></td>
+                                    <td><button class="btn btn-outline-primary" onclick="location.href='/shopReviewWriter'">리뷰 작성</button></td>
                                 </tr>
                                 </tbody>
                             </table>

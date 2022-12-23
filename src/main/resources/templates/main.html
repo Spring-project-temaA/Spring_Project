@@ -15,30 +15,38 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     </noscript>
     <!--    로그인/예약확인을 하기 위한 js-->
     <script type="text/javascript" src="useJs/login.js"></script>
+
+    <!--    Shop 버튼 누를때마다 값 주기 위함-->
+    <script type="text/javascript" src="useJs/shop.js"></script>
     <!--    swal(alert 대체)-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-    <!--    유저 세션 값이 존재하지 않을때-->
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        if ([[${message}]] != null) {
-            var message = [[${message}]];
-
-            alert(message);
-            location.href = '/main';
-        }
-        /*]]>*/
-    </script>
     <script>
-        function getId() {
+        // <!-- 유저 아이디로 예약 가져오기 -->
+        function getUserId() {
             var id = $("#apointUserId").val();
             $.ajax({
-                url: "getApoints",
+                url: "getUserApoints",
                 type: "post",
                 data: {apointUserId: id},
             })
         }
+
+        <!-- Shop 이름으로 예약 가져오기-->
+        function getShopName() {
+            var name = $("#apointShop").val();
+            $.ajax({
+                url: "getShopApoints",
+                type: "post",
+                data: {apointShop: name},
+            })
+        }
     </script>
+    <style>
+        ul {
+            list-style: none;
+            padding-left: 0px;
+        }
+    </style>
 </head>
 
 

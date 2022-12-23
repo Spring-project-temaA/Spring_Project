@@ -1,20 +1,22 @@
 package com.example.smp_1.controller;
 
 
-import com.example.smp_1.dto.apointDto;
-import com.example.smp_1.dto.shopDto;
-import com.example.smp_1.dto.userDto;
+import com.example.smp_1.dto.*;
 import com.example.smp_1.service.emailService;
 import com.example.smp_1.service.promiseHairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class webController {
@@ -108,7 +110,7 @@ public class webController {
     //    유저 로그인
     @PostMapping("/userLogin")
     @ResponseBody
-    public Object userLogin(@RequestParam("userId") String id, @RequestParam("userPw") String pw,@RequestParam("apointUserId")String apointId, HttpServletRequest request) {
+    public Object userLogin(@RequestParam("userId") String id, @RequestParam("userPw") String pw, @RequestParam("apointUserId") String apointId, HttpServletRequest request) {
         HttpSession session = request.getSession();
         userDto user = phService.checkUserLogin(id, pw);
 
@@ -125,7 +127,7 @@ public class webController {
         } else {
             apointDto apointDto = phService.apointCheck(apointId);
             session.setAttribute("apoint", apointDto);
-            System.out.println(session.getAttribute("apoint"));
+//            System.out.println(session.getAttribute("apoint"));
             return user;
         }
     }
@@ -258,7 +260,7 @@ public class webController {
         return "myPageShopUpdate";
     }
 
-    //    유저 정보 수정
+    //    Shop 정보 수정
     @RequestMapping(value = "/shopUpdate")
     public String shopUpdate(shopDto shopDto, HttpServletRequest request) throws Exception {
 
@@ -291,16 +293,40 @@ public class webController {
     }
 
     //    ---------------- 예약 관련 ---------------------
-    @RequestMapping("/appointment")
-    public String appointment() {
-        return "appointment";
+    @PostMapping("/appointment")
+    @ResponseBody
+    public Object appointment(@RequestParam("dName") String dName, @RequestParam("dShop") String dShop, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        Map<String, Object> map = new HashMap<>();
+//        바로 이 주소로 접근했을때의 처리
+        if (session.getAttribute("user") == null) {
+            map.put("status", "error");
+            map.put("data", "로그인 후 이용해주세요");
+        } else {
+            designerDto dInfo = phService.postDesignerInfo(dName, dShop);
+            map.put("status", "success");
+            if (session.getAttribute("dInfo") != null) {
+                session.removeAttribute("dInfo");
+            }
+            session.setAttribute("dInfo", dInfo);
+        }
+        return map;
     }
 
     @RequestMapping("/insertAppointment")
-    public String insertAppointment(apointDto apointdto) throws Exception {
+    public String insertAppointment(apointDto apointdto, HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession();
 
         phService.insertAppointment(apointdto);
+        apointDto apointDto = phService.changeApointSession(apointdto);
+        session.setAttribute("apoint", apointDto);
         return "redirect:main";
+    }
+
+    @RequestMapping("/appointSign")
+    public String appointSign() {
+        return "appointment";
     }
 
     //    로그아웃
@@ -317,16 +343,74 @@ public class webController {
         return "redirect:main";
     }
 
-    //    예약목록 가져오기
-    @PostMapping ("/getApoints")
+    //    유저 예약목록 가져오기
+    @PostMapping("/getUserApoints")
     @ResponseBody
-    public Object getApoints(@RequestParam("apointUserId") String id, HttpServletRequest request) {
+    public Object getUserApoints(@RequestParam("apointUserId") String id, HttpServletRequest request) {
         HttpSession session = request.getSession();
 
-        List<apointDto> apointDto = phService.getApoints(id);
+        List<apointDto> apointDto = phService.getUserApoints(id);
+        if (session.getAttribute("apoints") != null) {
+            session.removeAttribute("apoints");
+        }
         session.setAttribute("apoints", apointDto);
         System.out.println(session.getAttribute("apoints"));
 
         return apointDto;
+    }
+
+    //   샵 예약목록 가져오기
+    @PostMapping("/getShopApoints")
+    @ResponseBody
+    public Object getShopApoints(@RequestParam("apointShop") String name, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        List<apointDto> apointDto = phService.getShopApoints(name);
+        if (session.getAttribute("apoints") != null) {
+            session.removeAttribute("apoints");
+        }
+        session.setAttribute("apoints", apointDto);
+//        System.out.println(session.getAttribute("apoints"));
+
+        return apointDto;
+    }
+
+    //    디자이너 추가 페이지로 이동
+    @RequestMapping("/designerAdd")
+    public String designerAdd() {
+        return "signUpDesigner";
+    }
+
+    //    디자이너 추가
+    @RequestMapping("/insertDesigner")
+    public String insertDesigner(designerDto designerDto) throws Exception {
+        phService.insertDesigner(designerDto);
+        return "redirect:main";
+    }
+
+    //    샵 정보 가져옴, 디자이너 정보도 가져옴
+    @PostMapping("/getShopInfo")
+    @ResponseBody
+    public List<Object> getShopInfo(@RequestParam("shopName") String shopName) {
+
+        List<Object> infoList = new ArrayList<>();
+        infoList.add(phService.getShopInfo(shopName));
+        infoList.add(phService.getDesignerInfo(shopName));
+//        System.out.println(infoList);
+
+        return infoList;
+
+    }
+
+    // 리뷰 글 작성 페이지
+    @RequestMapping("/shopReviewWriter")
+    public String insertReview() throws Exception {
+        return "/review/shopReviewWriter";
+    }
+
+    @RequestMapping("/shopReviewIn")
+    public String insertReviewWrite(reviewDto reviewDto) throws Exception {
+        phService.insertReview(reviewDto);
+        return "redirect:shopReview";
     }
 }

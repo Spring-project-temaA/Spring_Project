@@ -1,11 +1,11 @@
 package com.example.smp_1.service;
 
-import com.example.smp_1.dto.apointDto;
-import com.example.smp_1.dto.shopDto;
-import com.example.smp_1.dto.userDto;
+import com.example.smp_1.commons.FileUtils;
+import com.example.smp_1.dto.*;
 import com.example.smp_1.mapper.promiseHairMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
 
@@ -13,6 +13,9 @@ import java.util.List;
 public class promiseHairServiceImpl implements promiseHairService {
     @Autowired
     private promiseHairMapper phMapper;
+
+    @Autowired
+    private FileUtils fileUtils;
 
 
     //    유저 회원가입
@@ -55,6 +58,7 @@ public class promiseHairServiceImpl implements promiseHairService {
     // 유저 마이페이지 수정
     public void updateUserInfo(userDto userDto) {
         phMapper.updateUserInfo(userDto);
+        phMapper.chaneUserInfo(userDto);
     }
 
     //    세션 최신화
@@ -62,11 +66,14 @@ public class promiseHairServiceImpl implements promiseHairService {
     public userDto changeUserSession(userDto userDto) {
         return phMapper.changeUserSession(userDto);
     }
-    
-//    Shop 마이페이지 수정
+
+    //    Shop 마이페이지 수정
     @Override
     public void updateShopInfo(shopDto shopDto) {
         phMapper.updateShopInfo(shopDto);
+        phMapper.changeShopInfo(shopDto);
+        phMapper.changeShopInfo2(shopDto);
+        phMapper.changeShopInfo3(shopDto);
     }
 
     @Override
@@ -134,11 +141,53 @@ public class promiseHairServiceImpl implements promiseHairService {
     }
 
 
-    //    모든 예약 가져오기
+    //    유저 모든 예약 가져오기
     @Override
-    public List<apointDto> getApoints(String apointUserId) {
-        return phMapper.getApoints(apointUserId);
+    public List<apointDto> getUserApoints(String apointUserId) {
+        return phMapper.getUserApoints(apointUserId);
     }
 
+    //    샵 모든 예약 가져오기
+    @Override
+    public List<apointDto> getShopApoints(String apointShop) {
+        return phMapper.getShopApoints(apointShop);
+    }
 
+    //    디자이너 추가
+    @Override
+    public void insertDesigner(designerDto designerDto) throws Exception {
+        phMapper.insertDesigner(designerDto);
+    }
+
+    @Override
+    public shopDto getShopInfo(String shopName) {
+        return phMapper.getShopInfo(shopName);
+    }
+
+    @Override
+    public List<designerDto> getDesignerInfo(String designerShop) {
+        return phMapper.getDesignerInfo(designerShop);
+    }
+
+    // 리뷰 진입 페이지
+    @Override
+    public List<reviewDto> selectReviewDto() throws Exception {
+        return phMapper.selectReviewDto();
+    }
+
+    @Override
+    public void insertReview(reviewDto reviewDto) throws Exception{
+        phMapper.insertReview(reviewDto);
+    }
+
+//    디자이너 정보 가져오기
+    @Override
+    public designerDto postDesignerInfo(String designerName, String designerShop) {
+        return phMapper.postDesignerInfo(designerName, designerShop);
+    }
+
+    @Override
+    public apointDto changeApointSession(apointDto apointdto) {
+        return phMapper.changeApointSession(apointdto);
+    }
 }

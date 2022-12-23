@@ -1,6 +1,6 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>예약 페이지 </title>
+    <title>예약 페이지</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -24,13 +24,9 @@
 
     <!--    카카오 결제를 위한 JS-->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-    <!--    결제 JS-->
-    <script type="text/javascript" src="useJs/payment.js"></script>
-
     <!--    swal(alert 대체)-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-    <!--    값 확인-->
+    <!--    값 확인, 결제 -->
     <script type="text/javascript" src="useJs/apoint.js"></script>
     <!--  --------------------------------------------------------------------->
     <style>
@@ -64,7 +60,7 @@
 <main>
     <div class="container">
         <div class="container-fluid">
-            <form class="border border-secondary rounded-3 p-1" action="/insertAppointment" method="post">
+            <form class="border border-secondary rounded-3 p-1" id="frm" action="/insertAppointment" method="post">
                 <div class="p-5">
                     <!-- 예약 날짜 / 시간 (javascript & css 같이 사용) -->
                     <div class="p-3">
@@ -240,42 +236,25 @@
                         </div>
                         <span class="color">값을 정해주세요.</span>
                     </div>
-                    <!-- Clinic 401~-->
-                    <div class="p-2">
-                        <div class="h5 pb-2 mb-4 text-black border-bottom border-secondary">
-                            Clinic
-                        </div>
-                        <div class="form-floating mb-3">
-                            <select onclick="checkClinic()" onchange="checkClinic()" id="apointClinic"
-                                    name="apointClinic" class="form-select form-select-sm pt-2 fw-semibold">
-                                <option value=" ">원하는 스타일을 선택해 주세요</option>
-                                <option value="해당 없음">해당 없음</option>
-                                <option value="맡기기">맡기기</option>
-                                <option value="모발 클리닉">모발 클리닉</option>
-                                <option value="단백질 앰플 추가">단백질 앰플 추가</option>
-                                <option value="두피 클리닉">두피 클리닉</option>
-                            </select>
-                        </div>
-                        <span class="clinic">값을 정해주세요.</span>
 
-                        <input hidden name="apointUserId" th:value="${session.user.userId}">
-                        <input hidden name="apointUserPh" th:value="${session.user.userPh}">
-                        <input hidden name="apointUserName" th:value="${session.user.userName}">
+                    <input hidden id="apointPrice" th:value="${session.dInfo.apointPrice}">
+                    <input hidden name="apointDesigner" id="apointDesigner" th:value="${session.dInfo.designerName}">
+                    <input hidden name="apointShop" id="apointShop" th:value="${session.dInfo.designerShop}">
+                    <input hidden name="apointUserId" th:value="${session.user.userId}">
+                    <input hidden name="apointUserPh" id="apointUserPh" th:value="${session.user.userPh}">
+                    <input hidden id="apointUserMail" th:value="${session.user.userMail}">
+                    <input hidden name="apointUserName" id="apointUserName" th:value="${session.user.userName}">
 
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-outline-dark" type="button" id="btn-apoint" onclick="payment()">
-                                결제하기
-                            </button>
-                            <button class="btn btn-outline-secondary" type="button">취소</button>
-                        </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-dark" type="button" id="btn-apoint" onclick="payment()">
+                            결제하기(예약)
+                        </button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="history.back()">취소</button>
                     </div>
-
-
+                </div>
             </form>
-
         </div>
     </div>
-
 </main>
 
 
