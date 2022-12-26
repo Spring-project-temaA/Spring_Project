@@ -90,4 +90,7 @@ public interface promiseHairService {
     designerDto postDesignerInfo(String designerName, String designerShop);
 
     apointDto changeApointSession(apointDto apointdto);
+
+//    디자이너 목록 뿌리기 위함
+    List<designerDto> designerList(String apointShop);
 }

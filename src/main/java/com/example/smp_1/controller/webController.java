@@ -366,11 +366,15 @@ public class webController {
         HttpSession session = request.getSession();
 
         List<apointDto> apointDto = phService.getShopApoints(name);
+        List<designerDto> designerDto = phService.designerList(name);
         if (session.getAttribute("apoints") != null) {
             session.removeAttribute("apoints");
         }
+        if (session.getAttribute("designers") != null) {
+            session.removeAttribute("designers");
+        }
         session.setAttribute("apoints", apointDto);
-//        System.out.println(session.getAttribute("apoints"));
+        session.setAttribute("desingers", designerDto);
 
         return apointDto;
     }

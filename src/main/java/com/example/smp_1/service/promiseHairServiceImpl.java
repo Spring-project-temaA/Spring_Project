@@ -190,4 +190,9 @@ public class promiseHairServiceImpl implements promiseHairService {
     public apointDto changeApointSession(apointDto apointdto) {
         return phMapper.changeApointSession(apointdto);
     }
+
+    @Override
+    public List<designerDto> designerList(String apointShop) {
+        return phMapper.designerList(apointShop);
+    }
 }

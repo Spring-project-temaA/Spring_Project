@@ -99,4 +99,6 @@ public interface promiseHairMapper {
 
     // 예약 세션 바꿈
     apointDto changeApointSession(apointDto apointdto);
+
+    List<designerDto> designerList(String apointShop);
 }

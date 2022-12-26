@@ -229,10 +229,16 @@
         where designer_name = #{designerName}
           And designer_shop = #{designerShop}
     </select>
-    <select id="changeApointSession" parameterType="com.example.smp_1.dto.apointDto" resultType="com.example.smp_1.dto.apointDto">
+    <select id="changeApointSession" parameterType="com.example.smp_1.dto.apointDto"
+            resultType="com.example.smp_1.dto.apointDto">
         select *
         from apoint
         where apoint_user_id = #{apointUserId}
         order by apoint_num desc limit 1;
+    </select>
+    <select id="designerList" parameterType="String" resultType="com.example.smp_1.dto.designerDto">
+        select *
+        from designer
+        where designer_shop = #{apointShop}
     </select>
 </mapper>
