@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -374,7 +372,7 @@ public class webController {
             session.removeAttribute("designers");
         }
         session.setAttribute("apoints", apointDto);
-        session.setAttribute("desingers", designerDto);
+        session.setAttribute("designers", designerDto);
 
         return apointDto;
     }
@@ -387,8 +385,12 @@ public class webController {
 
     //    디자이너 추가
     @RequestMapping("/insertDesigner")
-    public String insertDesigner(designerDto designerDto) throws Exception {
+    public String insertDesigner(designerDto designerDto, HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession();
         phService.insertDesigner(designerDto);
+        if (session.getAttribute("designers") != null) {
+            session.removeAttribute("designers");
+        }
         return "redirect:main";
     }
 
@@ -403,18 +405,87 @@ public class webController {
 //        System.out.println(infoList);
 
         return infoList;
-
     }
 
     // 리뷰 글 작성 페이지
-    @RequestMapping("/shopReviewWriter")
-    public String insertReview() throws Exception {
-        return "/review/shopReviewWriter";
+    @PostMapping("/shopReviewWriter")
+    @ResponseBody
+    public Object shopReviewWriter(@RequestParam("apointDesigner") String apointDesigner, @RequestParam("apointShop") String apointShop, @RequestParam("apointDate") String apointDate, @RequestParam("apointTime") String apointTime, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        apointDto apointDto = phService.getApoints(apointDesigner, apointShop, apointDate, apointTime);
+
+        if (session.getAttribute("apointInfo") != null) {
+            session.removeAttribute("apointInfo");
+        }
+        session.setAttribute("apointInfo", apointDto);
+        System.out.println(session.getAttribute("apointInfo"));
+
+        return apointDto;
+    }
+    @RequestMapping("/reviewWrite")
+    public String reviewWrite(){
+        return "review/shopReviewWriter";
     }
 
     @RequestMapping("/shopReviewIn")
     public String insertReviewWrite(reviewDto reviewDto) throws Exception {
         phService.insertReview(reviewDto);
-        return "redirect:shopReview";
+        return "redirect:userMypage";
+    }
+
+    @PostMapping("/designerUpdate")
+    @ResponseBody
+    public Object designerUpdate(@RequestParam("dName") String dName, @RequestParam("dShop") String dShop, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        designerDto designerDto1 = phService.designerInfo(dName, dShop);
+
+        if (session.getAttribute("designerInfo") != null) {
+            session.removeAttribute("designerInfo");
+        }
+
+        session.setAttribute("designerInfo", designerDto1);
+
+        return designerDto1;
+    }
+
+    @RequestMapping("/designerUpdatePage")
+    public String designerUpdatePage() {
+        return "designerUpdate";
+    }
+
+    @RequestMapping("/designerInfoUpdate")
+    public String designerInfoUpdate(designerDto designerDto, HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("designers") != null) {
+            session.removeAttribute("designers");
+        }
+        phService.designerUpdate(designerDto);
+        return "redirect:main";
+    }
+
+    @PostMapping("/doubleTimeCheck")
+    @ResponseBody
+    public Object doubleTimeCheck(@RequestParam("dName") String apointDesigner, @RequestParam("dShop") String apointShop, @RequestParam("date") String apointDate) {
+
+        List<apointDto> apointDto = phService.getDesignerApoint(apointDesigner, apointShop, apointDate);
+
+        return apointDto;
+    }
+
+    //    예약 취소
+    @PostMapping("/apointCancel")
+    @ResponseBody
+    public void apointCancel(@RequestParam("apointDesigner") String apointDesigner, @RequestParam("apointShop") String apointShop, @RequestParam("apointDate") String apointDate, @RequestParam("apointTime") String apointTime, @RequestParam("userId") String apointUserId) {
+        phService.apointCancel(apointDesigner, apointShop, apointDate, apointTime, apointUserId);
+    }
+
+//    리뷰 뿌리기
+    @PostMapping("/getReview")
+    @ResponseBody
+    public Object getReview(@RequestParam("shopName") String shopName){
+        List<reviewDto> reviewDto = phService.getReview(shopName);
+
+        return reviewDto;
     }
 }

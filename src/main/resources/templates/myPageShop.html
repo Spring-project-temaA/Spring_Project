@@ -14,14 +14,35 @@
     <script th:inline="javascript">
         /*<![CDATA[*/
         if ([[${message}]] != null) {
-            // console.log("테스트");
             var message = [[${message}]];
             alert(message);
             location.href = "/main";
         }
         /*]]>*/
     </script>
-    <!--    예약목록을 바로 인식하지 못해서 새로고침 해줌-->
+    <script>
+        function designerUpdate(obj) {
+            var par = obj.parent();
+            let dName = par.find('td:eq(0)').text();
+            let dShop = par.find('td:eq(4)').text();
+            $.ajax({
+                url: "/designerUpdate",
+                type: "post",
+                data: {dName: dName, dShop: dShop},
+                success: function (data) {
+                    location.href = '/designerUpdatePage';
+                }, errors: function () {
+                    alert("실패");
+                }
+            });
+        }
+    </script>
+    <style>
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+    </style>
 
 </head>
 
@@ -36,7 +57,8 @@
     </div>
 </header>
 
-<main>
+<!--바로 값이 안뜨는게 있어서 새로고침 해줌-->
+<main onLoad=”if (location.href.indexOf(‘reload’)==-1) location.replace(location.href+’?reload’)”>
     <div class="container">
         <div class="container-fluid">
             <form class="border border-secondary rounded-3 p-5">
@@ -277,36 +299,39 @@
                             <h2 th:if="${session.apoints} == null">조회된 예약목록이 없습니다.</h2>
                         </div>
                     </div>
-<!--                    디자이너 목록-->
+                    <!--                    디자이너 목록-->
                     <div class="tab-content" id="nav-designer-tabContent">
                         <div class="tab-pane fade show" id="nav-designer" role="tabpanel"
                              aria-labelledby="nav-designer-tab" tabinde>
                             <div class="h4 pb-2 mb-4 text-black border-bottom border-secondary">
                                 디자이너 목록
                             </div>
-                            <table th:if="${session.apoints} != null" class="table">
+                            <table th:if="${session.designers} != null" class="table">
                                 <thead class="table-dark">
                                 <tr>
                                     <th>디자이너 이름</th>
                                     <th>직급</th>
                                     <th>예약금</th>
                                     <th>한줄소개</th>
-                                    <th></th>
+                                    <th>수정</th>
                                 </tr>
                                 </thead>
-                                <tbody class="table-striped">
-                                <tr th:each="designerList:${session.desingers}">
-                                    <form action="" method="post">
-                                    <td th:text="${designerList.designerName}"></td>
-                                    <td th:text="${designerList.designerPosition}"></td>
-                                    <td th:text="${designerList.apointPrice}"></td>
-                                    <td th:text="${designerList.designerIntroduce}"></td>
-                                    <td><button type="submit" class="btn btn-outline-primary">수정</button></td>
-                                    </form>
-                                </tr>
-                                </tbody>
+                                <form>
+                                    <tbody class="table-striped">
+                                    <tr th:each="designerList:${session.designers}">
+                                        <td id="designerName" th:text="${designerList.designerName}"></td>
+                                        <td th:text="${designerList.designerPosition}"></td>
+                                        <td th:text="${designerList.apointPrice}"></td>
+                                        <td th:text="${designerList.designerIntroduce}"></td>
+                                        <td hidden id="designerShop" th:text="${designerList.designerShop}"></td>
+                                        <td onclick="designerUpdate($(this))">
+                                            <button type="button" class="btn btn-outline-primary">수정</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </form>
                             </table>
-                            <h2 th:if="${session.apoints} == null">조회된 예약목록이 없습니다.</h2>
+                            <h2 th:if="${session.designers} == null">조회된 디자이너가 없습니다.</h2>
                         </div>
                     </div>
                 </div>

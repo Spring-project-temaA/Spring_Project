@@ -9,6 +9,21 @@
             integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function (){
+            if ($("#reContent").val() == ''){
+                $('#btn-re').attr("disabled", true);
+            }
+        });
+        function checkContent(){
+            let reC = $('#reContent').val();
+            if (reC == ''){
+                $("#btn-re").attr("disabled", true);
+            } else {
+                $("#btn-re").attr("disabled", false);
+            }
+        }
+    </script>
 
 </head>
 
@@ -29,39 +44,34 @@
             <form class="row g-3 border border-secondary rounded-3 p-5" id="frm" name="frm" method="post" action="/shopReviewIn">
 
                 <div class="col-md-4 form-floating">
-                    <input type="text" class="form-control" id="reCreate" name="reCreate" th:value="${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}" placeholder="작성 날짜" readonly>
+                    <input type="text" class="form-control" id="reCreate" name="reCreate" placeholder="작성 날짜" th:value="${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}" readonly>
                     <label for="reCreate" class="form-label">작성 날짜</label>
                 </div>
 
                 <div class="col-md-4 form-floating">
-                    <input type="text" class="form-control" id="?" name="?" placeholder="디자이너">
-                    <label for="?" class="form-label">디자이너</label>
+                    <input type="text" class="form-control" id="reDesigner" name="reDesigner" th:value="${session.apointInfo.apointDesigner}" placeholder="디자이너">
+                    <label for="reDesigner" class="form-label">디자이너</label>
                 </div>
 
-                <div class="col-md-4 form-floating" hidden>
-                    <input type="text" class="form-control" id="reWriter" name="reWriter" th:value="${session.user.userId}" placeholder="작성자" readonly>
+                <div class="col-md-4 form-floating">
+                    <input type="text" class="form-control" id="reWriter" name="reWriter" th:value="${session.apointInfo.apointUserId}" placeholder="작성자" readonly>
                     <label for="reWriter" class="form-label">작성자</label>
                 </div>
 
 
-                <div class="col-md-4 form-floating">
-                    <input type="text" class="form-control" id="reShop" name="reShop" placeholder="작성자">
+                <div class="col-md-12 form-floating">
+                    <input type="text" class="form-control" id="reShop" name="reShop" placeholder=" " readonly th:value="${session.apointInfo.apointShop}">
                     <label for="reShop" class="form-label">이용한 지점</label>
                 </div>
 
                 <div class="col-12 form-floating">
-                    <input type="text" class="form-control" id="reTitle" name="reTitle" placeholder="작성 날짜">
-                    <label for="reTitle" class="form-label">제목</label>
-                </div>
-
-                <div class="col-12 form-floating">
-                    <textarea rows="10" class="form-control" id="reContent" name="reContent" placeholder="작성 내용"></textarea>
+                    <textarea rows="10" onclick="checkContent()" onchange="checkContent()" class="form-control" id="reContent" name="reContent" placeholder="작성 내용"></textarea>
                     <label for="reContent" class="form-label">작성 내용</label>
                 </div>
 
                 <div class="d-grid gap-4 d-md-flex justify-content-end">
-                    <button id="" class="btn btn-outline-dark" type="submit">확인</button>
-                    <button id="btn-back" class="btn btn-outline-secondary" type="reset">뒤로가기</button>
+                    <button id="btn-re" class="btn btn-outline-dark" type="submit">작성</button>
+                    <button id="btn-back" class="btn btn-outline-secondary" type="button" onclick="history.back()">뒤로가기</button>
                 </div>
             </form>
         </div>
@@ -69,7 +79,7 @@
 </main>
 
 
-<footer th:replace="layout/SubFooter :: #subfooter "></footer>
+<!--<footer th:replace="layout/SubFooter :: #subfooter "></footer>-->
 
 </body>
 
