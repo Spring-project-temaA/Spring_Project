@@ -99,4 +99,21 @@ public interface promiseHairMapper {
 
     // 예약 세션 바꿈
     apointDto changeApointSession(apointDto apointdto);
+
+    List<designerDto> designerList(String apointShop);
+
+    designerDto designerInfo(String designerName, String designerShop);
+
+    void designerUpdate(designerDto designerDto);
+
+    void changeDesignerInfo(designerDto designerDto);
+
+    List<apointDto> getDesignerApoint(String apointDesigner, String apointShop, String apointDate);
+
+//    예약 취소
+    void apointCancel(String apointDesigner, String apointShop, String apointDate, String apointTime, String apointUserId);
+
+    apointDto getApoints(String apointDesigner, String apointShop, String apointDate, String apointTime);
+
+    List<reviewDto> getReview(String reShop);
 }

@@ -1,4 +1,8 @@
 // 모든 값 확인 위함
+$(document).ready(function () {
+    $('#div-time').hide();
+    $('#dp2').hide();
+})
 let checkList;
 let frm;
 
@@ -10,14 +14,66 @@ $(document).ready(function () {
 // Date 체크
 function checkDate() {
     var date = $('#dp1').val();
+    $('#dp2').val('');
 
     if (date == '') {
         checkList[0] = false;
         $('.date').css('display', 'inline-block');
+        $('#div-time').hide();
+        $('#dp2').hide();
     } else {
         checkList[0] = true;
         $('.date').css('display', 'none');
+        $('#div-time').show();
+        $('#dp2').show();
     }
+}
+
+// 중복 예약 방지
+function doubleTimeCheck() {
+    var date = $("#dp1").val();
+    var dName = $("#apointDesigner").val();
+    var dShop = $("#apointShop").val();
+    $.ajax({
+        url: "/doubleTimeCheck",
+        type: "post",
+        data: {dName: dName, dShop: dShop, date: date},
+        success: function (time) {
+            var timeList = [];
+            for (let i = 0; i < time.length; i++) {
+                timeList.push(time[i].apointTime);
+            }
+
+            // children은 자식태그까지만, find는 손자태그까지도 찾을 수 있음
+            var times = $("#time").find("div");
+            var str = "";
+            var li_time;
+            
+            // 다시 보여줌
+            for (let i = 0; i < times.length; i++){
+                str = "li:eq(" + i + ")";
+                li_time = $("#time").find(str);
+                li_time.show();
+            }
+            
+            // 중복값 안보여줌
+            for (let i = 0; i < timeList.length; i++) {
+                for (let j = 0; j < times.length; j++) {
+                    if (timeList[i] == times[j].innerText) {
+                        str = "li:eq(" + j + ")";
+                        li_time = $("#time").find(str);
+                        li_time.hide();
+                        console.log(times[j]);
+                        break;
+                    }
+                }
+            }
+        },
+        errors: function () {
+            alert("실패");
+        }
+
+    })
 }
 
 // Time 체크

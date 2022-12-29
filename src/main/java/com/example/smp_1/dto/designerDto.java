@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class designerDto {
+    private int designerNum;
+
     private String designerName;
     
     private String designerShop;

@@ -1,23 +1,21 @@
-
 function getInfo(obj) {
     var par = obj.parent();
     let dName = par.find('li:eq(1)').text().replace("이름 : ", "");
     dName = dName.trim();
     let dShop = par.find('input:eq(0)').val();
     $.ajax({
-        url:"/appointment",
+        url: "/appointment",
         type: "post",
-        data: {dName:dName, dShop:dShop},
-        success:function (req){
+        data: {dName: dName, dShop: dShop},
+        success: function (req) {
             if (req.status == "success") {
-                location.href="/appointSign";
-            }
-            else {
+                location.href = "/appointSign";
+            } else {
                 alert(req.data);
-                location.href="/main";
+                location.href = "/main";
             }
         },
-        errors:function (){
+        errors: function () {
             alert("에러");
         }
     })
@@ -35,7 +33,7 @@ function getShopInfo(text) {
         success: function (data) {
             var shopInfo = data[0]
             var designerInfo = data[1]
-            // console.log(data[1])
+
             var divShop = $("#div-shopInfo");
             var divDesigner = $("#div-designerInfo");
 
@@ -43,6 +41,7 @@ function getShopInfo(text) {
             // 이미 있을경우 비움
             $(divShop).empty();
             // 요소 추가
+            $(divShop).append("<h2 class=\"major\">주소</h2>");
             $(divShop).append("<ul>");
             $(divShop).append("<li> 우편번호 : " + shopInfo.shopAddrNum + "</li>");
             $(divShop).append("<li> 도로명 : " + shopInfo.shopAddrRoad + "</li>");
@@ -54,7 +53,11 @@ function getShopInfo(text) {
             // 이미 있으면 비워줌
             let divDesignerChild = '';
             $(divDesigner).empty();
+
             for (let i = 0; i < designerInfo.length; i++) {
+                if (i == 0) {
+                    divDesignerChild += "<h2 class=\"major\">디자이너</h2>";
+                }
                 divDesignerChild += "<ul>";
                 divDesignerChild += "<li> 직급 : " + designerInfo[i].designerPosition + "</li>";
                 divDesignerChild += "<li> 이름 : " + designerInfo[i].designerName + "</li>";
@@ -70,4 +73,37 @@ function getShopInfo(text) {
             alert('통신 실패');
         }
     })
+}
+
+function getReview(text) {
+    var shopName = text;
+    $.ajax({
+        url: "/getReview",
+        type: "post",
+        data: {shopName: shopName},
+        success: function (data) {
+            var reviewList = data;
+            var review = $("#div-review");
+
+            let divReview = '';
+            $(review).empty();
+            $(review).append("<h2 class=\"major\">리뷰</h2>");
+            for (let i = 0; i < reviewList.length; i++) {
+                if (i == 0) {
+                    divReview += "<h2 class=\"major\">리뷰</h2>";
+                }
+                divReview += "<ul>";
+                divReview += "<li> 작성자 : " + reviewList[i].reWriter + "</li>";
+                divReview += "<li> 작성일자 : " + reviewList[i].reCreate + "</li>";
+                divReview += "<li> 디자이너 : " + reviewList[i].reDesigner + "</li>";
+                divReview += "<li> 내용 : " + reviewList[i].reContent + "</li>";
+                divReview += "</ul>";
+                review.html(divReview);
+            }
+        },
+        errors: function () {
+            alert('통신 실패');
+        }
+    })
+
 }

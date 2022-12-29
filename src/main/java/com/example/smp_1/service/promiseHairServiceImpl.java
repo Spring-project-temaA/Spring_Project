@@ -176,18 +176,60 @@ public class promiseHairServiceImpl implements promiseHairService {
     }
 
     @Override
-    public void insertReview(reviewDto reviewDto) throws Exception{
+    public void insertReview(reviewDto reviewDto) throws Exception {
         phMapper.insertReview(reviewDto);
     }
 
-//    디자이너 정보 가져오기
+    //    디자이너 정보 가져오기
     @Override
     public designerDto postDesignerInfo(String designerName, String designerShop) {
         return phMapper.postDesignerInfo(designerName, designerShop);
     }
 
+    //    예약 바꼈을때 세션 최신화
     @Override
     public apointDto changeApointSession(apointDto apointdto) {
         return phMapper.changeApointSession(apointdto);
+    }
+
+    //    디자이너 목록 가져옴
+    @Override
+    public List<designerDto> designerList(String apointShop) {
+        return phMapper.designerList(apointShop);
+    }
+
+    //    디자이너 정보 가져옴
+    @Override
+    public designerDto designerInfo(String designerName, String designerShop) {
+        return phMapper.designerInfo(designerName, designerShop);
+    }
+
+    //    디자이너 정보 수정
+    @Override
+    public void designerUpdate(designerDto designerDto) throws Exception {
+        phMapper.designerUpdate(designerDto);
+        phMapper.changeDesignerInfo(designerDto);
+    }
+
+    //    예약 정보 가져옴
+    @Override
+    public List<apointDto> getDesignerApoint(String apointDesigner, String apointShop, String apointDate) {
+        return phMapper.getDesignerApoint(apointDesigner, apointShop, apointDate);
+    }
+
+    //    예약 취소
+    @Override
+    public void apointCancel(String apointDesigner, String apointShop, String apointDate, String apointTime, String apointUserId) {
+        phMapper.apointCancel(apointDesigner, apointShop, apointDate, apointTime, apointUserId);
+    }
+
+    @Override
+    public apointDto getApoints(String apointDesigner, String apointShop, String apointDate, String apointTime) {
+        return phMapper.getApoints(apointDesigner, apointShop, apointDate, apointTime);
+    }
+
+    @Override
+    public List<reviewDto> getReview(String shopName) {
+        return phMapper.getReview(shopName);
     }
 }

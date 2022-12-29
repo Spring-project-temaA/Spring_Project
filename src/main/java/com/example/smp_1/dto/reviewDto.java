@@ -8,14 +8,17 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 public class reviewDto {
-    public String reTitle;
     public String reWriter;
+
     public String reContent;
+
     public String reCreate;
+
     public String reUpdate;
-    public String reLike;
+
     public String reShop;
-    public String reYn;
+
     public String reIdx;
 
+    public String reDesigner;
 }

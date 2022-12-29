@@ -90,4 +90,21 @@ public interface promiseHairService {
     designerDto postDesignerInfo(String designerName, String designerShop);
 
     apointDto changeApointSession(apointDto apointdto);
+
+    //    디자이너 목록 뿌리기 위함
+    List<designerDto> designerList(String apointShop);
+
+    designerDto designerInfo(String designerName, String designerShop);
+
+    void designerUpdate(designerDto designerDto) throws Exception;
+
+    List<apointDto> getDesignerApoint(String apointDesigner, String apointShop, String apointDate);
+
+    //    예약 취소
+    void apointCancel(String apointDesigner, String apointShop, String apointDate, String apointTime, String apointUserId);
+
+    //    예약 정보 가져오기
+    apointDto getApoints(String apointDesigner, String apointShop, String apointDate, String apointTime);
+
+    List<reviewDto> getReview(String shopName);
 }

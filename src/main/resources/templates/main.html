@@ -10,7 +10,6 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="assets/css/main.css"/>
-    <link rel="stylesheet" href="assets/css/imagecss.css">
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css"/>
     </noscript>
@@ -50,9 +49,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         .swal-button {
             padding: 0px 15px;
             border-radius: 2px;
-            background-color: #1f5052;
+            background-color: rgba(0, 150, 184, 0.63);
             font-size: 10px;
-            border: 1px solid rgba(62, 84, 154, 0.13);
+            /*border: 1px solid rgba(62, 84, 154, 0.13);*/
             text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
         }
     </style>
@@ -86,7 +85,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
         <!-- About -->
         <article th:replace="layout/AboutArticle :: #About"></article>
 
+
         <article th:replace="layout/Mypage :: #Mypage"></article>
+
 
         <article th:replace="layout/apointCheck :: #apointCheck"></article>
 

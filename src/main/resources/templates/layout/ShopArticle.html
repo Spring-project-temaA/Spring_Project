@@ -17,29 +17,31 @@
 
     <!--    Shop Name 뿌리기-->
     <nav class="navbar bg-light">
-        <ul style="list-style: none;
-            padding-left: 0px;">
-            <button th:each="shopNames :${shopName}">
-                <li th:attr="onclick='getShopInfo(\'' + ${shopNames}+'\')'" th:text="${shopNames}"></li>
+        <ul>
+            <button style="padding: 2px 2px 2px 2px; margin: 5px 5px 5px 5px" th:each="shopNames :${shopName}">
+                <li th:attr="onclick='getShopInfo(\'' + ${shopNames}+'\'), getReview(\'' + ${shopNames}+'\')'"
+                    th:text="${shopNames}"></li>
             </button>
         </ul>
     </nav>
     <!-- shop 이미지-->
-    <span class="image main"><img src="images/pic02.jpg" alt=""/></span>
+    <span class="image main"><img src="images/pic_05.jpg" alt=""/></span>
 
-<!--    가게 정보 보여주기 위함-->
+    <!--    가게 정보 보여주기 위함-->
     <div id="div-shopInfo">
 
     </div>
 
-    <!-- img 4th -->
-    <span class="image main"><img src="images/pic02.jpg" alt=""/></span>
+    <br>
 
     <!--    가게 정보 보여주기 위함-->
-    <div id="div-designerInfo" class="row">
+    <div id="div-designerInfo">
 
     </div>
 
+    <div id="div-review">
+
+    </div>
 
 
 </article>
